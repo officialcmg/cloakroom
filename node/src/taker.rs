@@ -63,6 +63,9 @@ pub struct TakerSwap {
     pub sweep_txid: Option<String>,
     #[serde(default)]
     pub sweep_height: Option<u64>,
+    /// Wallet tip when the funding was broadcast; it expires unmined after FUND_EXPIRY blocks.
+    #[serde(default)]
+    pub fund_height: Option<u64>,
     #[serde(default)]
     pub last_claim_at: Option<u64>,
     #[serde(default)]
@@ -209,6 +212,7 @@ fn send_rfq(cx: &mut Ctx, opts: &Opts) -> Result<TakerSwap> {
         joint_fvk: None,
         escrow_id: None,
         fund_txid: None,
+        fund_height: None,
         commit_tx: None,
         claim_tx: None,
         sweep_txid: None,
@@ -400,6 +404,7 @@ fn on_open(cx: &mut Ctx, opts: &Opts, s: &mut TakerSwap) -> Result<()> {
     let (change, ovk, ask) = (cx.me.change(), cx.me.ovk.clone(), cx.me.ask.clone());
     let txid = cx.w.pay("wallet", &ask, change, &ovk, vec![(joint_addr, amount, memo)])?;
     s.fund_txid = Some(txid.clone());
+    s.fund_height = Some(cx.w.height);
     s.stage = Stage::Funded;
     put(cx, s, format!("escrow verified ({} checks) and finalized; FUNDED joint address with {amount} zats in fully shielded tx {txid}", checks.len()))?;
     maybe_vanish(cx, "funded", &opts.vanish_at);
@@ -415,6 +420,9 @@ fn commit(cx: &mut Ctx, s: &mut TakerSwap, id: &str) -> Result<String> {
     cx.evm.send(&relayer_key, &cx.evm.escrow.clone(), "commitClaim(bytes32,bytes32,address,uint8,bytes32,bytes32)", &[id.to_string(), c, relayer, v, r, sg])
 }
 
+/// Expiry delta of the transactions we build (the zcash_primitives default).
+const FUND_EXPIRY: u64 = 40;
+
 fn recover(cx: &mut Ctx, s: &mut TakerSwap, id: &str) -> Result<()> {
     let (b_hex, bn) = cx.evm.revealed("Refunded", id)?.ok_or_else(|| anyhow!("refund event"))?;
     let b = keys::scalar_from_evm(&b_hex)?;
@@ -425,6 +433,18 @@ fn recover(cx: &mut Ctx, s: &mut TakerSwap, id: &str) -> Result<()> {
     }
     let a = keys::normalize(keys::scalar_from_bytes(&unhex::<32>(&s.a)?)?, s.negated);
     let Some(n) = cx.w.unspent(&s.rfq_id).into_iter().next() else {
+        // A broadcast funding may still be unmined, or not yet in our view: keep a until it is
+        // either swept or provably expired, else the note would land with b public and a erased.
+        if s.fund_txid.is_some() {
+            let k_z = cx.cfg.k_z.unwrap_or(3);
+            let dead_after = s.fund_height.map(|h| h + 1 + FUND_EXPIRY + k_z);
+            if dead_after.map_or(true, |d| cx.w.height <= d) {
+                let line = "maker REFUNDED; our funding is not yet visible, keeping a until it is mined or expires";
+                return if s.log.last().map(|l| l.as_str()) == Some(line) { Ok(()) } else { put(cx, s, line.into()) };
+            }
+            s.stage = Stage::Recovered;
+            return put(cx, s, format!("maker REFUNDED at base block {bn}; our funding expired unmined (height > {}), nothing to recover", dead_after.unwrap()));
+        }
         s.stage = Stage::Recovered;
         return put(cx, s, format!("maker REFUNDED at base block {bn}; no joint note was funded, nothing to recover"));
     };

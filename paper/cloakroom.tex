@@ -383,7 +383,7 @@ R2r & $T$ & Reveal $a$ only once the lock is final and $\tau + B_R < \mathit{loc
 R3e & $M$ & Refund early only in \st{Open} with no sufficient note, after $T$'s R1b funding window has closed. Once $b$ is public, never set Ready.\\
 R3d & $M$ & Refund after $t_1$ only if a final block with timestamp $\ge t_1$ shows \st{Open} or \st{Ready}, and $\tau + B_R < t_2$. Re-send whenever dropped.\\
 R3l & $M$ & Refund a lock only if a final block with timestamp $\ge \mathit{lockedAt}+W$ shows \st{Locked}. Re-send whenever dropped.\\
-R4 & both & Per-request secrets are fresh. Each is erased only once nothing can still need it: after the party's refund or claim is final and its sweep has $k_Z$ confirmations (an expired sweep is re-sent).\\
+R4 & both & Per-request secrets are fresh. Each is erased only once nothing can still need it: after the party's refund or claim is final and its sweep has $k_Z$ confirmations (an expired sweep is re-sent). A taker who broadcast a funding keeps $a$ until that funding is swept, or has expired unmined by $k_Z$ blocks, even if the maker has refunded and her wallet does not yet show the note.\\
 L$_M$ & $M$ & \textbf{Maker liveness:} online at some $\tau \in [t_1 + D + F,\, t_2 - B_R)$, and then, by (H), until its refund is final.\\
 \bottomrule
 \end{tabularx}

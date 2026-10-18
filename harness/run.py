@@ -823,12 +823,47 @@ def s17_far_horizon():
         "Malicious maker quotes a punish deadline t2 about 136 years away (hostage by delay): taker rejects the quote and never funds",
         "deadline horizon")
 
+def s18_late_funding():
+    scen = "s18_late_funding"
+    maker, taker = parties(scen)
+    c = Checks(scen, "Taker's funding stays unmined until after the maker's no-funding refund (b public): the taker keeps a and sweeps the late note with a+b")
+    before = snapshot(maker, taker)
+    maker.start("--exit-after", "1")
+    taker.start("--lots", "1")
+    maker.wait_log("escrow OPEN", 200)
+    mine_lock.acquire()                  # hold Zcash blocks: the funding will sit in the mempool
+    try:
+        taker.wait_log("FUNDED", 200)
+        held = len(zrpc("getrawmempool"))
+        m = maker.swap()
+        warp_to(m["t0"] - 2 * D_SMALL - 1)
+        maker.wait_log("no funding before t0", 120)
+        finalize()
+        maker.wait(120)
+        taker.wait_log("keeping a", 120)
+        mid = taker.swap()
+    finally:
+        mine_lock.release()
+    taker.wait(300)
+    t, m = taker.swap(), maker.swap()
+    after = snapshot(maker, taker)
+    c.facts.update(before=before, after=after, escrow_id=m["escrow_id"])
+    c.ok("funding was unmined when the maker refunded for lack of funding", held > 0 and any("no funding before t0" in l for l in m["log"]), held)
+    c.ok("maker reached Refunded", m["stage"] == "Refunded", m["stage"])
+    c.ok("taker kept a while its funding was not visible", mid["stage"] == "Funded" and mid["a"] != "", mid["stage"])
+    c.ok("taker swept the late joint note back with (a+b)", t["stage"] == "Recovered" and any("swept" in l for l in t["log"]), t["stage"])
+    c.ok("maker tokens fully restored", after["maker_tok"] == before["maker_tok"])
+    c.ok("taker ZEC: premium + 4 tx fees lost (exact)", before["taker_zec"] - after["taker_zec"] == PREMIUM + 4 * FEE, before["taker_zec"] - after["taker_zec"])
+    return c.save(maker, taker)
+
+
 NU63 = {"s1": s1_happy, "s2": s2_taker_vanishes_before_funding, "s3": s3_taker_vanishes_after_funding,
         "s4": s4_maker_vanishes_after_open, "s5": s5_rogue_key, "s6": s6_underfund,
         "s8": s8_free_claim_attempt, "s9": s9_late_commit, "s10": s10_lock_without_reveal,
         "s11": s11_maker_liveness_violated, "s12": s12_cover_traffic,
         "s13": s13_reorg_claim, "s14": s14_reorg_refund, "s15": s15_impostor_directory,
-        "s16": s16_short_reveal_window, "s17": s17_far_horizon}
+        "s16": s16_short_reveal_window, "s17": s17_far_horizon,
+        "s18": s18_late_funding}
 
 
 def write_report():
