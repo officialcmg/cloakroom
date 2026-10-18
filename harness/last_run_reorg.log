@@ -1,0 +1,26 @@
+[harness 00:33:44] zebra up: /Zebra:7.0.0-rc.0/ tip 3 next-block branch 37a5165b
+[harness 00:33:46] anvil up (chain id 84532); MockUSDC 0x5fbdb2315678afecb367f032d93f642f64180aa3, CloakroomEscrow 0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+[harness 00:33:46] === s13 ===
+[harness 00:36:20] REORG: replaced the last 1 blocks (from 156); tx 0xf5e831441b.. dropped
+[harness 00:36:20]   PASS  claim block reorganized away before finality {'tx': '0xf5e831441bd977122be01b03a4454248a1b02c9f29c28c77c9db091b269aaed8', 'block': 156, 'depth': 1, 'gone_after_reorg': True}
+[harness 00:37:34]   PASS  taker re-sent the claim after the reorg 
+[harness 00:37:34]   PASS  taker reached Claimed (claim final) Claimed
+[harness 00:37:34]   PASS  maker reached Swept Swept
+[harness 00:37:34]   PASS  exactly one Claimed event on the canonical chain 
+[harness 00:37:34]   PASS  taker payout withdrew price - relayer fee 299000000
+[harness 00:37:34]   PASS  maker paid exactly the price 
+[harness 00:37:34]   PASS  privacy audit: all 5 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out) []
+[harness 00:37:34]   PASS  R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK) checked=['maker:Swept', 'taker:Claimed'] not_terminal=[] bad=[]
+[harness 00:37:34] === s14 ===
+[harness 00:39:02] warped Base clock forward 140s to 1792014081
+[harness 00:40:09]   PASS  maker held the swap in RefundSent (not terminal) after broadcasting RefundSent
+[harness 00:40:09] REORG: replaced the last 1 blocks (from 451); tx 0x8dfd4572dc.. dropped
+[harness 00:40:09]   PASS  refund block reorganized away before finality {'tx': '0x8dfd4572dce581c88565f072eb623216282d8e39f0b4f6af329f4c98059d3aa0', 'block': 451, 'depth': 1, 'gone_after_reorg': True}
+[harness 00:40:22]   PASS  maker re-sent the refund and finished only once it was final Refunded
+[harness 00:40:22]   PASS  escrow state Refunded 
+[harness 00:40:22]   PASS  taker recovered the joint note Recovered
+[harness 00:40:22]   PASS  maker tokens fully restored 
+[harness 00:40:22]   PASS  no Claimed event: a never published 
+[harness 00:40:22]   PASS  privacy audit: all 5 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out) []
+[harness 00:40:22]   PASS  R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK) checked=['maker:Refunded', 'taker:Recovered'] not_terminal=[] bad=[]
+[harness 00:40:23] SUMMARY: s13 PASS (228s), s14 PASS (168s)

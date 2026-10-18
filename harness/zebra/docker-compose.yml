@@ -1,0 +1,10 @@
+services:
+  zebra:
+    image: zfnd/zebra:7.0.0-rc.0
+    container_name: cloakroom-harness-zebra
+    environment:
+      CONFIG_FILE_PATH: /etc/zebrad/zebrad.toml
+    volumes:
+      - ./${ZEBRA_CONF:-zebrad-nu63.toml}:/etc/zebrad/zebrad.toml:ro
+    ports:
+      - "127.0.0.1:18232:18232"

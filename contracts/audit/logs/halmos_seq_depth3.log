@@ -1,0 +1,4 @@
+No files changed, compilation skipped
+
+Running 1 tests for test/CloakroomEscrow.halmos.t.sol:EscrowSeqHalmos
+halmos --contract EscrowSeqHalmos --function check_seq_depth3 --loop 64  z3    3051.17s user 345.47s system 154% cpu 36:33.89 total

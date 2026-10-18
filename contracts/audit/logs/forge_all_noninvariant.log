@@ -1,0 +1,71 @@
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 733.87ms
+Compiler run successful!
+
+Ran 3 tests for test/AuditFindings.t.sol:AuditFindingsTest
+[PASS] testFuzz_FIXED_L01_anyShortfallRejected(uint256) (runs: 256, μ: 1568130, ~: 1568025)
+[PASS] test_FIXED_I01_isDiscreteLogOf_rejectsNonCanonicalCoordinates() (gas: 389182)
+[PASS] test_FIXED_L01_feeOnTransferToken_rejectedAtOpen() (gas: 1603405)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 14.42ms (14.14ms CPU time)
+
+Ran 13 tests for test/CloakroomEscrow.audit.t.sol:CloakroomEscrowAuditTest
+[PASS] testFuzz_commitFromOpenOnlyFromT2(uint64) (runs: 256, μ: 353656, ~: 366286)
+[PASS] testFuzz_makerScoping(address,bytes32,bytes32) (runs: 256, μ: 630303, ~: 630303)
+[PASS] testFuzz_refundOpenReadyNeverFromT2(uint64,bool) (runs: 256, μ: 432007, ~: 336304)
+[PASS] test_claim_noExternalCalls() (gas: 893199)
+[PASS] test_claim_punishPath_noExternalCalls() (gas: 890781)
+[PASS] test_detectorSanity_withdrawTokenCallIsSeen() (gas: 795127)
+[PASS] test_gas_pallasScalarDependence() (gas: 118700838)
+[PASS] test_info_lateCommitSignatureReplayableAtT2() (gas: 868952)
+[PASS] test_info_malleableSignatureAccepted() (gas: 372104)
+[PASS] test_reentrancy_open_refundDuringPull() (gas: 1383777)
+[PASS] test_reentrancy_withdraw_noDoublePay() (gas: 1569817)
+[PASS] test_refund_allWindows_noExternalCalls() (gas: 2340709)
+[PASS] test_setReady_and_commitClaim_externalCalls() (gas: 395608)
+Suite result: ok. 13 passed; 0 failed; 0 skipped; finished in 426.34ms (426.07ms CPU time)
+
+Ran 22 tests for test/CloakroomEscrow.t.sol:CloakroomEscrowTest
+[PASS] testFuzz_exactlyOneExit(uint64,uint64,uint64,uint8) (runs: 256, μ: 537749, ~: 360321)
+[PASS] testFuzz_randomScalarNeverMatches(uint256) (runs: 256, μ: 169615, ~: 105194)
+[PASS] test_commitNeedsPayoutSignature() (gas: 351546)
+[PASS] test_earlyRefundBeforeT0() (gas: 779763)
+[PASS] test_edgeScalarsRejected() (gas: 974485)
+[PASS] test_feeOnTransferTokenRejected() (gas: 496371)
+[PASS] test_gapBetweenT1andT2() (gas: 337564)
+[PASS] test_guards() (gas: 339984)
+[PASS] test_happyPath_commitRevealWithdraw() (gas: 886107)
+[PASS] test_lateCommitRevertsAndRefundFollows() (gas: 828856)
+[PASS] test_lockedWithoutRevealRefundsAfterWindow() (gas: 825125)
+[PASS] test_makerRefundInWindowBlocksPunish() (gas: 820715)
+[PASS] test_noClaimWithoutReady_evenAfterT0() (gas: 791061)
+[PASS] test_nonCanonicalCoordinatesRejected() (gas: 6845)
+[PASS] test_punishPathFromOpenAfterT2() (gas: 879134)
+[PASS] test_punishPathFromReadyAfterT2() (gas: 878286)
+[PASS] test_readyNoCommit_refundOnlyFromT1() (gas: 821659)
+[PASS] test_revealMustMatchCommitment() (gas: 366246)
+[PASS] test_tokenPauseCannotRevertClaim() (gas: 870581)
+[PASS] test_vectorsMatchRust() (gas: 1777709)
+[PASS] test_withdrawIsIdempotent() (gas: 783458)
+[PASS] test_wrongShareAtRefundDoor() (gas: 787011)
+Suite result: ok. 22 passed; 0 failed; 0 skipped; finished in 259.21ms (258.95ms CPU time)
+
+Ran 3 tests for test/PallasRealCurve.t.sol:PallasRealCurveTest
+[PASS] testFuzz_homomorphism(uint256,uint256) (runs: 2000, μ: 1222163, ~: 1199072)
+[PASS] testFuzz_negationAndDoubling(uint256) (runs: 1000, μ: 775216, ~: 615002)
+[PASS] test_structuredScalars() (gas: 303076956)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 8.89s (8.89s CPU time)
+
+Ran 9 tests for test/PallasSmallCurve.t.sol:PallasSmallCurveTest
+[PASS] test_E1_exhaustive_k000_040() (gas: 500267933)
+[PASS] test_E1_exhaustive_k040_080() (gas: 526074540)
+[PASS] test_E1_exhaustive_k080_120() (gas: 532361172)
+[PASS] test_E1_exhaustive_k120_160() (gas: 533878578)
+[PASS] test_E1_exhaustive_k160_200() (gas: 537347120)
+[PASS] test_E1_exhaustive_k200_269() (gas: 398399176)
+[PASS] test_E1_multiplesOfQ_giveIdentity() (gas: 293008)
+[PASS] test_E1_tableIsTheWholeCurve() (gas: 19818108)
+[PASS] test_E2_allScalars() (gas: 904065436)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 7.36s (7.36s CPU time)
+
+Ran 5 test suites in 16.96s (16.95s CPU time): 50 tests passed, 0 failed, 0 skipped (50 total tests)
+forge test -j 1 --no-match-path "test/CloakroomEscrow.invariant.t.sol"  17.98s user 0.18s system 99% cpu 18.253 total

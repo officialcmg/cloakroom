@@ -1,0 +1,21 @@
+Compiling 13 files with Solc 0.8.30
+Solc 0.8.30 finished in 10.02s
+Compiler run successful!
+
+Running 8 tests for test/CloakroomEscrow.halmos.t.sol:PallasHalmos
+[33m[TIMEOUT][0m check_dbl_ZnonZero(uint256,uint256,uint256) (paths: 6, time: 60.15s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_dbl_ZnonZero-cjp7rrjz-timeout[0m
+[32m[PASS][0m check_dbl_identity(uint256,uint256) (paths: 1, time: 0.00s, bounds: [])
+[32m[PASS][0m check_dlog_rejectsNonCanonical(uint256,uint256,uint256) (paths: 2, time: 0.01s, bounds: [])
+[32m[PASS][0m check_dlog_rejectsZeroAndOutOfRange(uint256,uint256,uint256) (paths: 2, time: 0.00s, bounds: [])
+[33m[TIMEOUT][0m check_formulas_canonical(uint256,uint256,uint256) (paths: 22, time: 214.99s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_formulas_canonical-v7dv2dii-timeout[0m
+[33m[TIMEOUT][0m check_maddG_ZnonZero(uint256,uint256,uint256) (paths: 18, time: 180.67s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_maddG_ZnonZero-qg9twxo6-timeout[0m
+[32m[PASS][0m check_maddG_identity(uint256,uint256) (paths: 1, time: 0.00s, bounds: [])
+[32m[PASS][0m check_onCurve_rejectsNonCanonical(uint256,uint256) (paths: 2, time: 0.01s, bounds: [])
+Symbolic test result: 5 passed; 3 failed; time: 455.87s
+
+real	7m47.704s
+user	7m36.668s
+sys	0m8.583s

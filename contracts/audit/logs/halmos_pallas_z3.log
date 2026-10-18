@@ -1,0 +1,14 @@
+No files changed, compilation skipped
+
+Running 7 tests for test/CloakroomEscrow.halmos.t.sol:PallasHalmos
+[33m[TIMEOUT][0m check_dbl_ZnonZero(uint256,uint256,uint256) (paths: 6, time: 604.95s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_dbl_ZnonZero-fgvn84gi-timeout[0m
+[32m[PASS][0m check_dbl_identity(uint256,uint256) (paths: 1, time: 0.00s, bounds: [])
+[32m[PASS][0m check_dlog_rejectsZeroAndOutOfRange(uint256,uint256,uint256) (paths: 2, time: 0.01s, bounds: [])
+[33m[TIMEOUT][0m check_formulas_canonical(uint256,uint256,uint256) (paths: 23, time: 607.67s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_formulas_canonical-tn69h1f8-timeout[0m
+[33m[TIMEOUT][0m check_maddG_ZnonZero(uint256,uint256,uint256) (paths: 18, time: 601.61s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_maddG_ZnonZero-74na6xcz-timeout[0m
+[32m[PASS][0m check_maddG_identity(uint256,uint256) (paths: 1, time: 0.00s, bounds: [])
+[32m[PASS][0m check_onCurve_rejectsNonCanonical(uint256,uint256) (paths: 2, time: 0.01s, bounds: [])
+Symbolic test result: 4 passed; 3 failed; time: 1814.29s

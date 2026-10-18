@@ -1,0 +1,21 @@
+[package]
+name = "cloakroom-measurements"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Anonymity-set measurement of Ironwood transactions on Zcash (compact-block scan)"
+
+[dependencies]
+anyhow = "1"
+hex = "0.4.3"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time"] }
+tonic = { version = "0.14", features = ["transport", "tls-webpki-roots"] }
+orchard = "0.16.0"
+zcash_primitives = "=0.31.0-pre.1"
+zcash_protocol = "=0.11.0-pre.0"
+zcash_transparent = "=0.11.0-pre.1"
+zcash_client_backend = { version = "=0.25.0-pre.1", default-features = false, features = ["lightwalletd-tonic-transport", "lightwalletd-tonic-tls-webpki-roots", "orchard"] }
+
+[profile.release]
+opt-level = 3

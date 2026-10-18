@@ -1,0 +1,7 @@
+No files changed, compilation skipped
+
+Running 1 tests for test/CloakroomEscrow.halmos.t.sol:EscrowSeqHalmos
+ERROR    solver_output.error='executor has been shutdown'                       
+         (solver_output.returncode=-1)                                          
+ERROR    solver_output.error='executor has been shutdown'                       
+         (solver_output.returncode=-1)                                          

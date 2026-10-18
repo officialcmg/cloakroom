@@ -1,0 +1,21 @@
+No files changed, compilation skipped
+
+Running 13 tests for test/CloakroomEscrow.halmos.t.sol:EscrowSMHalmos
+[32m[PASS][0m check_anyCall_transitionsAndMaker(bytes32,address,uint64) (paths: 201, time: 2.54s, bounds: [])
+[32m[PASS][0m check_claim_iff(bytes32,bytes32,uint256,address,uint64) (paths: 238, time: 6.75s, bounds: [])
+[32m[PASS][0m check_commitClaim_fromOpen_onlyAtOrAfterT2(bytes32,bytes32,address,uint8,bytes32,bytes32,address,uint64) (paths: 9, time: 0.04s, bounds: [])
+[32m[PASS][0m check_commitClaim_iff(bytes32,bytes32,bytes32,address,uint8,bytes32,bytes32,address,uint64) (paths: 33, time: 0.91s, bounds: [])
+[32m[PASS][0m check_commitClaim_lockTimeWindows(bytes32,bytes32,address,uint8,bytes32,bytes32,uint64) (paths: 17, time: 0.15s, bounds: [])
+[32m[PASS][0m check_commitDigest_injective(bytes32,bytes32,address,bytes32,bytes32,address) (paths: 7, time: 0.14s, bounds: [])
+[32m[PASS][0m check_open_cannotTouchOtherMakersId(address,address,bytes32,uint64) (paths: 31, time: 0.57s, bounds: [])
+[32m[PASS][0m check_open_iff(address,bytes32,uint64,uint256) (paths: 55, time: 1.52s, bounds: [])
+[32m[PASS][0m check_refund_OpenReady_neverAtOrAfterT2(bytes32,uint256,address,uint64) (paths: 10, time: 0.09s, bounds: [])
+[32m[PASS][0m check_refund_iff(bytes32,bytes32,uint256,address,uint64) (paths: 99, time: 2.95s, bounds: [])
+[32m[PASS][0m check_setReady_iff(bytes32,bytes32,address,uint64) (paths: 15, time: 0.23s, bounds: [])
+[32m[PASS][0m check_windowsDisjoint(bytes32,uint64) (paths: 14, time: 0.21s, bounds: [])
+[32m[PASS][0m check_withdraw_exact(address,address,address,bytes32,bool) (paths: 9, time: 0.15s, bounds: [])
+Symbolic test result: 13 passed; 0 failed; time: 16.27s
+
+real	0m17.601s
+user	0m20.890s
+sys	0m0.451s

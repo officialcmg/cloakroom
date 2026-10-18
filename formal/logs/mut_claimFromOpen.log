@@ -1,0 +1,121 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 100 and seed 1807923389725199525 with 2 workers on 10 cores with 1820MB heap and 64MB offheap memory [pid: 8212] (Mac OS X 26.6.2 aarch64, Homebrew 27 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/chrismg/Developer/hackathons/zecathon/cloakroom/formal/Cloakroom.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Integers.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Sequences.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/TLC.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Cloakroom
+Starting... (2026-10-15 01:04:42)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-15 01:04:42.
+Error: Invariant NoFreeClaim is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 0
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 2: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 1
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 3: <Open line 259, col 5 to line 262, col 71 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 1
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 4: <BcastCommit line 288, col 5 to line 292, col 74 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> 1, claim |-> -1, refund |-> -1]
+/\ now = 1
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 5: <BcastClaim line 306, col 5 to line 311, col 66 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> 1, claim |-> 1, refund |-> -1]
+/\ now = 1
+/\ leaked = {"a"}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 6: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> 1, claim |-> 1, refund |-> -1]
+/\ now = 2
+/\ leaked = {"a"}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 7: <Include line 338, col 5 to line 345, col 67 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> 1, refund |-> -1]
+/\ now = 2
+/\ leaked = {"a"}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1], [st |-> "Locked", at |-> 2]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 8: <Include line 338, col 5 to line 345, col 67 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 2
+/\ leaked = {"a"}
+/\ zec = "Unfunded"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Locked", at |-> 2],
+   [st |-> "Claimed", at |-> 2] >>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 9: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 3
+/\ leaked = {"a"}
+/\ zec = "Unfunded"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Locked", at |-> 2],
+   [st |-> "Claimed", at |-> 2] >>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+2349 states generated, 1537 distinct states found, 821 states left on queue.
+The depth of the complete state graph search is 9.
+The average outdegree of the complete state graph is 2 (minimum is 0, the maximum 5 and the 95th percentile is 4).
+Finished in 00s at (2026-10-15 01:04:42)
+
+real	0m0.676s
+user	0m1.142s
+sys	0m0.066s

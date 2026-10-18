@@ -1,0 +1,9 @@
+[harness 17:56:46] zebra up: /Zebra:7.0.0-rc.0/ tip 3 next-block branch 37a5165b
+[harness 17:56:48] anvil up (chain id 84532); MockUSDC 0x5fbdb2315678afecb367f032d93f642f64180aa3, CloakroomEscrow 0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+[harness 17:56:48] === s12 ===
+[harness 18:00:48]   PASS  swap completed under cover delays ('Claimed', 'Swept')
+[harness 18:00:48]   PASS  all four delayable broadcasts waited for cover [('ACCEPT', '17', '12', '4'), ('FUND', '22', '8', '4'), ('QUOTE', '20', '14', '4'), ('SWEEP', '18', '9', '4')]
+[harness 18:00:48]   PASS  each wait saw >= 4 look-alikes (wallet count) 
+[harness 18:00:48]   PASS  independent chain count: >= 4 look-alikes mined between RFQ and QUOTE, and between QUOTE and ACCEPT (4, 4)
+[harness 18:00:48]   PASS  privacy audit: all 5 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out) []
+[harness 18:00:49] SUMMARY: s12 PASS (240s)

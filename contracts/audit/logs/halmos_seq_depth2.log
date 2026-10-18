@@ -1,0 +1,6 @@
+No files changed, compilation skipped
+
+Running 1 tests for test/CloakroomEscrow.halmos.t.sol:EscrowSeqHalmos
+[32m[PASS][0m check_seq_depth2() (paths: 1836, time: 505.65s, bounds: [])
+Symbolic test result: 1 passed; 0 failed; time: 505.75s
+halmos --contract EscrowSeqHalmos --function check_seq_depth2 --loop 64  z3    656.45s user 43.19s system 135% cpu 8:35.77 total

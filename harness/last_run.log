@@ -1,0 +1,5 @@
+[harness 17:21:42] zebra up: /Zebra:7.0.0-rc.0/ tip 3 next-block branch 37a5165b
+[harness 17:21:44] anvil up (chain id 84532); MockUSDC 0x5fbdb2315678afecb367f032d93f642f64180aa3, CloakroomEscrow 0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+[harness 17:21:44] === s1 ===
+[harness 17:25:14]   ERROR maker timed out after 200s (see /Users/chrismg/Developer/hackathons/zecathon/cloakroom/harness/evidence/s1_happy/maker.log)
+[harness 17:25:14] === s2 ===

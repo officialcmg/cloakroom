@@ -1,0 +1,10 @@
+No files changed, compilation skipped
+
+Running 2 tests for test/CloakroomEscrow.halmos.t.sol:EscrowReentryHalmos
+[32m[PASS][0m check_open_CEI(address,uint64) (paths: 125, time: 4.69s, bounds: [])
+[32m[PASS][0m check_withdraw_CEI_and_noDoublePay(address,uint64) (paths: 209, time: 1.67s, bounds: [])
+Symbolic test result: 2 passed; 0 failed; time: 6.38s
+
+real	0m7.589s
+user	0m8.104s
+sys	0m0.281s

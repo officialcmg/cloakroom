@@ -1,0 +1,18 @@
+[package]
+name = "keys-spike"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+blake2b_simd = "1"
+ff = "0.14"
+group = "0.14"
+hex = "0.4.3"
+incrementalmerkletree = "0.9"
+orchard = "0.16.0"
+pasta_curves = "0.6.1"
+rand = "0.10"
+rand_core = "0.10"
+reddsa = "0.6.1"
+shardtree = "0.8"
+zcash_note_encryption = "0.5.1"

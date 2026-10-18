@@ -1,0 +1,64 @@
+
+Detector: reentrancy-balance
+Reentrancy in CloakroomEscrow.open(bytes32,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint64,uint64,uint64,uint64) (src/CloakroomEscrow.sol#128-170):
+	External call allowing reentrancy:
+	- ! IERC20(token).transferFrom(msg.sender,address(this),amount) (src/CloakroomEscrow.sol#167)
+	Balance read before the call:
+	- before = IERC20(token).balanceOf(address(this)) (src/CloakroomEscrow.sol#166)
+	Possible stale balance used after the call in a condition:
+	- IERC20(token).balanceOf(address(this)) - before != amount (src/CloakroomEscrow.sol#168)
+		- stale variable `before`
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities
+
+Detector: reentrancy-events
+Reentrancy in CloakroomEscrow.open(bytes32,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint64,uint64,uint64,uint64) (src/CloakroomEscrow.sol#128-170):
+	External calls:
+	- ! IERC20(token).transferFrom(msg.sender,address(this),amount) (src/CloakroomEscrow.sol#167)
+	Event emitted after the call(s):
+	- Opened(id,msg.sender,payout,token,amount,relayerFee,ax,ay,bx,by,t0,t1,t2,revealWindow) (src/CloakroomEscrow.sol#169)
+Reentrancy in CloakroomEscrow.withdraw(address,address) (src/CloakroomEscrow.sol#228-233):
+	External calls:
+	- amt != 0 && ! IERC20(token).transfer(owner,amt) (src/CloakroomEscrow.sol#231)
+	Event emitted after the call(s):
+	- Withdrawn(token,owner,amt) (src/CloakroomEscrow.sol#232)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-4
+
+Detector: timestamp
+CloakroomEscrow.open(bytes32,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint64,uint64,uint64,uint64) (src/CloakroomEscrow.sol#128-170) uses timestamp for comparisons
+	Dangerous comparisons:
+	- payout == address(0) || amount == 0 || relayerFee > amount || t0 <= block.timestamp || t1 <= t0 || t2 <= t1 || revealWindow == 0 || ! Pallas.isOnCurve(ax,ay) || ! Pallas.isOnCurve(bx,by) (src/CloakroomEscrow.sol#144-145)
+CloakroomEscrow.setReady(bytes32) (src/CloakroomEscrow.sol#173-180) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp >= s.t0 (src/CloakroomEscrow.sol#177)
+CloakroomEscrow.commitClaim(bytes32,bytes32,address,uint8,bytes32,bytes32) (src/CloakroomEscrow.sol#185-197) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ! ((st == State.Ready && block.timestamp < s.t1) || block.timestamp >= s.t2) (src/CloakroomEscrow.sol#189)
+CloakroomEscrow.claim(bytes32,uint256) (src/CloakroomEscrow.sol#200-210) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp >= uint256(s.lockedAt) + s.revealWindow (src/CloakroomEscrow.sol#203)
+CloakroomEscrow.refund(bytes32,uint256) (src/CloakroomEscrow.sol#213-224) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ok = (st == State.Open && block.timestamp < s.t0) || ((st == State.Open || st == State.Ready) && block.timestamp >= s.t1 && block.timestamp < s.t2) || (st == State.Locked && block.timestamp >= uint256(s.lockedAt) + s.revealWindow) (src/CloakroomEscrow.sol#216-218)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+
+Detector: naming-convention
+Parameter Pallas.dbl(uint256,uint256,uint256).X1 (src/Pallas.sol#52) is not in mixedCase
+Parameter Pallas.dbl(uint256,uint256,uint256).Y1 (src/Pallas.sol#52) is not in mixedCase
+Parameter Pallas.dbl(uint256,uint256,uint256).Z1 (src/Pallas.sol#52) is not in mixedCase
+Parameter Pallas.maddG(uint256,uint256,uint256).X1 (src/Pallas.sol#70) is not in mixedCase
+Parameter Pallas.maddG(uint256,uint256,uint256).Y1 (src/Pallas.sol#70) is not in mixedCase
+Parameter Pallas.maddG(uint256,uint256,uint256).Z1 (src/Pallas.sol#70) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+Detector: too-many-digits
+Pallas.slitherConstructorConstantVariables() (src/Pallas.sol#10-93) uses literals with too many digits:
+	- P = 0x40000000000000000000000000000000224698fc094cf91b992d30ed00000001 (src/Pallas.sol#11)
+Pallas.slitherConstructorConstantVariables() (src/Pallas.sol#10-93) uses literals with too many digits:
+	- Q = 0x40000000000000000000000000000000224698fc0994a8dd8c46eb2100000001 (src/Pallas.sol#12)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#too-many-digits
+. analyzed (4 contracts with 102 detectors), 16 result(s) found
+INFO:Slither:/Users/chrismg/Developer/hackathons/zecathon/cloakroom/contracts/audit/logs/slither.json exists already, the overwrite is prevented
+'forge clean' running (wd: contracts)
+'forge config --json' running
+'forge build --build-info --skip ./test/** ./script/** --force' running (wd: contracts)
+$OLDPWD/.venv/bin/slither . --filter-paths "lib/" --json   0.54s user 0.10s system 74% cpu 0.862 total

@@ -1,0 +1,7 @@
+No files changed, compilation skipped
+
+Running 1 tests for test/CloakroomEscrow.halmos.t.sol:EscrowSeqHalmos
+[33m[TIMEOUT][0m check_seq_depth4_oneSwap() (paths: 746, time: 645.58s, bounds: [])
+[36mTimeout queries saved in: /var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/check_seq_depth4_oneSwap-nqnaqn5c-timeout[0m
+Symbolic test result: 0 passed; 1 failed; time: 645.69s
+halmos --contract EscrowSeqHalmos --function check_seq_depth4_oneSwap --loop   1337.23s user 25.28s system 209% cpu 10:50.71 total

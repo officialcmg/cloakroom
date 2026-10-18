@@ -1,0 +1,4 @@
+[taker] zec#4501242 base_t=1791979154 | a86d925c RFQ 1 lot(s) (215 memo bytes) sent to maker in shielded tx 5a915a212444cd565ae8951e3480fe72aa6d4c1c1c79e8e247c95fb836d987d8
+[taker] zec#4501250 base_t=1791979438 | a86d925c QUOTE ok (1000000 units, maker PoK valid); ACCEPT sent in tx 64d6fb54676a2cc103dcc39e29b1bbae5405c6f6eebb613daf8cf84731329d2c; joint address utest1aty2kxqv6pyj50q53hxu8apyaz530hma9axe6s9h24hzlpvaxgzvy74jdd950pxcjn9ph2urm0axf6pcy2ary6czhn693rdr8c4wye2e
+[taker] zec#4501267 base_t=1791979652 | a86d925c escrow verified (9 checks) and on safe head; FUNDED joint address with 1010000 zats in fully shielded tx a65a51610af40df2e40a7575b3d2a1f4d5cb06b2593533f6fb33588319bf6ed8
+[taker] zec#4501267 base_t=1791979652 | VANISH at stage funded (process exits; state is persisted)

@@ -1,0 +1,53 @@
+[taker] zec#4502376 base_t=1792006486 | 7a0671a3 encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx d36a9107d39c3599a144ddddd5f7220758c7f5f813030e90ea302b9ac43499a7
+[taker] zec#4502380 base_t=1792006616 | transient error, retrying: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502389 base_t=1792006780 | 7a0671a3 QUOTE decrypted (price 1000000, maker PoK valid); encrypted ACCEPT with 20000 zats premium sent in tx 12a58f24b27bfcd096fdac729b14457a020c7ca3835a1195f2aa4c4cb88494d0; joint address utest108w84909c98vkfytkkjz9mkm258qzsa9wnpzu4r4sucm9upw9sen6ff4wtumd4706tvuy2snckxkytpgqatfu6am7rlrk8qzsg53qdve
+[taker] zec#4502390 base_t=1792006840 | transient error, retrying: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502399 base_t=1792006976 | transient error, retrying: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502401 base_t=1792007026 | transient error, retrying: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502410 base_t=1792007252 | transient error, retrying: cast logs: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502415 base_t=1792008252 | transient error, retrying: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- Error #0: client error (Connect)
+- Error #1: Connection reset by peer (os error 54)
+[taker] zec#4502415 base_t=1792008292 | transient error, retrying: code: 'Unknown error', message: "transport error", source: tonic::transport::Error(Transport, hyper::Error(Io, Kind(TimedOut))): transport error: connection error: timed out
+[taker] zec#4502457 base_t=1792008306 | 7a0671a3 escrow verified (11 checks) and finalized; FUNDED joint address with 1010000 zats in fully shielded tx 9f779dbf3229e1709837c659ec4e81cd732ade239ed05df0c19021f90710b00d
+[taker] zec#4502457 base_t=1792008356 | transient error, retrying: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502468 base_t=1792008554 | 7a0671a3 escrow READY; LOCKED with payout-signed commitClaim (publishes only H(id, a)) via relayer, base tx 0x2d8e0a9da530d04d34430c8858cadd3e4bbe2dc7f3797642ea38cd8d7fe9549a
+[taker] zec#4502470 base_t=1792008652 | transient error, retrying: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502474 base_t=1792008830 | transient error, retrying: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502492 base_t=1792009160 | transient error, retrying: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502497 base_t=1792009272 | transient error, retrying: cast logs: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4502510 base_t=1792009516 | 7a0671a3 lock finalized; REVEALED a via relayer (tx 0x585bdb2271b14885223a3835e6b6b7b4134b2633383a8628cd12a8cedbfa18a1); waiting for the claim to be final
+[taker] zec#4502547 base_t=1792010676 | 7a0671a3 claim is final (block <= 48120719); payout withdrawn by relayer (tx 0x57877ede31c1b6155f74de2e982bb0fcabe8e09f3913d44974a4c2ac584f7fa8)
+RESULT {"rfq_id":"7a0671a3372c3ff6e2110e2cf929d91b","stage":"Claimed","lots":1,"a":"","s_t":"","e_t":"","e_t_pub":"b49c57c3d2e9db6efdc2b43a5fed9f265a270cbdfbfdd7868f1545774b5b3a19","payout_key":"<redacted>","payout":"0xd05d7269375b198639a941b3401303ed1a0c5462","reply_index":594609786,"price":1000000,"relayer_fee":100000,"premium":20000,"b_pub":"a1d82412af900b5d85e70bc6fdebd2c360f333c81601634a7af968048819068c","e_m_pub":"bc32f8ace83b5e7bddfe6347d4a5f1397dc278caebf53fbd285669f19b646b34","t1_secs":3300,"t2_secs":3300,"reveal_secs":3300,"negated":false,"joint_fvk":null,"escrow_id":"0x583bb1dba4af1f382d27efb6c3c63d8647377712af8d58f70f87fbad9275bb73","fund_txid":"9f779dbf3229e1709837c659ec4e81cd732ade239ed05df0c19021f90710b00d","commit_tx":"0x2d8e0a9da530d04d34430c8858cadd3e4bbe2dc7f3797642ea38cd8d7fe9549a","claim_tx":"0x585bdb2271b14885223a3835e6b6b7b4134b2633383a8628cd12a8cedbfa18a1","sweep_txid":null,"started":1792006486,"log":["encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx d36a9107d39c3599a144ddddd5f7220758c7f5f813030e90ea302b9ac43499a7","QUOTE decrypted (price 1000000, maker PoK valid); encrypted ACCEPT with 20000 zats premium sent in tx 12a58f24b27bfcd096fdac729b14457a020c7ca3835a1195f2aa4c4cb88494d0; joint address utest108w84909c98vkfytkkjz9mkm258qzsa9wnpzu4r4sucm9upw9sen6ff4wtumd4706tvuy2snckxkytpgqatfu6am7rlrk8qzsg53qdve","escrow verified (11 checks) and finalized; FUNDED joint address with 1010000 zats in fully shielded tx 9f779dbf3229e1709837c659ec4e81cd732ade239ed05df0c19021f90710b00d","escrow READY; LOCKED with payout-signed commitClaim (publishes only H(id, a)) via relayer, base tx 0x2d8e0a9da530d04d34430c8858cadd3e4bbe2dc7f3797642ea38cd8d7fe9549a","lock finalized; REVEALED a via relayer (tx 0x585bdb2271b14885223a3835e6b6b7b4134b2633383a8628cd12a8cedbfa18a1); waiting for the claim to be final","claim is final (block <= 48120719); payout withdrawn by relayer (tx 0x57877ede31c1b6155f74de2e982bb0fcabe8e09f3913d44974a4c2ac584f7fa8)"]}

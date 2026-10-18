@@ -1,0 +1,9 @@
+No files changed, compilation skipped
+
+Running 1 tests for test/CloakroomEscrow.halmos.t.sol:EscrowSeqHalmos
+[32m[PASS][0m check_seq_claimPathThenWithdraw() (paths: 194, time: 80.84s, bounds: [])
+Symbolic test result: 1 passed; 0 failed; time: 80.88s
+
+real	1m22.308s
+user	1m21.564s
+sys	0m0.645s

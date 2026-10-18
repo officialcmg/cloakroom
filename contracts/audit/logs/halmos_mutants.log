@@ -1,0 +1,48 @@
+M01 setReady: drop t0 deadline: KILLED by check_setReady_iff
+M02 setReady: drop maker check: KILLED by check_setReady_iff
+M03 commitClaim: punish window from t1 instead of t2: KILLED by check_commitClaim_fromOpen_onlyAtOrAfterT2, check_commitClaim_iff
+M04 commitClaim: accept signer == 0: KILLED by check_commitClaim_iff
+M05 commitClaim: allow from Locked: KILLED by check_commitClaim_iff
+M06 claim: reveal deadline inclusive: KILLED by check_claim_iff
+M07 claim: skip commitment check: KILLED by check_claim_iff
+M08 claim: pay full amount to payout (fee double-credited): KILLED by check_claim_iff
+M09 refund: Open/Ready window not closed at t2: KILLED by check_refund_OpenReady_neverAtOrAfterT2, check_refund_iff
+M10 refund: Locked refund before window end: KILLED by check_refund_iff
+M11 refund: Claimed can be refunded: KILLED by check_anyCall_transitionsAndMaker, check_refund_iff
+M12 withdraw: credit not zeroed: KILLED by check_withdraw_exact
+M13 withdraw: zeroed after transfer (CEI violation): KILLED by check_withdraw_CEI_and_noDoublePay
+M14 open: no id-reuse check: KILLED by check_open_iff
+M15 open: id not maker-scoped: KILLED by check_open_cannotTouchOtherMakersId, check_open_iff
+M16 open: fee <= amount not enforced: KILLED by check_open_iff
+M17 open: t2 > t1 not enforced: KILLED by check_open_iff
+M18 open: pull tokens before writing state (CEI violation): KILLED by check_open_CEI
+M19 claim: makes an external token call: KILLED by check_claim_iff
+M20 open: balance-delta check removed (L-01 fix reverted): KILLED by check_open_iff
+M21 Pallas: canonical-coordinate guard removed (I-01 fix reverted): INCONCLUSIVE (ERROR)
+M22 Pallas: k >= Q guard removed: SURVIVED (passed: check_dlog_rejectsZeroAndOutOfRange)
+
+| Mutant | Result |
+|---|---|
+| M01 setReady: drop t0 deadline | KILLED by check_setReady_iff |
+| M02 setReady: drop maker check | KILLED by check_setReady_iff |
+| M03 commitClaim: punish window from t1 instead of t2 | KILLED by check_commitClaim_fromOpen_onlyAtOrAfterT2, check_commitClaim_iff |
+| M04 commitClaim: accept signer == 0 | KILLED by check_commitClaim_iff |
+| M05 commitClaim: allow from Locked | KILLED by check_commitClaim_iff |
+| M06 claim: reveal deadline inclusive | KILLED by check_claim_iff |
+| M07 claim: skip commitment check | KILLED by check_claim_iff |
+| M08 claim: pay full amount to payout (fee double-credited) | KILLED by check_claim_iff |
+| M09 refund: Open/Ready window not closed at t2 | KILLED by check_refund_OpenReady_neverAtOrAfterT2, check_refund_iff |
+| M10 refund: Locked refund before window end | KILLED by check_refund_iff |
+| M11 refund: Claimed can be refunded | KILLED by check_anyCall_transitionsAndMaker, check_refund_iff |
+| M12 withdraw: credit not zeroed | KILLED by check_withdraw_exact |
+| M13 withdraw: zeroed after transfer (CEI violation) | KILLED by check_withdraw_CEI_and_noDoublePay |
+| M14 open: no id-reuse check | KILLED by check_open_iff |
+| M15 open: id not maker-scoped | KILLED by check_open_cannotTouchOtherMakersId, check_open_iff |
+| M16 open: fee <= amount not enforced | KILLED by check_open_iff |
+| M17 open: t2 > t1 not enforced | KILLED by check_open_iff |
+| M18 open: pull tokens before writing state (CEI violation) | KILLED by check_open_CEI |
+| M19 claim: makes an external token call | KILLED by check_claim_iff |
+| M20 open: balance-delta check removed (L-01 fix reverted) | KILLED by check_open_iff |
+| M21 Pallas: canonical-coordinate guard removed (I-01 fix reverted) | INCONCLUSIVE (ERROR) |
+| M22 Pallas: k >= Q guard removed | SURVIVED (passed: check_dlog_rejectsZeroAndOutOfRange) |
+.venv/bin/python -I audit/halmos_mutants.py   960.50s user 72.38s system 148% cpu 11:34.77 total

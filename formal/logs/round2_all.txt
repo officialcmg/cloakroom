@@ -1,0 +1,114 @@
+== cfg_a_honest
+Model checking completed. No error has been found.
+343 states generated, 319 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 25.
+real	0m0.746s
+== cfg_b_malmaker
+Model checking completed. No error has been found.
+95033 states generated, 52423 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 72.
+real	0m1.080s
+== cfg_c_maltaker
+Model checking completed. No error has been found.
+500055 states generated, 248853 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 75.
+real	0m2.488s
+== cfg_c_offline
+Error: Invariant NoFreeClaim is violated.
+130868 states generated, 62284 distinct states found, 16096 states left on queue.
+The depth of the complete state graph search is 20.
+real	0m1.140s
+== d2_a_honest
+Model checking completed. No error has been found.
+2676 states generated, 2196 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 45.
+real	0m0.776s
+== d2_b_malmaker
+Progress(49) at 2026-10-15 00:42:40: 1,228,597 states generated (1,228,597 s/min), 571,668 distinct states found (571,668 ds/min), 23,224 states left on queue.
+Model checking completed. No error has been found.
+1850214 states generated, 856632 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 88.
+real	0m5.096s
+== d2_c_maltaker
+Progress(25) at 2026-10-15 00:42:45: 998,024 states generated (998,024 s/min), 476,970 distinct states found (476,970 ds/min), 76,661 states left on queue.
+Error: Invariant NoFreeClaim is violated.
+4589780 states generated, 2157010 distinct states found, 249659 states left on queue.
+The depth of the complete state graph search is 36.
+real	0m14.802s
+== d2_m_oldMarginC
+Error: Invariant HonestTakerSafe is violated.
+683476 states generated, 304641 distinct states found, 43603 states left on queue.
+The depth of the complete state graph search is 30.
+real	0m2.336s
+== d2_m_oldMarginR
+Progress(26) at 2026-10-15 00:43:02: 1,023,271 states generated (1,023,271 s/min), 490,745 distinct states found (490,745 ds/min), 79,156 states left on queue.
+Error: Invariant NoFreeClaim is violated.
+4828324 states generated, 2237463 distinct states found, 268118 states left on queue.
+The depth of the complete state graph search is 36.
+real	0m14.799s
+== d2_m_readyAfterRefund
+Error: Invariant HonestMakerSafe is violated.
+442040 states generated, 195655 distinct states found, 37788 states left on queue.
+The depth of the complete state graph search is 20.
+real	0m1.857s
+== live_complete
+Progress(25) at 2026-10-15 00:43:16: 343 states generated, 319 distinct states found, 0 states left on queue.
+Model checking completed. No error has been found.
+343 states generated, 319 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 25.
+real	0m0.720s
+== live_hostage_main
+Progress(72) at 2026-10-15 00:43:18: 95,033 states generated, 52,423 distinct states found, 0 states left on queue.
+Model checking completed. No error has been found.
+95033 states generated, 52423 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 72.
+real	0m2.008s
+== live_hostage_noT2
+Progress(72) at 2026-10-15 00:43:20: 120,273 states generated, 68,125 distinct states found, 0 states left on queue.
+120273 states generated, 68125 distinct states found, 0 states left on queue.
+real	0m2.094s
+== mut_claimFromOpen
+Error: Invariant NoFreeClaim is violated.
+2406 states generated, 1569 distinct states found, 834 states left on queue.
+The depth of the complete state graph search is 9.
+real	0m0.675s
+== mut_noFinalityRefund
+Model checking completed. No error has been found.
+478069 states generated, 242466 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 75.
+real	0m2.273s
+== mut_noFinalityRefund_off
+Error: Invariant HonestMakerSafe is violated.
+205611 states generated, 94650 distinct states found, 26318 states left on queue.
+The depth of the complete state graph search is 20.
+real	0m1.133s
+== mut_noT2_safety
+Model checking completed. No error has been found.
+120273 states generated, 68125 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 72.
+real	0m1.114s
+== mut_refundNearT1
+Model checking completed. No error has been found.
+476163 states generated, 241551 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 75.
+real	0m2.087s
+== mut_refundNearT1_off
+Error: Invariant HonestMakerSafe is violated.
+219458 states generated, 100466 distinct states found, 27326 states left on queue.
+The depth of the complete state graph search is 20.
+real	0m1.195s
+== mut_refundTightT2
+Error: Invariant HonestMakerSafe is violated.
+44628 states generated, 23836 distinct states found, 4911 states left on queue.
+The depth of the complete state graph search is 18.
+real	0m0.971s
+== mut_revealBeforeFin
+Error: Invariant HonestTakerSafe is violated.
+370 states generated, 343 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 27.
+real	0m0.652s
+== mut_smallMargin
+Error: Invariant HonestTakerSafe is violated.
+624 states generated, 567 distinct states found, 4 states left on queue.
+The depth of the complete state graph search is 28.
+real	0m0.683s

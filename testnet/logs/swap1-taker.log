@@ -1,0 +1,3 @@
+[taker] zec#4501215 base_t=1791978390 | 6bd8cbc8 RFQ 1 lot(s) (215 memo bytes) sent to maker in shielded tx e051ce38822707bbcab03352781a71c59e81877bb8daf7a5f1c4d1c5ef0d400b
+[taker] zec#4501219 base_t=1791978562 | 6bd8cbc8 QUOTE ok (1000000 units, maker PoK valid); ACCEPT sent in tx ee35788f59599dad48860b37b7d0fae55fbdb6fbdd541dfe36b228d7b63e1e59; joint address utest1txwq8jp52mmnrt8q79m0jc23e4zexxj2fr5xezzvyh0r6wmv7j9qxvzy7p0ecq5ngn7qnz0xpkvfwvvy47vyjtyw88h8camdqqqtfkpk
+Error: cast logs: Error: HTTP error 413 with body: {"jsonrpc":"2.0","id":0,"error":{"code":-32614,"message":"eth_getLogs is limited to a 200 range"}}

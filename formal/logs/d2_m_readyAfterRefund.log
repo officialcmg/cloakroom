@@ -1,0 +1,241 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 36 and seed 2399461570221947640 with 2 workers on 10 cores with 1820MB heap and 64MB offheap memory [pid: 8192] (Mac OS X 26.6.2 aarch64, Homebrew 27 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/chrismg/Developer/hackathons/zecathon/cloakroom/formal/Cloakroom.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Integers.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Sequences.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/TLC.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Cloakroom
+Starting... (2026-10-15 01:04:35)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-15 01:04:35.
+Error: Invariant HonestMakerSafe is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 0
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 2: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 1
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 3: <Open line 259, col 5 to line 262, col 71 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 1
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 4: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 2
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 5: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 3
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 6: <BcastCommit line 288, col 5 to line 292, col 74 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> -1, refund |-> -1]
+/\ now = 3
+/\ leaked = {}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 7: <BcastRefund line 327, col 5 to line 333, col 66 of module Cloakroom>
+/\ zfundAt = -1
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> -1, refund |-> 3]
+/\ now = 3
+/\ leaked = {"b"}
+/\ zec = "Unfunded"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 8: <FundZec line 360, col 5 to line 365, col 64 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> -1, refund |-> 3]
+/\ now = 3
+/\ leaked = {"b"}
+/\ zec = "Pending"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 9: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> -1, refund |-> 3]
+/\ now = 4
+/\ leaked = {"b"}
+/\ zec = "Pending"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 10: <BcastClaim line 306, col 5 to line 311, col 66 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> 4, refund |-> 3]
+/\ now = 4
+/\ leaked = {"a", "b"}
+/\ zec = "Pending"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = FALSE
+
+State 11: <PromoteZec line 368, col 5 to line 372, col 60 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> 4, refund |-> 3]
+/\ now = 4
+/\ leaked = {"a", "b"}
+/\ zec = "Final"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 12: <BcastSetReady line 272, col 5 to line 277, col 74 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> 4, commit |-> 3, claim |-> 4, refund |-> 3]
+/\ now = 4
+/\ leaked = {"a", "b"}
+/\ zec = "Final"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 13: <SweepT line 385, col 5 to line 388, col 73 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> 4, commit |-> 3, claim |-> 4, refund |-> 3]
+/\ now = 4
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 14: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> 4, commit |-> 3, claim |-> 4, refund |-> 3]
+/\ now = 5
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = <<[st |-> "Open", at |-> 1]>>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 15: <Include line 338, col 5 to line 345, col 67 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> 3, claim |-> 4, refund |-> 3]
+/\ now = 5
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = <<[st |-> "Open", at |-> 1], [st |-> "Ready", at |-> 5]>>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 16: <Include line 338, col 5 to line 345, col 67 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> 4, refund |-> 3]
+/\ now = 5
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Ready", at |-> 5],
+   [st |-> "Locked", at |-> 5] >>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 17: <Include line 338, col 5 to line 345, col 67 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> 3]
+/\ now = 5
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Ready", at |-> 5],
+   [st |-> "Locked", at |-> 5],
+   [st |-> "Claimed", at |-> 5] >>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 18: <Include line 338, col 5 to line 345, col 67 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 5
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Ready", at |-> 5],
+   [st |-> "Locked", at |-> 5],
+   [st |-> "Claimed", at |-> 5] >>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 19: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 6
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Ready", at |-> 5],
+   [st |-> "Locked", at |-> 5],
+   [st |-> "Claimed", at |-> 5] >>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+State 20: <Tick line 248, col 5 to line 254, col 73 of module Cloakroom>
+/\ zfundAt = 3
+/\ mp = [setReady |-> -1, commit |-> -1, claim |-> -1, refund |-> -1]
+/\ now = 7
+/\ leaked = {"a", "b"}
+/\ zec = "SweptT"
+/\ chain = << [st |-> "Open", at |-> 1],
+   [st |-> "Ready", at |-> 5],
+   [st |-> "Locked", at |-> 5],
+   [st |-> "Claimed", at |-> 5] >>
+/\ reorgs = 0
+/\ zecWasFinal = TRUE
+
+435764 states generated, 192687 distinct states found, 39092 states left on queue.
+The depth of the complete state graph search is 20.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 6 and the 95th percentile is 3).
+Finished in 01s at (2026-10-15 01:04:36)
+
+real	0m1.906s
+user	0m4.642s
+sys	0m0.162s

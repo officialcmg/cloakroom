@@ -1,0 +1,3 @@
+[maker] zec#0 base_t=1791978380 | maker up. shielded UA utest18hytwzxf7p8w6l799we22qqxpeh76qr9qhpet0x2wkl5uz0uff98ymepn2mvpce0l3uy9ztd2nde2qk36savpkkgcam6ddr3hyzh6wzw ; EVM 0xd612f11538c3b0ca36e791f3b9d602a22715d606
+[maker] zec#4501217 base_t=1791978462 | 6bd8cbc8 RFQ for 1 lot(s) verified; QUOTE 1000000 units sent in tx 3b52ca30a3116968d08ac821e5373d9eb23e33dd09c2222f75a2985b9421fe21
+[maker] zec#0 base_t=1791978674 | ACCEPT failed: cast send: Error: server returned an error response: error code -32000: nonce too low: next nonce 4, tx nonce 3

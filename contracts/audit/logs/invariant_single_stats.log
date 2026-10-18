@@ -1,0 +1,19 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/CloakroomEscrow.invariant.t.sol:CloakroomEscrowInvariantTest
+[PASS] invariant_noHandlerViolation() (runs: 10000, calls: 1000000, reverts: 0)
+Logs:
+  runs: 10001
+  successful open: 75595
+  successful setReady: 21908
+  successful commitClaim: 20637
+  successful claim: 7740
+  successful refund: 30959
+  successful withdraw: 143110
+  successful punish: 9109
+  calls attempted: 1000100
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 345.92s (345.91s CPU time)
+
+Ran 1 test suite in 345.93s (345.92s CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)
+FOUNDRY_INVARIANT_RUNS=10000 FOUNDRY_INVARIANT_DEPTH=100 forge test     -vv  245.69s user 3.47s system 71% cpu 5:47.27 total

@@ -1,0 +1,67 @@
+No files changed, compilation skipped
+
+Ran 5 tests for test/CloakroomEscrow.invariant.t.sol:CloakroomEscrowInvariantTest
+[PASS] invariant_conservation() (runs: 10000, calls: 1000000, reverts: 0)
+Logs:
+  runs: 28828
+  successful open: 217812
+  successful setReady: 62971
+  successful commitClaim: 59674
+  successful claim: 22351
+  successful refund: 89231
+  successful withdraw: 412210
+  successful punish: 26330
+  calls attempted: 2883100
+
+[PASS] invariant_creditsBounded() (runs: 10000, calls: 1000000, reverts: 0)
+Logs:
+  runs: 49222
+  successful open: 372049
+  successful setReady: 107584
+  successful commitClaim: 102048
+  successful claim: 38291
+  successful refund: 152005
+  successful withdraw: 703079
+  successful punish: 45018
+  calls attempted: 4922400
+
+[PASS] invariant_exclusivityAndAbsorbing() (runs: 10000, calls: 1000000, reverts: 0)
+Logs:
+  runs: 16533
+  successful open: 124957
+  successful setReady: 36338
+  successful commitClaim: 34493
+  successful claim: 12856
+  successful refund: 51135
+  successful withdraw: 236647
+  successful punish: 15176
+  calls attempted: 1653400
+
+[PASS] invariant_noHandlerViolation() (runs: 10000, calls: 1000000, reverts: 0)
+Logs:
+  runs: 30554
+  successful open: 230820
+  successful setReady: 66766
+  successful commitClaim: 63267
+  successful claim: 23710
+  successful refund: 94614
+  successful withdraw: 436513
+  successful punish: 27903
+  calls attempted: 3055700
+
+[PASS] invariant_supply() (runs: 10000, calls: 1000000, reverts: 0)
+Logs:
+  runs: 49983
+  successful open: 377884
+  successful setReady: 109256
+  successful commitClaim: 103606
+  successful claim: 38868
+  successful refund: 154363
+  successful withdraw: 713885
+  successful punish: 45732
+  calls attempted: 4998500
+
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 551.97s (1088.59s CPU time)
+
+Ran 1 test suite in 551.97s (551.97s CPU time): 5 tests passed, 0 failed, 0 skipped (5 total tests)
+env FOUNDRY_INVARIANT_RUNS=10000 FOUNDRY_INVARIANT_DEPTH=100 forge test -j 2   1085.26s user 2.86s system 197% cpu 9:12.17 total

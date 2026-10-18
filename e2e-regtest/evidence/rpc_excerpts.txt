@@ -1,0 +1,296 @@
+$ rpc generatetoaddress [1, "uregtest1rfmh5ftfulu45ptqnl3urwkgw347384z4zr4fa62d29pweh5pgdw2d5xenw5s86efxzu4x3yxkdv9aq7894m3p5c5puvxfx3ng0es8h7"]
+{
+  "id": 4,
+  "jsonrpc": "2.0",
+  "result": [
+    "6bd8c95ea6d5b6082b5c48df47584ceec45886fb9fa8fc0f5dce15059379d5dc"
+  ]
+}
+
+$ rpc getblock ["6bd8c95ea6d5b6082b5c48df47584ceec45886fb9fa8fc0f5dce15059379d5dc", 1]
+{
+  "id": 5,
+  "jsonrpc": "2.0",
+  "result": {
+    "bits": "200f0f0f",
+    "blockcommitments": "c2dbe9b43732a841155be1dfc5bae499acb253ca9bfb3455865485f0044afd5f",
+    "chainSupply": {
+      "chainValue": 6.25,
+      "chainValueZat": 625000000,
+      "monitored": true
+    },
+    "confirmations": 1,
+    "difficulty": 1.0,
+    "finalorchardroot": "ae2935f1dfd8a24aed7c70df7de3a668eb7a49b1319880dde2bbd9031ae5d82f",
+    "finalsaplingroot": "3e49b5f954aa9d3545bc6c37744661eea48d7c34e3000d82b7f0010c30f4c2fb",
+    "hash": "6bd8c95ea6d5b6082b5c48df47584ceec45886fb9fa8fc0f5dce15059379d5dc",
+    "height": 1,
+    "merkleroot": "3b70222cedf9e3f534b34bc6f1aad271da0737e29b9b86eabb141853f9cc7875",
+    "nTx": 1,
+    "nonce": "0000000000000000000000000000000000000000000000000000000000000000",
+    "previousblockhash": "029f11d80ef9765602235e1bc9727e3eb6ba20839319f761fee920d63401e327",
+    "size": 7579,
+    "solution": "000000000000000000000000000000000000000000000000...[2688 chars, full value in evidence/run.log]",
+    "time": 1296688603,
+    "trees": {
+      "ironwood": {
+        "size": 1
+      }
+    },
+    "tx": [
+      "3b70222cedf9e3f534b34bc6f1aad271da0737e29b9b86eabb141853f9cc7875"
+    ],
+    "version": 4
+  }
+}
+
+$ rpc getrawtransaction ["3b70222cedf9e3f534b34bc6f1aad271da0737e29b9b86eabb141853f9cc7875", 1]
+{
+  "id": 6,
+  "jsonrpc": "2.0",
+  "result": {
+    "authdigest": "fb1abf95c944c7980e754e012fd6057581912122d6075c5abfff718000cae063",
+    "blockhash": "6bd8c95ea6d5b6082b5c48df47584ceec45886fb9fa8fc0f5dce15059379d5dc",
+    "blocktime": 1296688603,
+    "confirmations": 1,
+    "expiryheight": 1,
+    "height": 1,
+    "hex": "0600008098b684d85b16a537000000000100000001000000...[12182 chars, full value in evidence/run.log]",
+    "in_active_chain": true,
+    "ironwood": {
+      "actions": [
+        {
+          "cmx": "bf042e98b69d7168e8c8ab053beb81a7b1fd79ad3f1d31dfd57769f976ba861b",
+          "cv": "7dd06373e85fa833f8aa7c6cfc95601305a721c3be67925a029515b9e926a622",
+          "encCiphertext": "b282cb3b2c7514b21a75487c9007316cab5f3bd32bb4a6bd...[1160 chars, full value in evidence/run.log]",
+          "ephemeralKey": "ca280be5beb5eabbd31dca4bf2d538c32c814badbe0d3465334b33d1f1994d08",
+          "nullifier": "c224cb452186b22999006dd189f7bbaf5f897fba43523fb038916b290fcddf08",
+          "outCiphertext": "9761a719351118126d6c3cf143a1e80a1fdd2fb222860e5b...[160 chars, full value in evidence/run.log]",
+          "rk": "4e4404a89d7766105cbec3d75313d5cf51fbadb5bc4162fef0fcf0636c55bdb6",
+          "spendAuthSig": "ac8af472e1e3092ccf7c896bafaa94d05c1bbaa0d174843e197e953dfcedf10d3eacb46c639010da1097fa067e9a575f2190af1462223390a0f8d0a8f33bb505"
+        }
+      ],
+      "anchor": "2fd8e51a03d9bbe2dd809831b1497aeb68a6e37ddf707ced4aa2d8dff13529ae",
+      "bindingSig": "84d051e4dfaedb089a85cfaea95b69f14bc3d89eb5e068b3ca30317bb847f990053a47a32750ff813714d6298bcc4bf3c301312083daa4baf6a11d0927c3ec2a",
+      "flags": {
+        "enableOutputs": true,
+        "enableSpends": false
+      },
+      "proof": "67571dbfccbe7c61f3f0341aa4c0698fd47fd3f53f801ef9...[9984 chars, full value in evidence/run.log]",
+      "valueBalance": -6.25,
+      "valueBalanceZat": -625000000
+    },
+    "locktime": 0,
+    "orchard": {
+      "actions": [],
+      "valueBalance": 0.0,
+      "valueBalanceZat": 0
+    },
+    "overwintered": true,
+    "size": 6091,
+    "time": 1296688603,
+    "txid": "3b70222cedf9e3f534b34bc6f1aad271da0737e29b9b86eabb141853f9cc7875",
+    "vShieldedOutput": [],
+    "vShieldedSpend": [],
+    "valueBalance": 0.0,
+    "valueBalanceZat": 0,
+    "version": 6,
+    "versiongroupid": "d884b698",
+    "vin": [
+      {
+        "coinbase": "5126f09fa6933a20897837ecf5cf257549cff19430470ba3a3c03621149b8d4a65a1298ca3487a66",
+        "sequence": 4294967295
+      }
+    ],
+    "vjoinsplit": [],
+    "vout": []
+  }
+}
+
+$ rpc generate [2]
+{
+  "id": 7,
+  "jsonrpc": "2.0",
+  "result": [
+    "cb170156a6b6fde092cba02991e509a525bfeaa585999fe5ab5348edda679d2c",
+    "617821038e1585dd2674e3a89210527247993f0b3ae2ff573e2337bb1d1b6e84"
+  ]
+}
+
+$ rpc z_gettreestate ["3"]
+{
+  "id": 15,
+  "jsonrpc": "2.0",
+  "result": {
+    "hash": "617821038e1585dd2674e3a89210527247993f0b3ae2ff573e2337bb1d1b6e84",
+    "height": 3,
+    "ironwood": {
+      "commitments": {
+        "finalRoot": "ba52f8b3b27075ce72d5a10a0da91f070bb8dd9c6484aaa36ffc192a0377473e",
+        "finalState": "01bf042e98b69d7168e8c8ab053beb81a7b1fd79ad3f1d31...[132 chars, full value in evidence/run.log]"
+      }
+    },
+    "orchard": {
+      "commitments": {
+        "finalRoot": "ae2935f1dfd8a24aed7c70df7de3a668eb7a49b1319880dde2bbd9031ae5d82f",
+        "finalState": "000000"
+      }
+    },
+    "sapling": {
+      "commitments": {
+        "finalRoot": "3e49b5f954aa9d3545bc6c37744661eea48d7c34e3000d82b7f0010c30f4c2fb",
+        "finalState": "000000"
+      }
+    },
+    "time": 1296688604
+  }
+}
+
+$ rpc sendrawtransaction ["0600008098b684d85b16a537000000002c0000000000000000027811d0a6fd85...(18332 hex chars)"]
+{
+  "error": {
+    "code": -25,
+    "message": "failed to validate tx: WtxId(\"private\"), error: ...[146 chars, full value in evidence/run.log]"
+  },
+  "id": 16,
+  "jsonrpc": "2.0"
+}
+
+$ rpc sendrawtransaction ["0600008098b684d85b16a537000000002c0000000000000000027811d0a6fd85...(18332 hex chars)"]
+{
+  "id": 17,
+  "jsonrpc": "2.0",
+  "result": "6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616"
+}
+
+$ rpc getrawmempool []
+{
+  "id": 18,
+  "jsonrpc": "2.0",
+  "result": [
+    "6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616"
+  ]
+}
+
+$ rpc generate [1]
+{
+  "id": 19,
+  "jsonrpc": "2.0",
+  "result": [
+    "af2907ffd804c6b953139dad8ef5aac2a6ae3e35662fd4072ae3571ee9e46db4"
+  ]
+}
+
+$ rpc getblock ["af2907ffd804c6b953139dad8ef5aac2a6ae3e35662fd4072ae3571ee9e46db4", 1]
+{
+  "id": 20,
+  "jsonrpc": "2.0",
+  "result": {
+    "bits": "200f0f0f",
+    "blockcommitments": "2690aa72323b409db34421d09d132218acc5084aa5b5c1ee1cc1b339f23204bb",
+    "chainSupply": {
+      "chainValue": 25.0,
+      "chainValueZat": 2500000000,
+      "monitored": true
+    },
+    "confirmations": 1,
+    "difficulty": 1.0,
+    "finalorchardroot": "ae2935f1dfd8a24aed7c70df7de3a668eb7a49b1319880dde2bbd9031ae5d82f",
+    "finalsaplingroot": "3e49b5f954aa9d3545bc6c37744661eea48d7c34e3000d82b7f0010c30f4c2fb",
+    "hash": "af2907ffd804c6b953139dad8ef5aac2a6ae3e35662fd4072ae3571ee9e46db4",
+    "height": 4,
+    "merkleroot": "41dac76dc273f43ff8d8aaf1534d3680de725b24b86d85b3047210f8c20b501e",
+    "nTx": 2,
+    "nonce": "0000000000000000000000000000000000000000000000000000000000000000",
+    "previousblockhash": "617821038e1585dd2674e3a89210527247993f0b3ae2ff573e2337bb1d1b6e84",
+    "size": 10793,
+    "solution": "000000000000000000000000000000000000000000000000...[2688 chars, full value in evidence/run.log]",
+    "time": 1296688605,
+    "trees": {
+      "ironwood": {
+        "size": 3
+      }
+    },
+    "tx": [
+      "90f2cb1e681392f7d316ec83935aea17ecafe74968742e6c8a1baa52d3ff8f83",
+      "6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616"
+    ],
+    "version": 4
+  }
+}
+
+$ rpc getrawtransaction ["6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616", 1]
+{
+  "id": 21,
+  "jsonrpc": "2.0",
+  "result": {
+    "authdigest": "8a69681813c3398b941c72d505abfbab8ac1adf0824c96006ef9fc428cdd3cba",
+    "blockhash": "af2907ffd804c6b953139dad8ef5aac2a6ae3e35662fd4072ae3571ee9e46db4",
+    "blocktime": 1296688605,
+    "confirmations": 1,
+    "expiryheight": 44,
+    "height": 4,
+    "hex": "0600008098b684d85b16a537000000002c00000000000000...[18332 chars, full value in evidence/run.log]",
+    "in_active_chain": true,
+    "ironwood": {
+      "actions": [
+        {
+          "cmx": "3b753653ea7eb0a3ce75cfecc3543e7046ca3893d5fba23c45f17b0015732b1d",
+          "cv": "7811d0a6fd85015fe70375dd0ab900af6ddf629e4ce252ed0ef180c5050139a5",
+          "encCiphertext": "fc3bf9812915c44666b8725345210299383f727c7859d718...[1160 chars, full value in evidence/run.log]",
+          "ephemeralKey": "2351e3e6686297596cdc7d364a34e0e66a621fdd561ff81db2d5e4a6dc3b6891",
+          "nullifier": "4f61b2f21b73897cd11efd0942061e31323a3bbdfe39152419fbda1348c24a06",
+          "outCiphertext": "99c751be9d6e08a48bc761c8337576d37322b1326f30c6bc...[160 chars, full value in evidence/run.log]",
+          "rk": "a94179050b635cb139456d88674ed324fa9ed87aee4e986eb15629d791c3eb87",
+          "spendAuthSig": "e2a38e5a7e7909989fceeb3f44b7c414a1852b99f8af6e3e2d962c8c49a9bba84d530f2b4892f08a03decb09d680786e93c38a5e3b1559153599dcaeca77521e"
+        },
+        {
+          "cmx": "f089ec2214fcb2efa84afc92db60451af656a40c75d3c949acaee681769a8803",
+          "cv": "2439b91237feea24c76f653d80b4488ecc3a7685ae0c8beea9de03db61418b1b",
+          "encCiphertext": "2be6bc956b2b1b3e00fc776433709904032c2a235f4349b1...[1160 chars, full value in evidence/run.log]",
+          "ephemeralKey": "3175f101cc52ef29222de256b4afb6f69a926f5938ef93aa3a5c011c1bc88e35",
+          "nullifier": "6e5f9a197e76ba581b9b311b5f83ad7f94ad571a2502e66513aa0d13c5b29e2b",
+          "outCiphertext": "9b30534fc58b55e498846768efb107186e651ed650fbe3b4...[160 chars, full value in evidence/run.log]",
+          "rk": "62f1fa7e69b27e6d65ecd352c6d1cd6a6c647a50c6de66215afa873c4ff0ab91",
+          "spendAuthSig": "170590e2209b748aca4e9be3f8c3625fb95e9b6728992df4ab26d947d77b30bf75ae0b6b80faaa2d4bec4b9840bf94ddeda5b1fd44755d73039ecd57eef0e823"
+        }
+      ],
+      "anchor": "3e4777032a19fc6fa3aa84649cddb80b071fa90d0aa1d572ce7570b2b3f852ba",
+      "bindingSig": "5b44c57bc0e0c5d486c45ac11ef2755f8ce0330448d041eac0acef17709083b2de2c94872aa3e596bd3d8cde141f6bd2b70a578f97c74e00998906f46a3a5d08",
+      "flags": {
+        "enableOutputs": true,
+        "enableSpends": true
+      },
+      "proof": "6a78b9e935f4740095bdb0accc27806f69a108612fa4c2d0...[14528 chars, full value in evidence/run.log]",
+      "valueBalance": 0.0001,
+      "valueBalanceZat": 10000
+    },
+    "locktime": 0,
+    "orchard": {
+      "actions": [],
+      "valueBalance": 0.0,
+      "valueBalanceZat": 0
+    },
+    "overwintered": true,
+    "size": 9166,
+    "time": 1296688605,
+    "txid": "6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616",
+    "vShieldedOutput": [],
+    "vShieldedSpend": [],
+    "valueBalance": 0.0,
+    "valueBalanceZat": 0,
+    "version": 6,
+    "versiongroupid": "d884b698",
+    "vin": [],
+    "vjoinsplit": [],
+    "vout": []
+  }
+}
+
+$ rpc getrawmempool []
+{
+  "id": 22,
+  "jsonrpc": "2.0",
+  "result": []
+}
+

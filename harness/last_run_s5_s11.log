@@ -1,0 +1,16 @@
+[harness 22:27:40] zebra up: /Zebra:7.0.0-rc.0/ tip 3 next-block branch 37a5165b
+[harness 22:27:42] anvil up (chain id 84532); MockUSDC 0x5fbdb2315678afecb367f032d93f642f64180aa3, CloakroomEscrow 0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+[harness 22:27:42] === s5 ===
+[harness 22:28:01]   PASS  taker aborted on invalid proof of knowledge {'Aborted': 'maker proof of knowledge INVALID (possible rogue-key attack)'}
+[harness 22:28:01]   PASS  taker never funded and paid no premium 
+[harness 22:28:01]   PASS  privacy audit: all 2 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out) []
+[harness 22:28:01]   PASS  R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK) checked=['taker:Aborted'] not_terminal=['maker:Quoted'] bad=[]
+[harness 22:28:01] === s11 ===
+[harness 22:29:22] warped Base clock forward 385s to 1792006546
+[harness 22:30:33]   PASS  taker never funded the joint address 
+[harness 22:30:33]   PASS  taker claimed via the punish path Claimed
+[harness 22:30:33]   PASS  maker lost the escrowed tokens, as Proposition 3 predicts 
+[harness 22:30:33]   PASS  maker detected and reported the L_M violation {'Aborted': 'claimed via punish path without funding: L_M was violated'}
+[harness 22:30:33]   PASS  privacy audit: all 3 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out) []
+[harness 22:30:33]   PASS  R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK) checked=['maker:Aborted', 'taker:Claimed'] not_terminal=[] bad=[]
+[harness 22:30:34] SUMMARY: s5 PASS (19s), s11 PASS (152s)

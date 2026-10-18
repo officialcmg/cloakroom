@@ -1,0 +1,46 @@
+[maker] zec#0 base_t=1792006454 | maker up. shielded UA utest18hytwzxf7p8w6l799we22qqxpeh76qr9qhpet0x2wkl5uz0uff98ymepn2mvpce0l3uy9ztd2nde2qk36savpkkgcam6ddr3hyzh6wzw ; EVM 0xd612f11538c3b0ca36e791f3b9d602a22715d606 ; RFQ key epoch 1 480aeb31a8b099bd6ed5ca224289b35ab4a03a92af5bcd6242fc20cba64f0611
+[maker] zec#4502380 base_t=1792006574 | 7a0671a3 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (281 memo bytes, price 1000000, premium 20000 zats) sent in tx 957c38230b1be55b19ac271094e832d3050163adf5cb20465422540d404e1785
+[maker] zec#0 base_t=1792006848 | 7a0671a3 ACCEPT decrypted (premium 20000 zats received, seed commitment opens, negated: false); escrow OPEN id 0x583bb1dba4af1f382d27efb6c3c63d8647377712af8d58f70f87fbad9275bb73 t0=1792009238 t1=1792012538 t2=1792015838 W=3300 base tx 0x722a868ea600c85a3f4d567de38088f9e0fa3bf5c7b118dcce8a3d91e2a4001e
+[maker] zec#4502398 base_t=1792006970 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502401 base_t=1792007022 | advance error: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502410 base_t=1792007244 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502414 base_t=1792008252 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502414 base_t=1792008286 | transient sync error, retrying: code: 'Unknown error', message: "transport error", source: tonic::transport::Error(Transport, hyper::Error(Io, Kind(TimedOut))): transport error: connection error: timed out
+[maker] zec#4502457 base_t=1792008352 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502464 base_t=1792008502 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502468 base_t=1792008548 | 7a0671a3 joint note 1010000 zats with 3 confirmations (k_Z = 3); READY base tx 0x5b373e777a8a9c4b90d170f862b63867fdb9013dfec9b901caa4f5ace1a7eca6
+[maker] zec#4502470 base_t=1792008656 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502471 base_t=1792008704 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502473 base_t=1792008816 | advance error: cast call: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502499 base_t=1792009288 | advance error: cast block: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[maker] zec#4502510 base_t=1792009526 | 7a0671a3 CLAIMED at base block 48120615: read a; swept 1000000 zats with (a+b) to own wallet, ovk=None, tx 8c55aa9670a3a987af1f742460b82d25cdf94f156a144043fba7ca0a808c770c

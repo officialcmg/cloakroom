@@ -1,0 +1,23 @@
+[harness 17:48:34] zebra up: /Zebra:7.0.0-rc.0/ tip 3 next-block branch 37a5165b
+[harness 17:48:36] anvil up (chain id 84532); MockUSDC 0x5fbdb2315678afecb367f032d93f642f64180aa3, CloakroomEscrow 0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+[harness 17:48:36] === s4 ===
+[harness 17:50:00] warped Base clock forward 384s to 1791989784
+[harness 17:50:11]   PASS  taker locked via the punish path after t2 
+[harness 17:50:11]   PASS  taker reached Claimed (no hostage) Claimed
+[harness 17:50:11]   PASS  returning maker swept the ZEC Swept
+[harness 17:50:11]   PASS  taker payout withdrew price - relayer fee 
+[harness 17:50:11]   PASS  maker ZEC: +lot + premium - quote fee (exact) 
+[harness 17:50:11] === s8 ===
+[harness 17:51:31] warped Base clock forward 85s to 1791989960
+[harness 17:51:32] warped Base clock forward 59s to 1791990020
+[harness 17:52:42]   PASS  unfunded lock before t2 rejected by the escrow 
+[harness 17:52:42]   PASS  maker refunded within [t1, t2) Refunded
+[harness 17:52:42]   PASS  no Claimed event 
+[harness 17:52:42]   PASS  maker tokens fully restored 
+[harness 17:52:42] === s11 ===
+[harness 17:54:05] warped Base clock forward 385s to 1791990558
+[harness 17:54:11]   PASS  taker never funded the joint address 
+[harness 17:54:11]   PASS  taker claimed via the punish path Claimed
+[harness 17:54:11]   PASS  maker lost the escrowed tokens, as Proposition 3 predicts 
+[harness 17:54:11]   PASS  maker detected and reported the L_M violation {'Aborted': 'claimed via punish path without funding: L_M was violated'}
+[harness 17:54:12] SUMMARY: s4 PASS (95s), s8 PASS (151s), s11 PASS (90s)

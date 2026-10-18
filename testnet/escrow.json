@@ -1,0 +1,19 @@
+{
+  "v3": {
+    "chain": "Base Sepolia (84532)",
+    "escrow": "0xCCE4aFc81A6ccC9Db05B2a7D157942435b944283",
+    "deploy_tx": "0xdbc92d92ab58c2f2185209779c4df3f8d52681778371d5cb71a8b8ffa2fd5ce2",
+    "from_block": 48119066,
+    "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "deployer": "0xD612F11538c3B0ca36E791f3B9D602A22715d606",
+    "bytecode": "runtime code equals local build of contracts/src (solc 0.8.30 via_ir)"
+  },
+  "v1_legacy": {
+    "chain": "Base Sepolia (84532)",
+    "escrow": "0x2df30788C417D09307aaA02A62e401B5a0e939a1",
+    "duplicate_unused_escrow": "0x1EDd2B307B9F9A2454411c0CFdCA30c5296a4e7C",
+    "deployer": "0xD612F11538c3B0ca36E791f3B9D602A22715d606",
+    "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "from_block": 48104700
+  }
+}

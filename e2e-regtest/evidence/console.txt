@@ -1,0 +1,53 @@
+== Cloakroom e2e on Zebra regtest (NU6.3 / Ironwood, v6 tx, PCZT, external RedPallas sig) ==
+node: "v7.0.0-rc.0" "/Zebra:7.0.0-rc.0/"
+chain tip 0 ; next block consensus branch "37a5165b"
+
+[1] joint FVK accepted (ak = A + B, ytilde(ak) = 0)
+    A  = 870ac2a2638e5f4b22fe723c6e161350dadfcb0f9d7261518bc66e01174961bf
+    B  = 9b6d8849881fc81c9b859c0331a616e5d6f6fdcb6ee6acb2994586798a98493a
+    ak = 1b4fdb2e69c089750775e3b7d67b1ea862131c9f69a1c66804d53cfcf1720336
+    joint UA (Orchard-protocol receiver only, regtest) = uregtest1rfmh5ftfulu45ptqnl3urwkgw347384z4zr4fa62d29pweh5pgdw2d5xenw5s86efxzu4x3yxkdv9aq7894m3p5c5puvxfx3ng0es8h7
+    node z_validateaddress: {"address":"uregtest1rfmh5ftfulu45ptqnl3urwkgw347384z4zr4fa62d29pweh5pgdw2d5xenw5s86efxzu4x3yxkdv9aq7894m3p5c5puvxfx3ng0es8h7","address_type":"unified","ismine":false,"isvalid":true}
+
+[2] funding block (coinbase -> joint UA): height 1, hash 6bd8c95ea6d5b6082b5c48df47584ceec45886fb9fa8fc0f5dce15059379d5dc
+    funding (coinbase) txid 3b70222cedf9e3f534b34bc6f1aad271da0737e29b9b86eabb141853f9cc7875
+    coinbase tx version 6, ironwood actions 1, valueBalanceIronwood -6.25
+
+[3] joint IVK decrypted note in tx 3b70222cedf9e3f534b34bc6f1aad271da0737e29b9b86eabb141853f9cc7875: value = 625000000 zats, version V3, tree position 0 of 1 Ironwood leaves
+    local Ironwood root at tip 3: ba52f8b3b27075ce72d5a10a0da91f070bb8dd9c6484aaa36ffc192a0377473e
+    node z_gettreestate(3).ironwood = {"commitments":{"finalRoot":"ba52f8b3b27075ce72d5a10a0da91f070bb8dd9c6484aaa36ffc192a0377473e","finalState":"01bf042e98b69d7168e8c8ab053beb81a7b1fd79ad3f1d31dfd57769f976ba861b001f00000000000000000000000000000000000000000000000000000000000000"}}
+
+[4] post-NU6.3 circuit keys built in 1.74s
+
+[5] recipient (fresh key, not joint) UA = uregtest19u8vpaekujfuhvvl98mqzf45sg4jq5kzqh55swl8750w80csv6v3fxrxmlqffdumds7dy3rcfauz6kum98gwel0snt8vn2hmhq67qfea
+    builder: tx version V6, branch Nu6_3, expiry 44, ironwood spend at action index 1, output 624990000 zats, fee 10000
+    Creator: PCZT created
+    IoFinalizer: done (dummy spends signed, bsk derived)
+    Prover: Ironwood halo2 proof created in 650.90ms
+    PCZT serialized (11913 bytes) and re-parsed
+
+[7] Signer: ZIP 244 shielded sighash = 1616a0994fc6517e0e1a1282abc572a789723c208e63b1f23e34ee53f54d7d6c
+    NEGATIVE: apply_ironwood_signature with b-only signature REJECTED: IronwoodSign(InvalidExternalSignature)
+    NEGATIVE: apply_ironwood_signature with a-only signature REJECTED: IronwoodSign(InvalidExternalSignature)
+    apply_ironwood_signature with rsk = (a+b)+alpha ACCEPTED
+
+[8] TransactionExtractor: v6 tx extracted and verified locally; txid 6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616, 9166 bytes, header version bytes 06000080
+
+[9] NEGATIVE (node): copy of the final tx with ONLY the joint spend's spendAuthSig replaced by a b-only signature (offset 9038, 64 bytes differ, same length 9166)
+    local check of tampered tx: txid unchanged = true, halo2 proof valid = true, bindingSig valid = true, spendAuthSig(rk) valid = false
+    node REJECTED b-only tx: {"code":-25,"message":"failed to validate tx: WtxId(\"private\"), error: transaction did not pass consensus validation: Orchard or Ironwood Halo2 proof verification failed"}
+    (Zebra verifies each Orchard-shaped bundle with orchard::bundle::BatchValidator::add_bundle, which batches the halo2 proof,
+     every action's spendAuthSig under rk, and the bindingSig; any failure surfaces as TransactionError::Halo2VerificationFailed.)
+
+[10] sendrawtransaction accepted: "6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616"
+     getrawmempool = ["6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616"]
+     mined block height 4, hash af2907ffd804c6b953139dad8ef5aac2a6ae3e35662fd4072ae3571ee9e46db4, tx list ["90f2cb1e681392f7d316ec83935aea17ecafe74968742e6c8a1baa52d3ff8f83","6c7d4df553ee343ef2b1638e203c7289a772c5ab82121a0e7e51c64f99a01616"]
+     getrawtransaction(verbose): version 6, height 4, confirmations 1, blockhash "af2907ffd804c6b953139dad8ef5aac2a6ae3e35662fd4072ae3571ee9e46db4", ironwood actions 2
+     getrawmempool after mining = []
+
+[11] recipient IVK decrypts mined output: value = 624990000 zats, memo prefix = "cloakroom-e2e-regtest-0001"
+     on-chain nullifier of action 1 = 6e5f9a197e76ba581b9b311b5f83ad7f94ad571a2502e66513aa0d13c5b29e2b ; equals joint note's nullifier: true
+     joint OVK can recover the sweep output (ovk = None used)? false
+     joint IVK can decrypt the sweep output? false
+
+SUCCESS: joint-key Ironwood note spent by a v6 tx built via PCZT, externally signed with (a+b)+alpha, accepted and mined.

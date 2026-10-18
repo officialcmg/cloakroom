@@ -1,0 +1,27 @@
+# ---- secrets: NEVER commit (testnet keys, wallets, RFQ keys, configs holding private keys)
+testnet/evm/
+testnet/**/wallet.json
+testnet/**/rfqkey.json
+testnet/**/config*.json
+testnet/**/seen.json
+testnet/**/swaps*/
+testnet/deploy_v3.err
+**/*.pid
+.env*
+
+# ---- build output and caches
+**/target/
+contracts/out/
+contracts/out-halmos/
+contracts/cache/
+contracts/cache-halmos/
+contracts/.venv/
+contracts/broadcast/
+formal/states/
+harness/work/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+.DS_Store
+__pycache__/

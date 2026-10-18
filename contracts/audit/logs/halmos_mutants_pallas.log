@@ -1,0 +1,7 @@
+M21 Pallas: canonical-coordinate guard removed (I-01 fix reverted): KILLED by forge test_nonCanonicalCoordinatesRejected (Halmos: INCONCLUSIVE (ERROR))
+M22 Pallas: k >= Q guard removed: KILLED by forge test_scalarAliasesRejected (Halmos: SURVIVED (passed: check_dlog_rejectsZeroAndOutOfRange))
+
+| Mutant | Result |
+|---|---|
+| M21 Pallas: canonical-coordinate guard removed (I-01 fix reverted) | KILLED by forge test_nonCanonicalCoordinatesRejected (Halmos: INCONCLUSIVE (ERROR)) |
+| M22 Pallas: k >= Q guard removed | KILLED by forge test_scalarAliasesRejected (Halmos: SURVIVED (passed: check_dlog_rejectsZeroAndOutOfRange)) |

@@ -1,0 +1,16 @@
+[taker] zec#4515301 base_t=1792329924 | a9f1dc6c encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 598f061e765479f23cc1826263be84e1d8c520392f11b9819aa3a4282a49a525
+[taker] zec#4515308 base_t=1792330078 | a9f1dc6c QUOTE decrypted (price 1000000, maker PoK valid); encrypted ACCEPT with 20000 zats premium sent in tx 36e661f0cd79070b9c6da7c2055bdf6c65e9ca21f5be4ca70b763481163e1334; joint address utest1tzuzhckc92w47u7sqltwd42serdefrjeaa0jazyz4jw33xpxlq376py7pfpz6e9655u39lj6s3uaexscnkwkgh8ey9vhzya9hc57d42j
+[taker] zec#4515311 base_t=1792330202 | transient error, retrying: code: 'Unknown error', message: "transport error", source: tonic::transport::Error(Transport, hyper::Error(Io, Kind(ConnectionReset))): transport error: connection error: connection reset
+[taker] zec#4515326 base_t=1792330666 | transient error, retrying: cast logs: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4515356 base_t=1792331154 | transient error, retrying: cast logs: Error: error sending request for url (https://sepolia.base.org/)
+
+Context:
+- operation timed out
+[taker] zec#4515391 base_t=1792331692 | a9f1dc6c escrow verified (11 checks) and finalized; FUNDED joint address with 1010000 zats in fully shielded tx 7ae3ef5ec1d77aa6ee00e1329121b18523134d2baf4a6ed94022b55f29607981
+[taker] zec#4515391 base_t=1792331762 | transient error, retrying: code: 'Unknown error', message: "transport error", source: tonic::transport::Error(Transport, hyper::Error(Io, Kind(ConnectionReset))): transport error: connection error: connection reset
+[taker] zec#4515402 base_t=1792331924 | a9f1dc6c escrow READY; LOCKED with payout-signed commitClaim (publishes only H(id, a)) via relayer, base tx 0x907496f6442d8042c8b45d0bee5cdaf96035ebb787fa3bcf1dd0a3ac7919d079
+[taker] zec#4515444 base_t=1792333406 | a9f1dc6c lock finalized; REVEALED a via relayer (tx 0xb2792443894ef394bddaad3897ebf351629a18a0b264a41f2c2c2a5f43b1b9ab); waiting for the claim to be final
+[taker] zec#4515472 base_t=1792333748 | transient error, retrying: code: 'Unknown error', message: "transport error", source: tonic::transport::Error(Transport, hyper::Error(Io, Kind(ConnectionReset))): transport error: connection error: connection reset

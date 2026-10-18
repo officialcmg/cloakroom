@@ -1,0 +1,31 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 33 and seed -5659329315664404680 with 2 workers on 10 cores with 1820MB heap and 64MB offheap memory [pid: 8083] (Mac OS X 26.6.2 aarch64, Homebrew 27 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/chrismg/Developer/hackathons/zecathon/cloakroom/formal/Cloakroom.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Integers.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Sequences.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/TLC.tla
+Parsing file /private/var/folders/hp/50skzd2j0qxd7lplc6vqdqs00000gn/T/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Cloakroom
+Starting... (2026-10-15 01:02:28)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-15 01:02:28.
+Progress(49) at 2026-10-15 01:02:31: 1,213,068 states generated (1,213,068 s/min), 564,715 distinct states found (564,715 ds/min), 23,172 states left on queue.
+Model checking completed. No error has been found.
+  Estimates of the probability that TLC did not check all reachable states
+  because two distinct states had the same fingerprint:
+  calculated (optimistic):  val = 4.6E-8
+  based on the actual fingerprints:  val = 1.5E-8
+1850214 states generated, 856632 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 88.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 5 and the 95th percentile is 3).
+Finished in 04s at (2026-10-15 01:02:32)
+
+real	0m5.147s
+user	0m11.802s
+sys	0m0.351s
