@@ -6,7 +6,7 @@
     {
       "check": "claim block reorganized away before finality",
       "pass": true,
-      "detail": "{'tx': '0x351e1c4c8e2882ffbdedbe81b896b760bc29869b4401ccf25c42758d8a0c1545', 'block': 2839, 'depth': 1, 'gone_after_reorg': True}"
+      "detail": "{'tx': '0x564dfe7295166d96e4dfe5859f8add1c574566b43c1e03ef5ce35fe67b6ef2f5', 'block': 1443, 'depth': 1, 'gone_after_reorg': True}"
     },
     {
       "check": "taker re-sent the claim after the reorg",
@@ -51,28 +51,28 @@
   ],
   "facts": {
     "reorg": {
-      "tx": "0x351e1c4c8e2882ffbdedbe81b896b760bc29869b4401ccf25c42758d8a0c1545",
-      "block": 2839,
+      "tx": "0x564dfe7295166d96e4dfe5859f8add1c574566b43c1e03ef5ce35fe67b6ef2f5",
+      "block": 1443,
       "depth": 1,
       "gone_after_reorg": true
     },
     "before": {
-      "maker_zec": 156250000,
-      "taker_zec": 156250000,
-      "maker_tok": 3598800000000,
-      "relayer_tok": 4000000
+      "maker_zec": 312500000,
+      "taker_zec": 312500000,
+      "maker_tok": 1499400000000,
+      "relayer_tok": 2000000
     },
     "after": {
-      "maker_zec": 256290000,
-      "taker_zec": 56160000,
-      "maker_tok": 3598500000000,
-      "relayer_tok": 5000000
+      "maker_zec": 412540000,
+      "taker_zec": 212410000,
+      "maker_tok": 1499100000000,
+      "relayer_tok": 3000000
     },
-    "escrow_id": "0x0005837c9db046b017b6078d3b4cf064508fe1c2d4b2b8d58713369e2bf331bf",
+    "escrow_id": "0x731dbf29a802585590ad7c352fcb98c7344ea1d6de02cab34820060f81554cea",
     "zcash_txs": [
       {
-        "txid": "7c9973149b8c16516a51bf8aba917ba5b1f62f3b7d44018158474238f3bf97da",
-        "height": 773,
+        "txid": "2c2d625dadc7d97868bff253a3301b9beddbf6bb29ab8151e3de65cfb3ca8d96",
+        "height": 373,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -80,8 +80,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "875f7ced59f2c6743dcc5b1ef2ff46c1350571e2566cb0483ac60373d49e9031",
-        "height": 775,
+        "txid": "34b6710d1b45cc003fa669ce1eeb53b2ce7c203f8cd7a8d2beb2c4d8d0b6593f",
+        "height": 375,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -89,8 +89,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "c241d3b4e61286b3660e2ebaae27348eea9522be454cf3730831ec2c7897359c",
-        "height": 820,
+        "txid": "8092b132347100ac49deff1203577110116eb6ed104f89a21e721af941eefd77",
+        "height": 397,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -98,8 +98,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "efb411242dc71bc1ca23a7fbb8f5d515b1d9839b512398f9b29c718cbc8ee788",
-        "height": 797,
+        "txid": "c5be3e3bbca8f6dcb7ebea41cc1fb30e647c56f6dad80578d22e813ce16276ae",
+        "height": 421,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -107,8 +107,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "f86f48d3aaed9a525dca36d54dbee62da683b17a2442db6f56f028c179ff3b0f",
-        "height": 771,
+        "txid": "e2c0cac0a78d82bef4bc6ec2c33cf84ea9f0421f14c9777644563f30688311ce",
+        "height": 371,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -123,78 +123,78 @@
     "r4_not_terminal": []
   },
   "maker_swap": {
-    "rfq_id": "ccd0cc8849e42e768e9c9a743a8fa6ed",
+    "rfq_id": "0dbe384c0ad3feda8993ca514d9b6a6c",
     "stage": "Swept",
     "lots": 1,
     "price": 300000000,
     "relayer_fee": 1000000,
     "premium": 50000,
-    "payout": "0x9bead5ea79a31a6553570966586a8a6e19e23941",
-    "a_pub": "c51210e5999e9e5159c8b1f27f28d867649d05d233b9a649ebba94dfda378830",
-    "commit_s_t": "620577169467ce0159dad9468eaee89b7dce686c68d5ded0401f8ab98ae9aa60",
+    "payout": "0x24e245bc7a6e91ae5cc1c634555b3fd53f40dafe",
+    "a_pub": "d18a8ee7a78cc1284b8721c88083adadefba157650ebc5e51018a93cf3c9643d",
+    "commit_s_t": "183cb0afe7342630fe69b4208a53593e03152a11ed8ce69a0fe6e9b4bbb256b0",
     "b": "",
     "s_m": "",
     "e_m": "",
-    "e_t_pub": "739f301fd90abb057e351c1830e9ff656864ffbfe0f1618721e5023a1442c21b",
-    "quote_hash": "226ca6642adb344a551cc41ecc4edc83c93f33ee5c8447fdbd19b573557839d7",
+    "e_t_pub": "853a6c0cf3e0558e05398092858f8125681365bb4d067bd538f9379192cd721d",
+    "quote_hash": "48b0efa232fd060ffecab0c9dd3cfefa4f9d0c4eb4c8b8b669f120fcdb2fbf46",
     "t0_secs": 150,
     "t1_secs": 60,
     "t2_secs": 240,
     "reveal_secs": 150,
     "negated": true,
     "joint_fvk": null,
-    "escrow_id": "0x0005837c9db046b017b6078d3b4cf064508fe1c2d4b2b8d58713369e2bf331bf",
-    "t0": 1792340063,
-    "t1": 1792340123,
-    "t2": 1792340363,
+    "escrow_id": "0x731dbf29a802585590ad7c352fcb98c7344ea1d6de02cab34820060f81554cea",
+    "t0": 1792344255,
+    "t1": 1792344315,
+    "t2": 1792344555,
     "last_refund_at": null,
-    "sweep_height": 818,
+    "sweep_height": 420,
     "log": [
-      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 7c9973149b8c16516a51bf8aba917ba5b1f62f3b7d44018158474238f3bf97da",
-      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0x0005837c9db046b017b6078d3b4cf064508fe1c2d4b2b8d58713369e2bf331bf t0=1792340063 t1=1792340123 t2=1792340363 W=150 base tx 0xe78b0a018b798db8b371f6c4c70673dfe75b5a0c2396073e2be28a2bd59c1d90",
-      "joint note 100010000 zats with 2 confirmations (k_Z = 2); READY base tx 0xf51a4dce8db82d3f451ccfd3341129f0bcb5fca43bfe6c7dfa628fc872b10766",
-      "CLAIMED at base block 2839: read a; swept 100000000 zats with (a+b) to own wallet, ovk=None, tx c241d3b4e61286b3660e2ebaae27348eea9522be454cf3730831ec2c7897359c; waiting for confirmations",
-      "sweep c241d3b4e61286b3660e2ebaae27348eea9522be454cf3730831ec2c7897359c has 2 confirmations (k_Z = 2); done"
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 2c2d625dadc7d97868bff253a3301b9beddbf6bb29ab8151e3de65cfb3ca8d96",
+      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0x731dbf29a802585590ad7c352fcb98c7344ea1d6de02cab34820060f81554cea t0=1792344255 t1=1792344315 t2=1792344555 W=150 base tx 0x20c40e61f2e4b357d320aec8e771d5c616164d333eec9ebc3f6ddbc0a0f2353f",
+      "joint note 100010000 zats with 2 confirmations (k_Z = 2); READY base tx 0x17f0b333a91f93ab0fe9a81889643b813dfc419e4d3af2004f2cb7c93f7f56ba",
+      "CLAIMED at base block 1447: read a; swept 100000000 zats with (a+b) to own wallet, ovk=None, tx c5be3e3bbca8f6dcb7ebea41cc1fb30e647c56f6dad80578d22e813ce16276ae; waiting for confirmations",
+      "sweep c5be3e3bbca8f6dcb7ebea41cc1fb30e647c56f6dad80578d22e813ce16276ae has 2 confirmations (k_Z = 2); done"
     ]
   },
   "taker_swap": {
-    "rfq_id": "ccd0cc8849e42e768e9c9a743a8fa6ed",
+    "rfq_id": "0dbe384c0ad3feda8993ca514d9b6a6c",
     "stage": "Claimed",
     "lots": 1,
     "a": "",
     "s_t": "",
     "e_t": "",
-    "e_t_pub": "739f301fd90abb057e351c1830e9ff656864ffbfe0f1618721e5023a1442c21b",
+    "e_t_pub": "853a6c0cf3e0558e05398092858f8125681365bb4d067bd538f9379192cd721d",
     "payout_key": "<redacted>",
-    "payout": "0x9bead5ea79a31a6553570966586a8a6e19e23941",
-    "reply_index": 147640524,
+    "payout": "0x24e245bc7a6e91ae5cc1c634555b3fd53f40dafe",
+    "reply_index": 1278787085,
     "price": 300000000,
     "relayer_fee": 1000000,
     "premium": 50000,
-    "b_pub": "83b83f823e9ff251a91cf9a53ddbd27b4b5846f4674e7c2e26982762e7a6cb93",
-    "e_m_pub": "ba6f7b1ea4d75953747242a00b5efb9e0f98f8d01ef32a301842232a8bef9ca0",
+    "b_pub": "b16ce33f6728cfabbcb379f5a7db9776063fdea10cdf58fdac52655ee496f88e",
+    "e_m_pub": "d12cf1e92eb67f73d38c3f42fcdea4d3d00c016c69bcc848a9c6fa824716dbbc",
     "t1_secs": 60,
     "t2_secs": 240,
     "reveal_secs": 150,
     "negated": true,
     "joint_fvk": null,
-    "escrow_id": "0x0005837c9db046b017b6078d3b4cf064508fe1c2d4b2b8d58713369e2bf331bf",
-    "fund_txid": "efb411242dc71bc1ca23a7fbb8f5d515b1d9839b512398f9b29c718cbc8ee788",
-    "commit_tx": "0x6ef64c6fff09e3e9424d0dd76e6074c29eb422540b553f8945bb6bfef167080b",
-    "claim_tx": "0x351e1c4c8e2882ffbdedbe81b896b760bc29869b4401ccf25c42758d8a0c1545",
+    "escrow_id": "0x731dbf29a802585590ad7c352fcb98c7344ea1d6de02cab34820060f81554cea",
+    "fund_txid": "8092b132347100ac49deff1203577110116eb6ed104f89a21e721af941eefd77",
+    "commit_tx": "0xcd259c84eec855d725254c8d82970b62be41bac4fbc6ec9e66629c46283a518f",
+    "claim_tx": "0x564dfe7295166d96e4dfe5859f8add1c574566b43c1e03ef5ce35fe67b6ef2f5",
     "sweep_txid": null,
     "sweep_height": null,
-    "last_claim_at": 1792340052,
-    "escrow_salt": "0xce43cbb283ec1dfa4c17ec2789337351416a235995ca11a048804fbf39efa9fa",
-    "started": 1792339903,
+    "last_claim_at": 1792344245,
+    "escrow_salt": "0xc356c43a86c6fb6fcfcbe25abcd681fb67768657fbb627e34b880c2a7977798f",
+    "started": 1792344094,
     "log": [
-      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx f86f48d3aaed9a525dca36d54dbee62da683b17a2442db6f56f028c179ff3b0f",
-      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 875f7ced59f2c6743dcc5b1ef2ff46c1350571e2566cb0483ac60373d49e9031; joint address uregtest14jtskcwlzyy0zfkfwxulyast6ygk6dyu76qhr82jtk0l3py5t5euc6zayhp62zyd5h3j8pmzf5eu5hz9kpn4ypwvtyktw8lakqzq4gnw",
-      "escrow verified (11 checks) and finalized; FUNDED joint address with 100010000 zats in fully shielded tx efb411242dc71bc1ca23a7fbb8f5d515b1d9839b512398f9b29c718cbc8ee788",
-      "escrow READY; LOCKED with payout-signed commitClaim (publishes only H(id, a)) via relayer, base tx 0x6ef64c6fff09e3e9424d0dd76e6074c29eb422540b553f8945bb6bfef167080b",
-      "lock finalized; REVEALED a via relayer (tx 0x351e1c4c8e2882ffbdedbe81b896b760bc29869b4401ccf25c42758d8a0c1545); waiting for the claim to be final",
-      "claim not on chain; RE-SENT claim(a), tx 0x351e1c4c8e2882ffbdedbe81b896b760bc29869b4401ccf25c42758d8a0c1545",
-      "claim is final (block <= 2842); payout withdrawn by relayer (tx 0x79fc3a7a761bd1c8a065b05446f9053053483102d18cc2ab6f1c9d8c694ececf)"
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx e2c0cac0a78d82bef4bc6ec2c33cf84ea9f0421f14c9777644563f30688311ce",
+      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 34b6710d1b45cc003fa669ce1eeb53b2ce7c203f8cd7a8d2beb2c4d8d0b6593f; joint address uregtest1ag7ww5rtaa4prfp2a3cjm2fvu8fz08j6lsu4qllmauysar4w6xjh9y76k9m8aclp6kmcfzsmd4junywgzpa9pyw7c7kjwgmk5qhy4kuw",
+      "escrow verified (11 checks) and finalized; FUNDED joint address with 100010000 zats in fully shielded tx 8092b132347100ac49deff1203577110116eb6ed104f89a21e721af941eefd77",
+      "escrow READY; LOCKED with payout-signed commitClaim (publishes only H(id, a)) via relayer, base tx 0xcd259c84eec855d725254c8d82970b62be41bac4fbc6ec9e66629c46283a518f",
+      "lock finalized; REVEALED a via relayer (tx 0x564dfe7295166d96e4dfe5859f8add1c574566b43c1e03ef5ce35fe67b6ef2f5); waiting for the claim to be final",
+      "claim not on chain; RE-SENT claim(a), tx 0x564dfe7295166d96e4dfe5859f8add1c574566b43c1e03ef5ce35fe67b6ef2f5",
+      "claim is final (block <= 1447); payout withdrawn by relayer (tx 0xa89d65d42f7642d9328ee15f90c7e3c6ce6082d3ad0733a1e0effcfabce9a53f)"
     ]
   }
 }
