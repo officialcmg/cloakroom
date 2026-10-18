@@ -833,6 +833,11 @@ def s18_late_funding():
     maker.wait_log("escrow OPEN", 200)
     mine_lock.acquire()                  # hold Zcash blocks: the funding will sit in the mempool
     try:
+        # first mine what is already pending (the Accept and its change) and confirm it, so only
+        # the funding is held back
+        while zrpc("getrawmempool"):
+            zrpc("generate", [1])
+        zrpc("generate", [2])
         taker.wait_log("FUNDED", 200)
         held = len(zrpc("getrawmempool"))
         m = maker.swap()

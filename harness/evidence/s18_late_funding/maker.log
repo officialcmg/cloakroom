@@ -1,42 +1,52 @@
+Error: No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <anyhow::Error as core::convert::From<std::io::error::Error>>::from
+             at /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anyhow-1.0.104/src/backtrace.rs:10:14
+   1: <core::result::Result<alloc::vec::Vec<cloakroom::maker::MakerSwap>, anyhow::Error> as core::ops::try_trait::FromResidual<core::result::Result<core::convert::Infallible, std::io::error::Error>>>::from_residual
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/core/src/result.rs:2189:27
+   2: cloakroom::maker::all_swaps
+             at ./node/src/maker.rs:185:14
+   3: cloakroom::maker::run
+             at ./node/src/maker.rs:162:18
+   4: cloakroom::main
+             at ./node/src/main.rs:79:13
+   5: <fn() -> core::result::Result<(), anyhow::Error> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/core/src/ops/function.rs:250:5
+   6: std::sys::backtrace::__rust_begin_short_backtrace::<fn() -> core::result::Result<(), anyhow::Error>, core::result::Result<(), anyhow::Error>>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/sys/backtrace.rs:166:18
+   7: std::rt::lang_start::<core::result::Result<(), anyhow::Error>>::{closure#0}
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/rt.rs:206:18
+   8: <&dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/core/src/ops/function.rs:287:21
+   9: std::panicking::catch_unwind::do_call::<&dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe, i32>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/panicking.rs:581:40
+  10: std::panicking::catch_unwind::<i32, &dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/panicking.rs:544:19
+  11: std::panic::catch_unwind::<&dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe, i32>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/panic.rs:359:14
+  12: std::rt::lang_start_internal::{closure#0}
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/rt.rs:175:24
+  13: std::panicking::catch_unwind::do_call::<std::rt::lang_start_internal::{closure#0}, isize>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/panicking.rs:581:40
+  14: std::panicking::catch_unwind::<isize, std::rt::lang_start_internal::{closure#0}>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/panicking.rs:544:19
+  15: std::panic::catch_unwind::<std::rt::lang_start_internal::{closure#0}, isize>
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/panic.rs:359:14
+  16: std::rt::lang_start_internal
+             at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library/std/src/rt.rs:171:5
+  17: main
+  18: __libc_start_call_main
+             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+  19: __libc_start_main_impl
+             at ./csu/../csu/libc-start.c:360:3
+  20: _start
 
 ===== start maker --exit-after 1 =====
-[maker] zec#0 base_t=1792350702 | maker up. shielded UA uregtest1jrmf5gduznmn9pu2zgp34vv50qtn4whg6cjsvduv8sfjlagetsu8xa7nz2cqd80ylyletfpkzenu5n2r79dw74w32n46zpere5uk8h9r ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 cc99cd756668a67562fb9fb2d2b4ae480190f749a020148eec4097a22a631482
-[maker] zec#912 base_t=1792350715 | 42e330d0 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx b12a9b61cabfccf394ef7a21e9950faeecc8ff74f240d02f38d3208ecd9038ce
-[maker] zec#0 base_t=1792350722 | 42e330d0 ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0xb83486372ecaec80e24ba6d6d1d2d8c570090a16a2ce86669282ddc6a3676bfd t0=1792350870 t1=1792350930 t2=1792351170 W=150 base tx 0xac7033d401a44b541ae793306f86b2520245c11b4a580fb8d6b2777df283c7a2
-[maker] zec#916 base_t=1792350851 | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
-[maker] zec#916 base_t=? | transient sync error, retrying: zebra rpc getblockcount: error sending request for url (http://127.0.0.1:18232/): client error (Connect): tcp connect error: Connection refused (os error 111)
+[maker] zec#0 base_t=1792349629 | maker up. shielded UA uregtest1cxr0s6uk4smvt8hh6trdv94j4sq94dyywqmn3ku79cwdpd2wq08e5e3wf58dvec2ra6drtwz3u9glaux39zmfkg730qpuzgdhyn9nn78 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 3630d38d1ce883699e51f4f2b8874ce31be6b67fd5813ebf459f5f2e2657a917
+[maker] zec#11 base_t=1792349641 | 72e656aa RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx ecc6ab025b5bb3a73414376caad83ee745728eaa5eabc0590519a3fccf0bce04
+[maker] zec#0 base_t=1792349647 | 72e656aa ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0x12994c25bd3bc1f7d437dbaf572f98eb24e661e3303ea7f69f01f890664f42e6 t0=1792349795 t1=1792349855 t2=1792350095 W=150 base tx 0xa0acbc98179827efcbafe91d9c2133630febcbe989c04bfe553fc1ca03da9053
+[maker] zec#17 base_t=1792349790 | 72e656aa no funding before t0; REFUND publishes b, tx 0x18928fd43e9cc72e76b57ffa333f75f68053d8979b701d9e0189f0b900ffb2ee; waiting for it to be final
+[maker] zec#17 base_t=1792349791 | 72e656aa refund is final (block <= 103); tokens withdrawn, tx 0xe10506daf4375df85538996549d4af3bc03323d47c5f9d9f6211b9efa1740a73
+[maker] zec#17 base_t=1792349791 | 1 swap(s) terminal; exiting
+RESULT {"rfq_id":"72e656aa0d0d04a48813dc9250c3567f","stage":"Refunded","lots":1,"price":300000000,"relayer_fee":1000000,"premium":50000,"payout":"0x2528341befaeebfbfc2d1e10d4f0bf289bd0c10c","a_pub":"16571220c79122ecd03e1737ce1755d49138f1fa0ce4f5e6b4feafbe565e35b0","commit_s_t":"6679d361ff560a3c4af1a309405fee8b4b29e77f3273212d81990a5ad1b3d1ba","b":"","s_m":"","e_m":"","e_t_pub":"967c69f1eee7c16420b7b853a47f096b3a6c1b8108116df0b86e440cd328fb28","quote_hash":"a0da9dd4347743f36934fa2ce6ea63490a760e727b4c41a94a522baf8af225f5","t0_secs":150,"t1_secs":60,"t2_secs":240,"reveal_secs":150,"negated":true,"joint_fvk":null,"escrow_id":"0x12994c25bd3bc1f7d437dbaf572f98eb24e661e3303ea7f69f01f890664f42e6","t0":1792349795,"t1":1792349855,"t2":1792350095,"last_refund_at":1792349789,"sweep_height":null,"log":["RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx ecc6ab025b5bb3a73414376caad83ee745728eaa5eabc0590519a3fccf0bce04","ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0x12994c25bd3bc1f7d437dbaf572f98eb24e661e3303ea7f69f01f890664f42e6 t0=1792349795 t1=1792349855 t2=1792350095 W=150 base tx 0xa0acbc98179827efcbafe91d9c2133630febcbe989c04bfe553fc1ca03da9053","no funding before t0; REFUND publishes b, tx 0x18928fd43e9cc72e76b57ffa333f75f68053d8979b701d9e0189f0b900ffb2ee; waiting for it to be final","refund is final (block <= 103); tokens withdrawn, tx 0xe10506daf4375df85538996549d4af3bc03323d47c5f9d9f6211b9efa1740a73"]}
