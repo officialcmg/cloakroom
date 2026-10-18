@@ -15,7 +15,7 @@ async fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let server = args.iter().position(|a| a == "--server").map(|i| args[i + 1].clone()).unwrap_or("https://testnet.zec.rocks:443".into());
     let txids: Vec<&String> = args.iter().filter(|a| a.len() == 64).collect();
-    let ch = Channel::from_shared(server)?.tls_config(ClientTlsConfig::new().with_webpki_roots())?.connect().await?;
+    let ch = Channel::from_shared(server)?.tls_config(tls())?.connect().await?;
     let mut c = CompactTxStreamerClient::new(ch);
     println!("txid | height | version | transparent in/out | sapling spends/outputs | orchard actions | ironwood actions | ironwood value balance (zats)");
     for t in txids {
@@ -31,4 +31,13 @@ async fn main() -> Result<()> {
         println!("{t} | {} | v{} | {tin}/{tout} | {ss}/{so} | {oa} | {ia} | {ivb}", raw.height, u32::from(tx.version().header()) & 0x7fffffff);
     }
     Ok(())
+}
+
+/// webpki roots, plus the roots in SSL_CERT_FILE if set (for egress that re-signs TLS).
+fn tls() -> ClientTlsConfig {
+    let mut tls = ClientTlsConfig::new().with_webpki_roots();
+    if let Some(pem) = std::env::var("SSL_CERT_FILE").ok().and_then(|p| std::fs::read(p).ok()) {
+        tls = tls.ca_certificate(tonic::transport::Certificate::from_pem(pem));
+    }
+    tls
 }

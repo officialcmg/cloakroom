@@ -44,7 +44,7 @@ async fn main() -> Result<()> {
         ws.push(W { dir: d.clone(), fvk, ivks, notes: vec![] });
     }
 
-    let ch = Channel::from_shared(server.clone())?.tls_config(ClientTlsConfig::new().with_webpki_roots())?.connect().await?;
+    let ch = Channel::from_shared(server.clone())?.tls_config(tls())?.connect().await?;
     let mut c = CompactTxStreamerClient::new(ch);
     let info = c.get_lightd_info(Empty {}).await?.into_inner();
     println!("server {server}: {} {} chain={} block_height={} branch={}", info.vendor, info.version, info.chain_name, info.block_height, info.consensus_branch_id);
@@ -103,4 +103,13 @@ async fn main() -> Result<()> {
         println!("{}: unspent Ironwood balance {} zats ({} TAZ)", w.dir, bal, bal as f64 / 1e8);
     }
     Ok(())
+}
+
+/// webpki roots, plus the roots in SSL_CERT_FILE if set (for egress that re-signs TLS).
+fn tls() -> ClientTlsConfig {
+    let mut tls = ClientTlsConfig::new().with_webpki_roots();
+    if let Some(pem) = std::env::var("SSL_CERT_FILE").ok().and_then(|p| std::fs::read(p).ok()) {
+        tls = tls.ca_certificate(tonic::transport::Certificate::from_pem(pem));
+    }
+    tls
 }
