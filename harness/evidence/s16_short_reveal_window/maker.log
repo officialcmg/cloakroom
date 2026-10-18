@@ -1,4 +1,4 @@
 
 ===== start maker --evil short-reveal =====
-[maker] zec#0 base_t=1792340101 | maker up. shielded UA uregtest1spvj3427gq2sn6fplj22ycltqancvfemrja3hylyrqam4gq82e9452sq3ldg29yq3cp5gg5lkth0w39dr6tf9crf4kclxj7v7sv9qph9 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 fe6760acb60f14dfffd92aab4f1f250451ca5747e5603292a461be3179e181a0
-[maker] zec#11 base_t=1792340113 | 847806be RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 5534a838b3cdf5e6422a372e526a1a122a21cdb910ca030bfd607e48c2484020 [EVIL MODE: short-reveal]
+[maker] zec#0 base_t=1792344605 | maker up. shielded UA uregtest1x988ath4d5w7t6zhsyxmtf3mwsdgu83l4e0n70dz6020smplq5c6e43qk3f0qqgnhfpt790yqje07yslqa4cwvyw0z320yanwcg08aj4 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 9cdf05708624ca24cca81b2bb57169b30537c1ae864bb789d39c90a8d4708604
+[maker] zec#498 base_t=1792344619 | 12dc73a7 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 1cd9f1eb382ff3e5bb601f9191ed669879206e27a56e3b9746f5ef709366c497 [EVIL MODE: short-reveal]

@@ -1,4 +1,4 @@
 
 ===== start maker --evil far-horizon =====
-[maker] zec#0 base_t=1792340126 | maker up. shielded UA uregtest1zfra06ccyq9t0z238z3c8zhrttdet2sa5kxranu6y3n7f9rky4rcjv3sgwldqlrygpsd5dlgj2vnflrhyynrcfvz2fq9gu0cyc9chsd9 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 468dc0d068fb17fd124d77a9fc971f3d7107f4071b90198ae098dd1e775fba98
-[maker] zec#21 base_t=1792340138 | d0753c90 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 852bbdb83c4bb7e0fde98fae51a36c1f35272541c4f45345efc29ba1765fe52b [EVIL MODE: far-horizon]
+[maker] zec#0 base_t=1792344638 | maker up. shielded UA uregtest1wr2e76sp7ltctzczp9u6j70l9d4fyrzp5kcwhs4j4ey9f80h5ktlrm3x60zjta5m5kgkm8y2e2kuxapq03smxwk8dk329wn8dg2hu52t ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 484182800837490033656cfe561cb3ca4e4ec04c39616e08809eee7cad3cf138
+[maker] zec#511 base_t=1792344650 | 5dff41d9 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 79f62623c3c390680a1fd098aeed852d7515478e44b483023285a8feb42d3518 [EVIL MODE: far-horizon]
