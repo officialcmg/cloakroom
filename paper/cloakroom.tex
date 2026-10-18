@@ -70,16 +70,19 @@ the counterparty's tokens sit in an escrow whose two exits each publish one shar
 timing model with bounded inclusion delay, finality lag and a budget of reorganizations, and
 prove three things. An honest taker loses at most a small premium and is never held hostage while she stays online
 through her claim. An honest maker
-never loses funds if he comes online once in a stated window, which no protocol of this kind can
-avoid. A passive observer learns nothing that links the two chains beyond timing and the wallet
+never loses funds if he comes online once in a stated window, which any protocol that pays the
+taker's unilateral exit on the EVM chain without observing Zcash must require. A passive observer learns nothing that links the two chains beyond timing and the wallet
 fingerprint the transactions share. Model checking the protocol in TLA$^+$ found that a refund
 which is included but not yet final can be reorganized into a theft, and, at a second parameter
-point, confirmed the budget every share-revealing transaction needs, which a reviewer of an
-earlier version derived. Measuring 30 days of Zcash mainnet shows that timing is the
+point, was consistent with the budget every share-revealing transaction needs, which a reviewer of an
+earlier version derived; our checked points all have $D=F$, so the budget's form rests on its proof. Measuring 30 days of Zcash mainnet shows that timing is the
 binding privacy constraint. A swap transaction that is not delayed hides among almost no others.
 A natural count-gated delay lets an observer who knows the policy guess the transaction with
 probability 0.18 in the median case and above 0.85 in one case in ten; the delay our wallet
-uses keeps it near 1.4\% at an average of 2.6 hours per delayed step.
+uses keeps it near 1.4\% per delayed transaction (median, for an observer who samples its
+posterior) at an average of 2.6 hours per delayed step; by a union bound over a swap's four
+anchored transactions, a swap is linked with probability at most about 6\%, and more if the
+observer matches every wallet setting.
 The implementation passes fifteen two-party scenarios, including injected reorganizations and
 an impostor maker. On Zcash testnet and Base Sepolia the final escrow has settled swaps, and every
 Zcash transaction was fully shielded.
@@ -117,8 +120,9 @@ revealed, payments are pulled, and a punish window removes the hostage case
 \item \textbf{A model and proofs.} A timing model with inclusion delay $D$, finality lag $F$
 and $R$ reorganizations, giving every share-revealing transaction the budget $(R+1)D + RF$.
 Proofs of taker safety without hostage, of maker safety under a liveness condition, and that the
-condition cannot be avoided without verifying Zcash state on the EVM chain (Sections~3 and~5).
-\item \textbf{Mechanized verification.} A TLA$^+$ model checked by TLC at small parameter points ($D=F\in\{1,2\}$, $R\in\{1,2\}$),
+condition is needed whenever the taker's unilateral exit is paid on the EVM chain, which does not
+observe Zcash (Sections~3 and~5).
+\item \textbf{Mechanized verification.} A TLA$^+$ model checked by TLC at three small parameter points, $(D,F,R) \in \{(1,1,1), (2,2,1), (2,2,2)\}$,
 in which removing any of the rules R2c--R3l or L$_M$, or shortening either budget by one step,
 yields a concrete attack.
 Symbolic execution, mutation testing, static analysis and stateful fuzzing of the escrow
@@ -392,7 +396,7 @@ L$_M$ & $M$ & \textbf{Maker liveness:} online at some $\tau \in [t_1 + D + F,\, 
 W > F + B_R,\qquad t_0 - \mathit{open} > F + \Delta_{\mathit{fund}},\qquad t_1 - t_0 > F + B_R,\qquad t_2 - t_1 > D + F + B_R .
 \]
 The bounds on $W$ and $t_2 - t_1$ carry the safety proofs (Section~5); those on $t_0$ and $t_1$
-only make the happy path possible. TLC confirms the bounds at two parameter points and finds an
+only make the happy path possible. TLC is consistent with the bounds at three parameter points, all with $D=F$, and finds an
 attack when either budget is one step short (Section~6). Our implementation writes the R2r and
 R3d tests as $\tau + D + F + \mu < d$ and refuses to start unless $\mu \ge RD + (R-1)F$, which is
 the same condition. The maker writes the quote, so the taker checks the bound on $W$ herself
@@ -521,8 +525,10 @@ one else spends the note, and $M$ sweeps it, keeping $b$ until the sweep is conf
 \begin{proposition}[L$_M$ is needed]
 If $M$ is offline throughout $[t_1, t_2)$, a taker who never funds can wait until $t_2$, commit
 from \st{Open}, and claim $u$. The same holds for any protocol in which the EVM side cannot
-observe the Zcash funding and the taker has a unilateral exit after a deadline: an absent maker
-cannot be protected after that deadline. An escrow that verified a proof of funding against a
+observe the Zcash funding and the taker's unilateral exit after a deadline is paid on the EVM
+side: an absent maker cannot be protected after that deadline. A design whose exit is on the
+Zcash side, such as a timed commitment to $b$~\cite{uas}, avoids L$_M$ at the cost of
+time-lock puzzles; we do not claim otherwise. An escrow that verified a proof of funding against a
 Zcash light client would not need L$_M$, at a large cost in complexity.
 \end{proposition}
 TLC exhibits the attack (configuration c$'$ in Section~6), and harness scenario s11 executes it
@@ -644,9 +650,10 @@ The $t_2$ mutation was our first finding. With $t_2 - t_1 = 4$ at $D=F=1$:
 \item A taker who never funded commits through the punish path and claims.
 \end{enumerate}
 Rule R3d therefore requires the refund to stay within the budget before $t_2$, and $t_2 - t_1$ must
-leave room for that. The model abstracts cryptography to the information each broadcast reveals, and it checks small
-parameter points ($D=F \in \{1,2\}$, $R \in \{1,2\}$, $k_Z=1$); the inequalities of Section~4 are
-argued in general. The liveness checks assume an online taker; a taker who commits and goes
+leave room for that. The model abstracts cryptography to the information each broadcast reveals, and it checks three small
+parameter points, $(D,F,R) \in \{(1,1,1), (2,2,1), (2,2,2)\}$ with $k_Z=1$; the inequalities of Section~4 are
+argued in general. Because every point has $D=F$, the model cannot tell $(R+1)D+RF$ from
+$RD+(R+1)F$; that the budget has the first form rests on Lemma~2. The liveness checks assume an online taker; a taker who commits and goes
 offline past $W$ is outside them, as (H) states.
 
 \subsection{The escrow contract}
@@ -768,7 +775,7 @@ The theorem is only as strong as its shape assumption. Fee, expiry and \texttt{l
 public and do fingerprint wallets, so the shape includes them, and Section~8.2 measures the class
 our wallet falls into. The observer is then reduced to correlating times.
 
-\textbf{Composition.} One swap makes up to six Zcash transactions: the RFQ, the Quote, the Accept
+\textbf{Composition.} One swap makes five Zcash transactions: the RFQ, the Quote, the Accept
 with the premium, the funding, and one sweep (by the maker after a claim, or by the taker after a
 refund). Public EVM events anchor them from both sides. The funding follows \fn{open}, the sweep
 follows \fn{claim} or \fn{refund}, the Accept precedes \fn{open}, and the funding precedes
@@ -864,7 +871,8 @@ randomness per trigger. The observer sees the look-alikes in each block, ours in
 locally smooth background rate, the posterior that a given observed look-alike in block $b$ is
 ours is proportional to $f(b)$. For 1{,}000 random triggers in the 30-day window we report the
 posterior mass on the true transaction (the success probability of an observer who guesses by
-sampling from its posterior) and the effective anonymity set $2^H$, where $H$ is the posterior's
+sampling from its posterior; an observer who picks the most likely candidate does at least as
+well, and we do not report that figure) and the effective anonymity set $2^H$, where $H$ is the posterior's
 entropy. Candidates are structural look-alikes; full-settings matching would shrink the sets by
 roughly the factor in Table~7.
 
@@ -968,7 +976,7 @@ shielded. These runs exposed four problems that local chains did not, all
 fixed: a stale nonce, a limit on log queries, crashes on transient errors, and stale balance reads.
 The final escrow is deployed on Base Sepolia at
 \texttt{0xCCE4aFc81A6ccC9Db05B2a7D157942435b944283}, with runtime bytecode identical to our build
-of the audited source. With an earlier version of the wallet, which predates the fixes of
+of the internally audited source. With an earlier version of the wallet, which predates the fixes of
 Section~6 but follows the same message flow, it completed one swap with $D=30$~s,
 $F=1{,}500$~s, $t_0=40$~min and $W=t_2-t_1=55$~min. The swap was an encrypted RFQ, Quote and
 Accept with a 20{,}000-zatoshi premium, then \fn{open}, funding, Ready, commit, reveal and a
@@ -1018,7 +1026,7 @@ root it proves against, is also public and wallet-specific; we did not measure a
 the full-settings class may be smaller than Table~7 estimates. The light wallet leaks its fetches to the
 server, and without Tor an external relayer learns the taker's network address. The maker is
 public.
-\item \textbf{Verification scope.} The TLA$^+$ model checks two small parameter points and
+\item \textbf{Verification scope.} The TLA$^+$ model checks three small parameter points, all with $D = F$, and
 abstracts cryptography. Halmos proves bounded call sequences, and unrestricted three-call
 sequences did not terminate. The contracts have not had an external audit.
 \item \textbf{Implementation.} One maker per request; manual epoch-key rotation; no Tor;
