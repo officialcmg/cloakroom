@@ -1,0 +1,159 @@
+{
+  "scenario": "s8_free_claim_attempt",
+  "title": "Review finding: a taker who never funds tries to claim while the maker is offline. Rejected before t2 (claims need Ready); the maker comes back once in [t1, t2) (assumption L_M) and refunds, closing the punish path",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "unfunded lock before t2 rejected by the escrow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "maker refunded within [t1, t2)",
+      "pass": true,
+      "detail": "Refunded"
+    },
+    {
+      "check": "no Claimed event",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "maker tokens fully restored",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "privacy audit: all 3 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK)",
+      "pass": true,
+      "detail": "checked=['maker:Refunded', 'taker:Recovered'] not_terminal=[] bad=[]"
+    }
+  ],
+  "facts": {
+    "before": {
+      "maker_zec": 312500000,
+      "taker_zec": 312500000,
+      "maker_tok": 2099400000000,
+      "relayer_tok": 2000000
+    },
+    "after": {
+      "maker_zec": 312540000,
+      "taker_zec": 312430000,
+      "maker_tok": 2099400000000,
+      "relayer_tok": 2000000
+    },
+    "escrow_id": "0x371f0b7cc8a08f5c37bff52ba475ca73e0f83d73fd87a2a5da2babb0ba552de9",
+    "zcash_txs": [
+      {
+        "txid": "3cd63dda3e0e47aee6606354897a8d9f55bf1e295bb5a32b507435902d580d91",
+        "height": 329,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "3dc42f6917980b81c1231b4b0a1041c05402ba14e93b41c9ddadc838968a904d",
+        "height": 328,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "4fe7761d55eb77bc87921742a6df1579ee2ef941e69b992e18efb6e3ddfc5101",
+        "height": 326,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      }
+    ],
+    "r4_checked": [
+      "maker:Refunded",
+      "taker:Recovered"
+    ],
+    "r4_not_terminal": []
+  },
+  "maker_swap": {
+    "rfq_id": "c3b31606a9db28568190c8e02a181158",
+    "stage": "Refunded",
+    "lots": 1,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "payout": "0xa6db23a8451df41771a22543279e8d8cc2da8e06",
+    "a_pub": "dd3e40c147853f620e01cb4764af7adfdd64f7a31b18fcc8f77c86173834dbbf",
+    "commit_s_t": "c65ab6bb204c6bcf4079aa7462e840b23423ce210601cc4e4c8929d036ab8abc",
+    "b": "",
+    "s_m": "",
+    "e_m": "",
+    "e_t_pub": "0d7ee555a3551282cfd0e0c57313c88203374b6105a8e45106a79c642713b4a2",
+    "quote_hash": "8edd5129a43b68a2d4a135c9adf98066581a95d08cb2e32c44ffa4868b589658",
+    "t0_secs": 150,
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": "0x371f0b7cc8a08f5c37bff52ba475ca73e0f83d73fd87a2a5da2babb0ba552de9",
+    "t0": 1792337914,
+    "t1": 1792337974,
+    "t2": 1792338214,
+    "last_refund_at": 1792338041,
+    "sweep_height": null,
+    "log": [
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 3dc42f6917980b81c1231b4b0a1041c05402ba14e93b41c9ddadc838968a904d",
+      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: false); escrow OPEN id 0x371f0b7cc8a08f5c37bff52ba475ca73e0f83d73fd87a2a5da2babb0ba552de9 t0=1792337914 t1=1792337974 t2=1792338214 W=150 base tx 0x3eafc296e7425c6db7a26bbf05dbe7b35a1fc4697c7ebae2604067887d9a81e4",
+      "finalized block 1241 (t=1792337977) is past t1 with state Open; REFUND publishes b, tx 0xa283924703ae1d55bb60c190d72827009474b2ac958e413b8ed53d838d6c6f56; waiting for it to be final",
+      "refund is final (block <= 1306); tokens withdrawn, tx 0x7acf9d5456f8fec540a7ef9f9b79089af28f4d6f5bbefdc05c96f3a05459d714"
+    ]
+  },
+  "taker_swap": {
+    "rfq_id": "c3b31606a9db28568190c8e02a181158",
+    "stage": "Recovered",
+    "lots": 1,
+    "a": "",
+    "s_t": "",
+    "e_t": "",
+    "e_t_pub": "0d7ee555a3551282cfd0e0c57313c88203374b6105a8e45106a79c642713b4a2",
+    "payout_key": "<redacted>",
+    "payout": "0xa6db23a8451df41771a22543279e8d8cc2da8e06",
+    "reply_index": 102151107,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "b_pub": "6b70ed0cff2c6cf02ad55e73248e69a464ee3e7115ccbac1bf08b11b032f288a",
+    "e_m_pub": "b242f38b0e06be727363cd8749667f7dc8d507359d69d700019440d12cdcd194",
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": "0x371f0b7cc8a08f5c37bff52ba475ca73e0f83d73fd87a2a5da2babb0ba552de9",
+    "fund_txid": null,
+    "commit_tx": null,
+    "claim_tx": null,
+    "sweep_txid": null,
+    "sweep_height": null,
+    "last_claim_at": null,
+    "escrow_salt": "0x044176f31376a4935b7a752097f39071e02a31d97c37949361c9297e272acf4f",
+    "started": 1792337754,
+    "log": [
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 4fe7761d55eb77bc87921742a6df1579ee2ef941e69b992e18efb6e3ddfc5101",
+      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 3cd63dda3e0e47aee6606354897a8d9f55bf1e295bb5a32b507435902d580d91; joint address uregtest14927jpqqnjmgazsxaj9ru2s803zm4v8m588hfgpkvmh7kdj4n33aquu60wqwlnsacyszdyntsmjsqhs5wtwxf885e5llgjggju3d4rut",
+      "[EVIL MODE: free-claim] escrow verified; NOT funding; will try to claim after t0",
+      "[EVIL MODE: free-claim] commitClaim without Ready before t2 REJECTED by escrow: cast send: Error: Failed to estimate gas: server returned an error response: error code 3: execution reverted: custom error 0x6247a84e, data: \"0x6247a84e\": NotClaimable; waiting for t2",
+      "R2: claim window closed (now 1792337975, t1 1792337974); not committing; waiting for the maker's refund or for t2 1792338214",
+      "maker REFUNDED at base block 1306; no joint note was funded, nothing to recover"
+    ]
+  }
+}

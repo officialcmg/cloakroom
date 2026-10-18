@@ -1,0 +1,4 @@
+
+===== start maker --evil rogue-key =====
+[maker] zec#0 base_t=1792337482 | maker up. shielded UA uregtest1309wr7k0vtje5589ala2s4dgqdl2lwf280svk0dlx7we59dk832kcgtwu0t6erne9a0axvqd33p3k60nu25x9r5eg4kzg2xujcv9lkft ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 6246f7a2056f5cff4e83627bccda867cc9e80ed57268801ddc95e37baad8ad3d
+[maker] zec#258 base_t=1792337494 | e2157001 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx b2e25dfb860409d24194bc52254bebae4adc31e6474514213c247e6e80ad69ff [EVIL MODE: rogue-key]

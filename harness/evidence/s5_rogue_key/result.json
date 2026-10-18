@@ -1,0 +1,135 @@
+{
+  "scenario": "s5_rogue_key",
+  "title": "Malicious maker sends a rogue key B = [b']G - A: taker rejects the quote and never funds",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "taker aborted on invalid proof of knowledge",
+      "pass": true,
+      "detail": "{'Aborted': 'maker proof of knowledge INVALID (possible rogue-key attack)'}"
+    },
+    {
+      "check": "taker never funded and paid no premium",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "privacy audit: all 2 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK)",
+      "pass": true,
+      "detail": "checked=['taker:Aborted'] not_terminal=['maker:Quoted'] bad=[]"
+    }
+  ],
+  "facts": {
+    "before": {
+      "maker_zec": 625000000,
+      "taker_zec": 625000000,
+      "maker_tok": 1499400000000,
+      "relayer_tok": 2000000
+    },
+    "after": {
+      "maker_zec": 624990000,
+      "taker_zec": 624990000,
+      "maker_tok": 1499400000000,
+      "relayer_tok": 2000000
+    },
+    "zcash_txs": [
+      {
+        "txid": "9371d7288463fd199c0f71b288eed88fe39d2b0c4fe63b033ed2e95b15ca543f",
+        "height": 258,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "b2e25dfb860409d24194bc52254bebae4adc31e6474514213c247e6e80ad69ff",
+        "height": 260,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      }
+    ],
+    "r4_checked": [
+      "taker:Aborted"
+    ],
+    "r4_not_terminal": [
+      "maker:Quoted"
+    ]
+  },
+  "maker_swap": {
+    "rfq_id": "e2157001d9598613f571d02fce4b1b3f",
+    "stage": "Quoted",
+    "lots": 1,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "payout": "0x10dff3182ce9d27d06acc60526da4d3106255b41",
+    "a_pub": "f93362a0e5b3e20d38f484dba7e6066dfc97472bc44789302503361519354739",
+    "commit_s_t": "8058b9fdaf14fed072fbc22119ba515801ee3d8b5528f0618885a6403f1f5495",
+    "b": "<redacted>",
+    "s_m": "<redacted>",
+    "e_m": "<redacted>",
+    "e_t_pub": "029063156401c9c781aa9dd45e9b28fd8bf48673344444dae2874f412dabfc35",
+    "quote_hash": "94cc62460a69083124c76c992b9d83aaf6e4001e1f8c9d1b67c5305ec413b5bc",
+    "t0_secs": 150,
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": null,
+    "t0": null,
+    "t1": null,
+    "t2": null,
+    "last_refund_at": null,
+    "sweep_height": null,
+    "log": [
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx b2e25dfb860409d24194bc52254bebae4adc31e6474514213c247e6e80ad69ff [EVIL MODE: rogue-key]"
+    ]
+  },
+  "taker_swap": {
+    "rfq_id": "e2157001d9598613f571d02fce4b1b3f",
+    "stage": {
+      "Aborted": "maker proof of knowledge INVALID (possible rogue-key attack)"
+    },
+    "lots": 1,
+    "a": "",
+    "s_t": "",
+    "e_t": "",
+    "e_t_pub": "029063156401c9c781aa9dd45e9b28fd8bf48673344444dae2874f412dabfc35",
+    "payout_key": "<redacted>",
+    "payout": "0x10dff3182ce9d27d06acc60526da4d3106255b41",
+    "reply_index": 24122850,
+    "price": null,
+    "relayer_fee": null,
+    "premium": null,
+    "b_pub": null,
+    "e_m_pub": null,
+    "t1_secs": null,
+    "t2_secs": null,
+    "reveal_secs": null,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": null,
+    "fund_txid": null,
+    "commit_tx": null,
+    "claim_tx": null,
+    "sweep_txid": null,
+    "sweep_height": null,
+    "last_claim_at": null,
+    "escrow_salt": null,
+    "started": 1792337488,
+    "log": [
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 9371d7288463fd199c0f71b288eed88fe39d2b0c4fe63b033ed2e95b15ca543f",
+      "QUOTE REJECTED: maker proof of knowledge INVALID (possible rogue-key attack); nothing was funded"
+    ]
+  }
+}

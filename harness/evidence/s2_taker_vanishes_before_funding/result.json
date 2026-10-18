@@ -1,0 +1,161 @@
+{
+  "scenario": "s2_taker_vanishes_before_funding",
+  "title": "Taker accepts (pays premium), then disappears before funding: maker refunds before t0",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "taker vanished at Accepted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "maker reached Refunded",
+      "pass": true,
+      "detail": "Refunded"
+    },
+    {
+      "check": "escrow state Refunded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "maker tokens fully restored (withdrawn)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "maker kept the premium: ZEC +premium - quote fee (exact)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "privacy audit: all 3 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK)",
+      "pass": true,
+      "detail": "checked=['maker:Refunded'] not_terminal=['taker:Accepted'] bad=[]"
+    }
+  ],
+  "facts": {
+    "before": {
+      "maker_zec": 625000000,
+      "taker_zec": 625000000,
+      "maker_tok": 599700000000,
+      "relayer_tok": 1000000
+    },
+    "after": {
+      "maker_zec": 625040000,
+      "taker_zec": 624930000,
+      "maker_tok": 599700000000,
+      "relayer_tok": 1000000
+    },
+    "escrow_id": "0xe7c709ae379c3988efebd3865772ff1ade47e878082bb49142ba3eba8a81551a",
+    "zcash_txs": [
+      {
+        "txid": "1afe04ac3b6b6d278bea029221539984bb247d7671fdcb56f6e1270d94dd1819",
+        "height": 92,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "6de6b45c53da7b4f48358063011f92889303a7c274e69ffced91404b2e40ae57",
+        "height": 87,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "fa6bdb78dbdb778cb1216ee908bf02b53ed0eb7bc1ca556b0e2242040693e80d",
+        "height": 90,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      }
+    ],
+    "r4_checked": [
+      "maker:Refunded"
+    ],
+    "r4_not_terminal": [
+      "taker:Accepted"
+    ]
+  },
+  "maker_swap": {
+    "rfq_id": "6df0e5a007a7f40897a680d1a38c00b5",
+    "stage": "Refunded",
+    "lots": 1,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "payout": "0x56118c832ced5b32ce8149a026bccb4f5d2348a6",
+    "a_pub": "c104e41bd2af843d605d74fc34d7fbf16b3b5c816f52a541edbea617417f3e82",
+    "commit_s_t": "53fb1d40fd0d25def10e9b650ea2da2696477964adda1a393d08c39c851e94d4",
+    "b": "",
+    "s_m": "",
+    "e_m": "",
+    "e_t_pub": "72778d3ce64f06b01c3e7618042f7f3db377bae19a5bbd8d1e32145de8032f8c",
+    "quote_hash": "bfb3afa6e09e55cfbdacb027c19c5301f7fdf2d47cd0d26159f8b6e248d2d1b8",
+    "t0_secs": 150,
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": true,
+    "joint_fvk": null,
+    "escrow_id": "0xe7c709ae379c3988efebd3865772ff1ade47e878082bb49142ba3eba8a81551a",
+    "t0": 1792336477,
+    "t1": 1792336537,
+    "t2": 1792336777,
+    "last_refund_at": 1792336471,
+    "sweep_height": null,
+    "log": [
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (345 memo bytes, price 300000000, premium 50000 zats) sent in tx fa6bdb78dbdb778cb1216ee908bf02b53ed0eb7bc1ca556b0e2242040693e80d",
+      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0xe7c709ae379c3988efebd3865772ff1ade47e878082bb49142ba3eba8a81551a t0=1792336477 t1=1792336537 t2=1792336777 W=150 base tx 0xcea7c00bc5ba140117e1dbec152f774f296f083de59a9488252f8f50ee362875",
+      "no funding before t0; REFUND publishes b, tx 0x510d48459bc905f476432d40ce5011388bbc74a977c35039056aaebe754a6285; waiting for it to be final",
+      "refund is final (block <= 270); tokens withdrawn, tx 0xde17f120c17e6cb2e4b581982cfa89459149e943696ec71fcaebd38d8917030d"
+    ]
+  },
+  "taker_swap": {
+    "rfq_id": "6df0e5a007a7f40897a680d1a38c00b5",
+    "stage": "Accepted",
+    "lots": 1,
+    "a": "<redacted>",
+    "s_t": "<redacted>",
+    "e_t": "<redacted>",
+    "e_t_pub": "72778d3ce64f06b01c3e7618042f7f3db377bae19a5bbd8d1e32145de8032f8c",
+    "payout_key": "<redacted>",
+    "payout": "0x56118c832ced5b32ce8149a026bccb4f5d2348a6",
+    "reply_index": 551940205,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "b_pub": "a1f9b72636ac7e4beec9341831ec9164f6da5e9f273e617ed8f74f75a9581da1",
+    "e_m_pub": "b7f2e4fd56396ffdc0962e15d1fca8b32b3ccc7e4875cb62d310e7a3f31e1bbf",
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": true,
+    "joint_fvk": "<redacted>",
+    "escrow_id": null,
+    "fund_txid": null,
+    "commit_tx": null,
+    "claim_tx": null,
+    "sweep_txid": null,
+    "sweep_height": null,
+    "last_claim_at": null,
+    "escrow_salt": "0xfd1ee4ce2680704ff23698c5e84c8c7521401c5ae4a5aa92927e181db026f103",
+    "started": 1792336315,
+    "log": [
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 6de6b45c53da7b4f48358063011f92889303a7c274e69ffced91404b2e40ae57",
+      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 1afe04ac3b6b6d278bea029221539984bb247d7671fdcb56f6e1270d94dd1819; joint address uregtest16qa2h5f88temhg9zvp4as5nsuq6rh6ryt5s2gp3644z2gvx6kypar4m08ngcz2gv22hx3klywugyaszfytysqgxymtu822lnks5cydcu"
+    ]
+  }
+}

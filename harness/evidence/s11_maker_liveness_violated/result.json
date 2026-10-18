@@ -1,0 +1,160 @@
+{
+  "scenario": "s11_maker_liveness_violated",
+  "title": "Assumption boundary (Proposition 3): the maker is offline for ALL of [t1, t2) and the taker never funds. The punish path then lets her claim for free. This is the expected, documented consequence of violating L_M",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "taker never funded the joint address",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "taker claimed via the punish path",
+      "pass": true,
+      "detail": "Claimed"
+    },
+    {
+      "check": "maker lost the escrowed tokens, as Proposition 3 predicts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "maker detected and reported the L_M violation",
+      "pass": true,
+      "detail": "{'Aborted': 'claimed via punish path without funding: L_M was violated'}"
+    },
+    {
+      "check": "privacy audit: all 3 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK)",
+      "pass": true,
+      "detail": "checked=['maker:Aborted', 'taker:Claimed'] not_terminal=[] bad=[]"
+    }
+  ],
+  "facts": {
+    "before": {
+      "maker_zec": 312500000,
+      "taker_zec": 312500000,
+      "maker_tok": 2999400000000,
+      "relayer_tok": 2000000
+    },
+    "after": {
+      "maker_zec": 312540000,
+      "taker_zec": 312430000,
+      "maker_tok": 2999100000000,
+      "relayer_tok": 3000000
+    },
+    "escrow_id": "0x60f078299c40037e64d43900a00f76763b9bb637c0617e4a8a1b0879a2c36659",
+    "zcash_txs": [
+      {
+        "txid": "552fc485f67812cadf0b990c7b22d2b8927df4230d8e7b8839d3eeb81bf6c6fc",
+        "height": 563,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "a61044c2bbf9f2e5589b0268d10609b9028435a31d6617ef2ed1277049514bbd",
+        "height": 561,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "ead136f6877f63ede43b003d72680f53fa613635c08ac1d4d45b816f7ae6bc03",
+        "height": 565,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      }
+    ],
+    "r4_checked": [
+      "maker:Aborted",
+      "taker:Claimed"
+    ],
+    "r4_not_terminal": []
+  },
+  "maker_swap": {
+    "rfq_id": "010030270d38adf51076f6d8dff1bd01",
+    "stage": {
+      "Aborted": "claimed via punish path without funding: L_M was violated"
+    },
+    "lots": 1,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "payout": "0x4913d86d14e9048978b19a51bc0f79910efccde8",
+    "a_pub": "d7a9a2efbe0f5d6dcaf3817438aa83a081330359382d7367309fcc604f5fa411",
+    "commit_s_t": "f894885859ef96fffcb84570ca14f30f68ba04fa3de0c0c82f72aab037e26afe",
+    "b": "",
+    "s_m": "",
+    "e_m": "",
+    "e_t_pub": "b1f154fd2b3eb46527b3713d6de36b150edb756317cff2626f2436de0d862a32",
+    "quote_hash": "961e38fed2b9b154c99a58466c95fede811f269693a3b55f20c6bdb9a5326f9e",
+    "t0_secs": 150,
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": "0x60f078299c40037e64d43900a00f76763b9bb637c0617e4a8a1b0879a2c36659",
+    "t0": 1792339071,
+    "t1": 1792339131,
+    "t2": 1792339371,
+    "last_refund_at": null,
+    "sweep_height": null,
+    "log": [
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 552fc485f67812cadf0b990c7b22d2b8927df4230d8e7b8839d3eeb81bf6c6fc",
+      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: false); escrow OPEN id 0x60f078299c40037e64d43900a00f76763b9bb637c0617e4a8a1b0879a2c36659 t0=1792339071 t1=1792339131 t2=1792339371 W=150 base tx 0xe469634fd56f6973fb3e00f92d59b22e9b1b2f0194be7ae6b2f55677011ea4f1",
+      "CLAIMED at base block 2162 via the punish path, but no joint note exists: the maker was offline for all of [t1, t2) (assumption L_M violated) and lost the escrowed tokens"
+    ]
+  },
+  "taker_swap": {
+    "rfq_id": "010030270d38adf51076f6d8dff1bd01",
+    "stage": "Claimed",
+    "lots": 1,
+    "a": "",
+    "s_t": "",
+    "e_t": "",
+    "e_t_pub": "b1f154fd2b3eb46527b3713d6de36b150edb756317cff2626f2436de0d862a32",
+    "payout_key": "<redacted>",
+    "payout": "0x4913d86d14e9048978b19a51bc0f79910efccde8",
+    "reply_index": 657457153,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "b_pub": "5fb5fb865dae247c1f7db6e45a36174c4cf46b581a56b9d627d94c7320358c97",
+    "e_m_pub": "3219d6f16264df45308d4849414cbc760d17f630d50f01ef9d0a77ec7a944c13",
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 150,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": "0x60f078299c40037e64d43900a00f76763b9bb637c0617e4a8a1b0879a2c36659",
+    "fund_txid": null,
+    "commit_tx": "0xbdf0f7f2fa4a143b8dac5429890fec43f54b101dcfc7232fec8fb2e94bad37cd",
+    "claim_tx": "0x05c64a8a20d37a544f1764e55ffbdf94180ad23f11c22d4184a10f4bf8e4877f",
+    "sweep_txid": null,
+    "sweep_height": null,
+    "last_claim_at": 1792339373,
+    "escrow_salt": "0xe2aa64c30ea945aa856aa9e4010c8f3e5d0f20128821ea36f13af264d0bf0160",
+    "started": 1792338911,
+    "log": [
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx a61044c2bbf9f2e5589b0268d10609b9028435a31d6617ef2ed1277049514bbd",
+      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx ead136f6877f63ede43b003d72680f53fa613635c08ac1d4d45b816f7ae6bc03; joint address uregtest1nngxz004ajaks3td254z90sx9khs2wkkqx8el7mq2tlqq3ezsgz48sa83amqv3us2a7faucvj87z9sar039559e7ac7rrkn2m5s47f9f",
+      "[EVIL MODE: free-claim] escrow verified; NOT funding; will try to claim after t0",
+      "past t2 with escrow Open: LOCKED via the punish path (payout-signed commitClaim), base tx 0xbdf0f7f2fa4a143b8dac5429890fec43f54b101dcfc7232fec8fb2e94bad37cd [EVIL MODE: free-claim, never funded]",
+      "lock finalized; REVEALED a via relayer (tx 0x05c64a8a20d37a544f1764e55ffbdf94180ad23f11c22d4184a10f4bf8e4877f); waiting for the claim to be final",
+      "claim is final (block <= 2162); payout withdrawn by relayer (tx 0x6430a2e81026712a54d9cf01c3f287653ade9599746b0d6937aaea1723c3c747)"
+    ]
+  }
+}

@@ -1,3 +1,5 @@
 
 ===== start taker --lots 1 --vanish-at accepted =====
-Error: maker directory entry is not signed by 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+[taker] zec#84 base_t=1792336315 | 6df0e5a0 encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 6de6b45c53da7b4f48358063011f92889303a7c274e69ffced91404b2e40ae57
+[taker] zec#90 base_t=1792336327 | 6df0e5a0 QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 1afe04ac3b6b6d278bea029221539984bb247d7671fdcb56f6e1270d94dd1819; joint address uregtest16qa2h5f88temhg9zvp4as5nsuq6rh6ryt5s2gp3644z2gvx6kypar4m08ngcz2gv22hx3klywugyaszfytysqgxymtu822lnks5cydcu
+[taker] zec#90 base_t=1792336327 | VANISH at stage accepted (process exits; state is persisted)
