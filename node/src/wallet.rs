@@ -170,8 +170,15 @@ impl Lwd {
         let _ = rustls::crypto::ring::default_provider().install_default();
         let rt = tokio::runtime::Runtime::new()?;
         let client = rt.block_on(async {
+            // Also trust the roots in SSL_CERT_FILE, if set, for networks whose egress re-signs TLS.
+            let mut tls = ClientTlsConfig::new().with_webpki_roots();
+            if let Ok(path) = std::env::var("SSL_CERT_FILE") {
+                if let Ok(pem) = std::fs::read(&path) {
+                    tls = tls.ca_certificate(tonic::transport::Certificate::from_pem(pem));
+                }
+            }
             let ch = Channel::from_shared(url.to_string())?
-                .tls_config(ClientTlsConfig::new().with_webpki_roots())?
+                .tls_config(tls)?
                 .connect()
                 .await?;
             Ok::<_, anyhow::Error>(CompactTxStreamerClient::new(ch))
