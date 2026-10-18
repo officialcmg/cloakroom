@@ -86,3 +86,60 @@ a7bcdd1e…24ed  4501358  v6  t 0/0  sapling 0/0  orchard 0  ironwood 2  vb 1000
 4. **Stale balance read.** A balance read straight after the claim returned 0, a stale RPC read. Fixed by checking on chain later: the payout held 0.9 USDC.
 
 After these fixes the local regression suite (`harness/run.py`) still passes all 7 scenarios.
+
+---
+
+# Final binary on the final escrow (2026-10-18)
+
+Run from a cloud container with the code at branch `final-round`: signed directory and quotes, rule R1q,
+and the cover-delay and erasure changes of the final round. Escrow `0xCCE4aFc81A6ccC9Db05B2a7D157942435b944283`
+(runtime bytecode identical to our build), Circle test USDC, Zcash testnet via `testnet.zec.rocks:443`.
+Parameters: lot = 0.01 TAZ, price = 1 USDC, relayer fee = 0.1 USDC, premium = 20,000 zats,
+D = 30 s, F = 1,500 s, R = 1, t1 - t0 = t2 - t1 = W = 3,300 s, k_Z = 3. Logs stay on the machine
+(they contain the payout key); every hash below was checked on chain.
+
+## Final swap A: refund, and a fund-level bug (RFQ `ed492258`, escrow id `0x3a0d57cb…78b7`)
+
+t0 = open + 40 min. Base Sepolia: `open` block 48,287,386; maker refund `0xb6190439…002e` block 48,288,554;
+maker withdrawal block 48,288,999.
+
+- RFQ, signed Quote and Accept went through; the quote signature verified (the round-2 signing bug is fixed).
+- The taker funded at Zcash height 4,515,917 (tx `9cc85ed4…566f`), but testnet mined it only at **4,515,934**,
+  17 blocks later. At t0 the maker had seen no note and refunded, publishing b (rule R3e, correct).
+- **Bug:** the taker's wallet did not show the note either. It concluded that nothing was funded and erased a.
+  The note was then mined with b public and a gone: **1,010,000 testnet zats are unspendable**.
+- **Fix:** the taker keeps a while a funding it broadcast is not visible, until the note appears (it then sweeps
+  with a+b) or the funding is past its 40-block expiry plus k_Z (rule R4). Harness scenario s18 holds the funding
+  in the mempool across the maker's refund; it fails on the old code with the same log line and passes 8/8 on the fix.
+
+## Final swap B: settled (RFQ `e9f6faf4`, escrow id `0x3f2777de…ba91`)
+
+t0 = open + 80 min (doubled after swap A). Fixed binary.
+
+| Step | Chain | Tx | Block / height |
+|---|---|---|---|
+| RFQ | Zcash | `76ba4650…82a5` | 4,515,972 |
+| Quote (signed) | Zcash | `dd58f47d…fc7f` | 4,515,975 |
+| Accept + premium | Zcash | `6ec049da…3c64` | 4,515,979 |
+| `open` | Base | `0x67f6bebe…39d7` | 48,289,158 |
+| funding, 1,010,000 zats | Zcash | `97e4cce4…17c7` | 4,516,038 |
+| `setReady` (3 confirmations) | Base | `0x6eebee12…558b` | 48,289,942 |
+| `commitClaim` (publishes only H(id, a)) | Base | `0x84cc5b34…49eb` | 48,289,944 |
+| `claim` (reveals a) | Base | `0x9cf0e630…8052` | 48,290,629 |
+| maker sweep with a+b | Zcash | `aa53b4d2…baf1` | 4,516,112 |
+| payout withdrawal (claim final) | Base | `0x09cf252a…dc41` | 48,291,111 |
+
+Maker ended `Swept`, taker `Claimed`; both erased their per-swap secrets.
+
+## Privacy audit of the final-binary swaps
+
+All 9 Zcash transactions of swaps A and B (`txaudit`): v6, 0/0 transparent inputs/outputs, no Sapling or
+Orchard activity, 2 Ironwood actions each.
+
+## Also found in this run (fixed)
+
+- The wallet's lightwalletd client trusted only the webpki roots, so it could not connect where egress re-signs
+  TLS. It (and `txaudit`, `lwdscan`) now also trust the roots in `SSL_CERT_FILE` when set.
+- The implementation commits as soon as Ready is visible, while the paper's R2c said "once Ready is final".
+  Not a fund issue (a commit reveals only c, and a is revealed only once the lock is final, which implies a
+  final Ready); recorded for the paper.
