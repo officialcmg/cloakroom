@@ -182,9 +182,11 @@ impl Evm {
         Ok((v.to_string(), format!("0x{}", &h[..64]), format!("0x{}", &h[64..128])))
     }
 
-    /// EIP-191 personal-message signature over a 32-byte digest (hex in, 65-byte sig out).
+    /// EIP-191 personal-message signature over a 32-byte digest, signed as its 64-char lowercase
+    /// hex text (no 0x): `cast wallet sign` hex-decodes a 0x message but `cast wallet verify` does not,
+    /// so a 0x-prefixed digest never verifies. 65-byte sig out.
     pub fn personal_sign(key: &str, digest: &[u8; 32]) -> Result<Vec<u8>> {
-        let sig = cast(&["wallet", "sign", "--private-key", key, &format!("0x{}", hex::encode(digest))])?;
+        let sig = cast(&["wallet", "sign", "--private-key", key, &hex::encode(digest)])?;
         let b = hex::decode(sig.trim().trim_start_matches("0x"))?;
         if b.len() != 65 {
             bail!("unexpected signature length {}", b.len());
@@ -194,7 +196,7 @@ impl Evm {
 
     /// True iff `sig` is `addr`'s EIP-191 signature over `digest`.
     pub fn personal_verify(addr: &str, digest: &[u8; 32], sig: &[u8]) -> bool {
-        cast(&["wallet", "verify", "--address", addr, &format!("0x{}", hex::encode(digest)), &format!("0x{}", hex::encode(sig))]).is_ok()
+        cast(&["wallet", "verify", "--address", addr, &hex::encode(digest), &format!("0x{}", hex::encode(sig))]).is_ok()
     }
 
     pub fn commitment_of(&self, id: &str, a: &str) -> Result<String> {
