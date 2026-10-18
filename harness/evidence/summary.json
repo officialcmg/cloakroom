@@ -1,42 +1,6 @@
 {
-  "s9": {
+  "s18": {
     "pass": true,
-    "seconds": 237
-  },
-  "s10": {
-    "pass": true,
-    "seconds": 247
-  },
-  "s11": {
-    "pass": true,
-    "seconds": 162
-  },
-  "s12": {
-    "pass": true,
-    "seconds": 424
-  },
-  "s13": {
-    "pass": true,
-    "seconds": 243
-  },
-  "s14": {
-    "pass": true,
-    "seconds": 123
-  },
-  "s15": {
-    "pass": true,
-    "seconds": 16
-  },
-  "s16": {
-    "pass": true,
-    "seconds": 33
-  },
-  "s17": {
-    "pass": true,
-    "seconds": 31
-  },
-  "s7": {
-    "pass": true,
-    "seconds": 232
+    "seconds": 111
   }
 }
