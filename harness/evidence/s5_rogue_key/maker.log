@@ -1,4 +1,4 @@
 
 ===== start maker --evil rogue-key =====
-[maker] zec#0 base_t=1792341597 | maker up. shielded UA uregtest1s83kmrqr2hkwgj9057cq5395da3tpu074sjun2x90rhl3kxdd3umkhya34q00jqtdk2rlsxf7rxtez4t8xvn5ayfewe4wrhm3qaylpu0 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 6d5ace97ee6a5b6b1a15f48a90df64f5c912890a5d9bbd7e6ad431e0f9b53e15
-[maker] zec#255 base_t=1792341609 | 78bb1b67 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 2181a246f89d5f9039b4e05a07ae38eee29d0276a373ab2a45a21b1056bed35b [EVIL MODE: rogue-key]
+[maker] zec#0 base_t=1792347728 | maker up. shielded UA uregtest1teu3an49htctaq8cjd4qykf0tpy30v52v35pddglh94dmzfw2u0zgp7kpyd9l05sa7zzjnqhhdj63pz78w6d07mf3gxz5f3m6vk66yy7 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 a6ae13e7a29f9d479d71466357c551caff5f6fff428f2f18ece97ac6b4761e3c
+[maker] zec#257 base_t=1792347741 | a17b4aa3 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 98ec6b350119196f18f2e9feb4f4ac1f7b1d8480757e5cdf5a84dc7b06feac1a [EVIL MODE: rogue-key]

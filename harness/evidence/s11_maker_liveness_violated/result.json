@@ -36,22 +36,22 @@
   ],
   "facts": {
     "before": {
-      "maker_zec": 625000000,
-      "taker_zec": 625000000,
-      "maker_tok": 900000000000,
-      "relayer_tok": 0
+      "maker_zec": 312500000,
+      "taker_zec": 312500000,
+      "maker_tok": 2999400000000,
+      "relayer_tok": 2000000
     },
     "after": {
-      "maker_zec": 625040000,
-      "taker_zec": 624930000,
-      "maker_tok": 899700000000,
-      "relayer_tok": 1000000
+      "maker_zec": 312540000,
+      "taker_zec": 312430000,
+      "maker_tok": 2999100000000,
+      "relayer_tok": 3000000
     },
-    "escrow_id": "0x0f7eceb0a5c77ea942bf39292a239efa4b0183ca35bf31a5bc69b9f7a45f80f0",
+    "escrow_id": "0x343e53e591a5c009c5112d4498c9905ea19cc2e90657b4b33d558d8875ac9ff1",
     "zcash_txs": [
       {
-        "txid": "77e3aff71c41c66cb99fcb57cd0c95e4da79e1af42cfc2c231f62d35ee08c0e3",
-        "height": 168,
+        "txid": "4e95190430c978c9d9e056e0626859ff7c6ab39f2275aa407a53ab41aae88eec",
+        "height": 542,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -59,8 +59,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "88edd496cb2b4837517f4f4fbf5062fcaf11ccc97dfa82d8945b67027d76b220",
-        "height": 170,
+        "txid": "d23934559ad33bc1087ad49c3f84e620c9d2d31d6a1cf6a29522451cd2e52736",
+        "height": 538,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -68,8 +68,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "ee4aea5262881304b7eb816c44669b7eafc51256985a6e8f838b07db05b80605",
-        "height": 171,
+        "txid": "f132b60818f75d9992fd3caa6cfc9c71686fe9a3a41b90a2532fa8b4e01bb6fb",
+        "height": 540,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -84,7 +84,7 @@
     "r4_not_terminal": []
   },
   "maker_swap": {
-    "rfq_id": "c0dc8ca3870677168d18445e9df309ca",
+    "rfq_id": "b8168306a1f6bdef11c768678945297d",
     "stage": {
       "Aborted": "claimed via punish path without funding: L_M was violated"
     },
@@ -92,69 +92,70 @@
     "price": 300000000,
     "relayer_fee": 1000000,
     "premium": 50000,
-    "payout": "0x3dc0408dcc685add4f30a4c43e75e1aeec5d8702",
-    "a_pub": "ec7a69d47a39ac04eac517c8451b07b5e5ae082458655320d0fb7fd8e81eae8d",
-    "commit_s_t": "156d341fcde69b16ed187a4e94a5c547d27385807305b922c20d06e0afda5b4a",
+    "payout": "0xf83775a72a5c5abf0f427cc806abe474e37486b2",
+    "a_pub": "159853082e1bfb0023f39894617f0003a8fa934d136a8ea56e21e18457b6b48e",
+    "commit_s_t": "86862218a540df1d420ddb798d81e7cd533858e0e515571364274e6d4131b46f",
     "b": "",
     "s_m": "",
     "e_m": "",
-    "e_t_pub": "08d79f36bb213d0997877d592fe013ea0454b522689a48e37b94e47c2717533c",
-    "quote_hash": "42b1d592ec249a7cdd4c78a8966c387f2d0c86d6e0c2742caf9b8d1a63cba49c",
+    "e_t_pub": "efc72dd0d1d466383cf270f501cddd50c386e9e37541ae777489d68d5ed4da96",
+    "quote_hash": "5a56d2eb04cb5f1e005bd874aed662831a566a44ad37da7447cecb33a16be395",
     "t0_secs": 150,
     "t1_secs": 60,
     "t2_secs": 240,
     "reveal_secs": 150,
     "negated": true,
     "joint_fvk": null,
-    "escrow_id": "0x0f7eceb0a5c77ea942bf39292a239efa4b0183ca35bf31a5bc69b9f7a45f80f0",
-    "t0": 1792343279,
-    "t1": 1792343339,
-    "t2": 1792343579,
+    "escrow_id": "0x343e53e591a5c009c5112d4498c9905ea19cc2e90657b4b33d558d8875ac9ff1",
+    "t0": 1792349257,
+    "t1": 1792349317,
+    "t2": 1792349557,
     "last_refund_at": null,
     "sweep_height": null,
     "log": [
-      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 88edd496cb2b4837517f4f4fbf5062fcaf11ccc97dfa82d8945b67027d76b220",
-      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0x0f7eceb0a5c77ea942bf39292a239efa4b0183ca35bf31a5bc69b9f7a45f80f0 t0=1792343279 t1=1792343339 t2=1792343579 W=150 base tx 0x8e8a3122fcde0f2b3565b288ac13ba2c7d02d61e07c8af11abb105d1b5e200b3",
-      "CLAIMED at base block 781 via the punish path, but no joint note exists: the maker was offline for all of [t1, t2) (assumption L_M violated) and lost the escrowed tokens"
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx f132b60818f75d9992fd3caa6cfc9c71686fe9a3a41b90a2532fa8b4e01bb6fb",
+      "ACCEPT decrypted (premium 50000 zats received, seed commitment opens, negated: true); escrow OPEN id 0x343e53e591a5c009c5112d4498c9905ea19cc2e90657b4b33d558d8875ac9ff1 t0=1792349257 t1=1792349317 t2=1792349557 W=150 base tx 0xd7bad83d714007427b26e3578023c4116d7ada3b32f4fc185f59ef7b17f4587a",
+      "CLAIMED at base block 2101 via the punish path, but no joint note exists: the maker was offline for all of [t1, t2) (assumption L_M violated) and lost the escrowed tokens"
     ]
   },
   "taker_swap": {
-    "rfq_id": "c0dc8ca3870677168d18445e9df309ca",
+    "rfq_id": "b8168306a1f6bdef11c768678945297d",
     "stage": "Claimed",
     "lots": 1,
     "a": "",
     "s_t": "",
     "e_t": "",
-    "e_t_pub": "08d79f36bb213d0997877d592fe013ea0454b522689a48e37b94e47c2717533c",
+    "e_t_pub": "efc72dd0d1d466383cf270f501cddd50c386e9e37541ae777489d68d5ed4da96",
     "payout_key": "<redacted>",
-    "payout": "0x3dc0408dcc685add4f30a4c43e75e1aeec5d8702",
-    "reply_index": 596434112,
+    "payout": "0xf83775a72a5c5abf0f427cc806abe474e37486b2",
+    "reply_index": 109254328,
     "price": 300000000,
     "relayer_fee": 1000000,
     "premium": 50000,
-    "b_pub": "13686c4a4eb8f3a254312d11551fc9a6c2062e7e7d09485d493b0f9a411f539d",
-    "e_m_pub": "9215382aa97baa0fbd101b1680a9553ec50f8ae18938737e62c358121bb17506",
+    "b_pub": "80f7505699e77f322642e311b39cbc811bd2fe9fd0a39885f51e405be2e7a50b",
+    "e_m_pub": "e5712be54ee21df180a9e63a270758b0881055921dc05693983e4f020152d5b0",
     "t1_secs": 60,
     "t2_secs": 240,
     "reveal_secs": 150,
     "negated": true,
     "joint_fvk": null,
-    "escrow_id": "0x0f7eceb0a5c77ea942bf39292a239efa4b0183ca35bf31a5bc69b9f7a45f80f0",
+    "escrow_id": "0x343e53e591a5c009c5112d4498c9905ea19cc2e90657b4b33d558d8875ac9ff1",
     "fund_txid": null,
-    "commit_tx": "0x8a5a848a169d534867d8d33685ac8f591780d7a4c166ab1b8fc046fdf14fc6db",
-    "claim_tx": "0x5931a37da1ee32a700dc6a129a9f29e67ba9b52ff83eac2da4e70b5d21199d40",
+    "commit_tx": "0x02cfd0ca10bd54b926eacf13082a6845ae3424559e46cf0b3b2ce0a60189b0c5",
+    "claim_tx": "0x279cc2145d1e4b0d1acf9139f0f24009733b6bf6cf3ab6d3cae9b64069499099",
     "sweep_txid": null,
     "sweep_height": null,
-    "last_claim_at": 1792343582,
-    "escrow_salt": "0xedb0432d6db2ff3537d6bfb476ee64f73dbd864402690e3c908391e86cf6345b",
-    "started": 1792343119,
+    "fund_height": null,
+    "last_claim_at": 1792349561,
+    "escrow_salt": "0xc012c0d8131428d2d430824fdadbea510c6b2d2a64d2eea3352bd47d195eedd8",
+    "started": 1792349096,
     "log": [
-      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 77e3aff71c41c66cb99fcb57cd0c95e4da79e1af42cfc2c231f62d35ee08c0e3",
-      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx ee4aea5262881304b7eb816c44669b7eafc51256985a6e8f838b07db05b80605; joint address uregtest1qkktsdr7y544n6zvle5ed5geqyfzkxcasvl2h9tf6ge9007ewyg8wt9rwrlyw3e8wh5eku2j4aurnv52x0rmg4dtc0vgmpvz3swz3u2x",
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx d23934559ad33bc1087ad49c3f84e620c9d2d31d6a1cf6a29522451cd2e52736",
+      "QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 4e95190430c978c9d9e056e0626859ff7c6ab39f2275aa407a53ab41aae88eec; joint address uregtest1d9pshrtz95zh6xv0c33a2e4mcesf3kjep75nz0n7y50e3f3javlcxchjfzdfy9dpj79euvt5pzwup4svdt88glcf0qz9jduvlgcvuvd2",
       "[EVIL MODE: free-claim] escrow verified; NOT funding; will try to claim after t0",
-      "past t2 with escrow Open: LOCKED via the punish path (payout-signed commitClaim), base tx 0x8a5a848a169d534867d8d33685ac8f591780d7a4c166ab1b8fc046fdf14fc6db [EVIL MODE: free-claim, never funded]",
-      "lock finalized; REVEALED a via relayer (tx 0x5931a37da1ee32a700dc6a129a9f29e67ba9b52ff83eac2da4e70b5d21199d40); waiting for the claim to be final",
-      "claim is final (block <= 781); payout withdrawn by relayer (tx 0x39ea53bf18642402415c3a1ec691995d6d988850af8bdc1739c6c56d518592f1)"
+      "past t2 with escrow Open: LOCKED via the punish path (payout-signed commitClaim), base tx 0x02cfd0ca10bd54b926eacf13082a6845ae3424559e46cf0b3b2ce0a60189b0c5 [EVIL MODE: free-claim, never funded]",
+      "lock finalized; REVEALED a via relayer (tx 0x279cc2145d1e4b0d1acf9139f0f24009733b6bf6cf3ab6d3cae9b64069499099); waiting for the claim to be final",
+      "claim is final (block <= 2101); payout withdrawn by relayer (tx 0xd4f7436f6259b1193cdc5588ff444ab2dc93983b74cfd35b92308008e5ca6b39)"
     ]
   }
 }

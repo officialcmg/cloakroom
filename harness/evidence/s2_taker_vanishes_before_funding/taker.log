@@ -1,5 +1,5 @@
 
 ===== start taker --lots 1 --vanish-at accepted =====
-[taker] zec#84 base_t=1792340435 | de25b180 encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx d35521361a97897b688692cb762a71efdbd4e0010f02a3b9175b54cf78aff1ce
-[taker] zec#89 base_t=1792340443 | de25b180 QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx 29146747b71e0d35f0b226b91eb68402c8ed27d1bcd79f729e9c77f6cf744764; joint address uregtest1udwkkplpewx5sanqcl798dkl5pvletvjurvn9ryj3zql2jzk0cd643drzlpe6xekyrlxhq7n00ju3msdp4ahkphygw6htlnvmsy54uyp
-[taker] zec#89 base_t=1792340443 | VANISH at stage accepted (process exits; state is persisted)
+[taker] zec#85 base_t=1792346561 | 3b63d661 encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx fbf6a3d138fc37fa73ef4d29a0a10c2f08f7a322103656ba8493da59b59c85ec
+[taker] zec#89 base_t=1792346570 | 3b63d661 QUOTE decrypted (price 300000000, maker PoK valid); encrypted ACCEPT with 50000 zats premium sent in tx fda9e0694103167b147ea41dc6e3a1b161021965684198ad93db996e5593dfe6; joint address uregtest1aa6m8chxstq5fwexa7dpp59f5uw4rwr2r0j72zf5k7rfk9saycudmvvuksa6dh7krj7vzats3g357z4t5txs8l0sgs7fhgars5m7nk5n
+[taker] zec#89 base_t=1792346570 | VANISH at stage accepted (process exits; state is persisted)

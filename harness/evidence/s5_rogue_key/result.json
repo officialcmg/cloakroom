@@ -39,7 +39,7 @@
     },
     "zcash_txs": [
       {
-        "txid": "2181a246f89d5f9039b4e05a07ae38eee29d0276a373ab2a45a21b1056bed35b",
+        "txid": "954fe2979abf2a6e9b9851db120afc251455dcb21b8a406c53ad4e77bc2a5af0",
         "height": 257,
         "version": 6,
         "ironwood_actions": 2,
@@ -48,8 +48,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "e7ed921dd057ee7c31736e9b684d968cf4605dfb10012b4c4b66632cdea04ac8",
-        "height": 255,
+        "txid": "98ec6b350119196f18f2e9feb4f4ac1f7b1d8480757e5cdf5a84dc7b06feac1a",
+        "height": 259,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -65,20 +65,20 @@
     ]
   },
   "maker_swap": {
-    "rfq_id": "78bb1b678472a5cf500302a45341e3a0",
+    "rfq_id": "a17b4aa3ed4a1fa6fdf57f750f23406b",
     "stage": "Quoted",
     "lots": 1,
     "price": 300000000,
     "relayer_fee": 1000000,
     "premium": 50000,
-    "payout": "0xded6885e9d9781cf490afd4593198e78eeb796e5",
-    "a_pub": "4aa0fb40f7a9a2ac9be7b731301e4a50105a596f5b99775354c4e052b5d2e216",
-    "commit_s_t": "ef1f9ef47c0848116d2f88c8551287701a3e0cde9533301752889676f2ba8f88",
+    "payout": "0x0ba0ab94266d2632a8ade94ad3ec1f5500e7f592",
+    "a_pub": "d5063ceb0a1a766ed700cb1aba2c2ff1dc2ee97901bf32cde51513b4be828720",
+    "commit_s_t": "036b093e341c81b1765f94d0313548d21f09b10b6387f6d378b4ada0c0b75a25",
     "b": "<redacted>",
     "s_m": "<redacted>",
     "e_m": "<redacted>",
-    "e_t_pub": "81c4d1da7ff0dcecfdbb82133c7a4c7b2821d98d8a1e2c1ec20644b0d42e7c1a",
-    "quote_hash": "d846ed54d15cef9bec34caaf3cc445f317f3a30c2fff1b25da179a0db4b46ce1",
+    "e_t_pub": "cff28038b16aadbb8f31f0014000cae7cc8ad38c50c09538dbf18bf658a74a85",
+    "quote_hash": "ee04fdd70e977ae6024b9c8e3b08383602fa04c01de78c97f871a9842ca1186e",
     "t0_secs": 150,
     "t1_secs": 60,
     "t2_secs": 240,
@@ -92,11 +92,11 @@
     "last_refund_at": null,
     "sweep_height": null,
     "log": [
-      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 2181a246f89d5f9039b4e05a07ae38eee29d0276a373ab2a45a21b1056bed35b [EVIL MODE: rogue-key]"
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 98ec6b350119196f18f2e9feb4f4ac1f7b1d8480757e5cdf5a84dc7b06feac1a [EVIL MODE: rogue-key]"
     ]
   },
   "taker_swap": {
-    "rfq_id": "78bb1b678472a5cf500302a45341e3a0",
+    "rfq_id": "a17b4aa3ed4a1fa6fdf57f750f23406b",
     "stage": {
       "Aborted": "maker proof of knowledge INVALID (possible rogue-key attack)"
     },
@@ -104,10 +104,10 @@
     "a": "",
     "s_t": "",
     "e_t": "",
-    "e_t_pub": "81c4d1da7ff0dcecfdbb82133c7a4c7b2821d98d8a1e2c1ec20644b0d42e7c1a",
+    "e_t_pub": "cff28038b16aadbb8f31f0014000cae7cc8ad38c50c09538dbf18bf658a74a85",
     "payout_key": "<redacted>",
-    "payout": "0xded6885e9d9781cf490afd4593198e78eeb796e5",
-    "reply_index": 1729870712,
+    "payout": "0x0ba0ab94266d2632a8ade94ad3ec1f5500e7f592",
+    "reply_index": 592083873,
     "price": null,
     "relayer_fee": null,
     "premium": null,
@@ -124,11 +124,12 @@
     "claim_tx": null,
     "sweep_txid": null,
     "sweep_height": null,
+    "fund_height": null,
     "last_claim_at": null,
     "escrow_salt": null,
-    "started": 1792341603,
+    "started": 1792347734,
     "log": [
-      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx e7ed921dd057ee7c31736e9b684d968cf4605dfb10012b4c4b66632cdea04ac8",
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 954fe2979abf2a6e9b9851db120afc251455dcb21b8a406c53ad4e77bc2a5af0",
       "QUOTE REJECTED: maker proof of knowledge INVALID (possible rogue-key attack); nothing was funded"
     ]
   }

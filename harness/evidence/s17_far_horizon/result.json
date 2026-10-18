@@ -26,21 +26,21 @@
   ],
   "facts": {
     "before": {
-      "maker_zec": 312500000,
-      "taker_zec": 312500000,
-      "maker_tok": 2699100000000,
-      "relayer_tok": 3000000
+      "maker_zec": 78125000,
+      "taker_zec": 78125000,
+      "maker_tok": 4798500000000,
+      "relayer_tok": 5000000
     },
     "after": {
-      "maker_zec": 312490000,
-      "taker_zec": 312490000,
-      "maker_tok": 2699100000000,
-      "relayer_tok": 3000000
+      "maker_zec": 78115000,
+      "taker_zec": 78115000,
+      "maker_tok": 4798500000000,
+      "relayer_tok": 5000000
     },
     "zcash_txs": [
       {
-        "txid": "79f62623c3c390680a1fd098aeed852d7515478e44b483023285a8feb42d3518",
-        "height": 513,
+        "txid": "be12e5c114ab8062755a7f28300eccbc556064c9408b6f0bbc1f9d41c8b5e333",
+        "height": 898,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -48,8 +48,8 @@
         "transparent_out": 0
       },
       {
-        "txid": "bea20a7e2ef1a210993fb80a158b0cdf7842d81656756eef7526eea929116bf4",
-        "height": 511,
+        "txid": "e0d38bcc71c5b8a0277acbad7b28aa87c879406692dc4ca05dd2d2050b4805af",
+        "height": 900,
         "version": 6,
         "ironwood_actions": 2,
         "ironwood_value_balance": 10000,
@@ -65,20 +65,20 @@
     ]
   },
   "maker_swap": {
-    "rfq_id": "5dff41d9f3a80f9b9a618dcd19044658",
+    "rfq_id": "8c971c85f489a54db577af70fdce9ae5",
     "stage": "Quoted",
     "lots": 1,
     "price": 300000000,
     "relayer_fee": 1000000,
     "premium": 50000,
-    "payout": "0xab3d112abae49404138e7e5a4393168a20c46b37",
-    "a_pub": "b2a2460015c49320730982f9007d2a6d449e033597a2fe049dbcfb87e348f9bb",
-    "commit_s_t": "9519e374fd1fad261983a5adfe4dfe8fbc2a025474532390fd95af4589811818",
+    "payout": "0xce6850dc584606c72424de838e35315e988f0538",
+    "a_pub": "c617b052987ae0a2cf9b304a8b24cc49793a10db1cde9028b70ae4c4e9b0d827",
+    "commit_s_t": "f477d466f3c8de5a1c2ad6ca9cf69baaa3eee2c87618f69031b75dd7d89993f3",
     "b": "<redacted>",
     "s_m": "<redacted>",
     "e_m": "<redacted>",
-    "e_t_pub": "06a84d63c7780c75af1c3f7d0dbbf1d55b7df68910b5370bbfba2cf694f9c126",
-    "quote_hash": "1d836309ed1ccebac8ff09065684829522d1d3882036410cc5765a0d95b70d5e",
+    "e_t_pub": "190d7c0a5d6f6bac8216c8a8e3feeda9883aa94b3515a12370902ffd599443be",
+    "quote_hash": "c87982dae1067e74d6d692cfa7c11af2d97bbd3dd54c72f772a6f383c236a3cd",
     "t0_secs": 150,
     "t1_secs": 60,
     "t2_secs": 4294967295,
@@ -92,11 +92,11 @@
     "last_refund_at": null,
     "sweep_height": null,
     "log": [
-      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 79f62623c3c390680a1fd098aeed852d7515478e44b483023285a8feb42d3518 [EVIL MODE: far-horizon]"
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx e0d38bcc71c5b8a0277acbad7b28aa87c879406692dc4ca05dd2d2050b4805af [EVIL MODE: far-horizon]"
     ]
   },
   "taker_swap": {
-    "rfq_id": "5dff41d9f3a80f9b9a618dcd19044658",
+    "rfq_id": "8c971c85f489a54db577af70fdce9ae5",
     "stage": {
       "Aborted": "deadline horizon t2 - open = 4294967505s above the taker's limit of 172800s"
     },
@@ -104,10 +104,10 @@
     "a": "",
     "s_t": "",
     "e_t": "",
-    "e_t_pub": "06a84d63c7780c75af1c3f7d0dbbf1d55b7df68910b5370bbfba2cf694f9c126",
+    "e_t_pub": "190d7c0a5d6f6bac8216c8a8e3feeda9883aa94b3515a12370902ffd599443be",
     "payout_key": "<redacted>",
-    "payout": "0xab3d112abae49404138e7e5a4393168a20c46b37",
-    "reply_index": 1497497437,
+    "payout": "0xce6850dc584606c72424de838e35315e988f0538",
+    "reply_index": 85759884,
     "price": null,
     "relayer_fee": null,
     "premium": null,
@@ -124,11 +124,12 @@
     "claim_tx": null,
     "sweep_txid": null,
     "sweep_height": null,
+    "fund_height": null,
     "last_claim_at": null,
     "escrow_salt": null,
-    "started": 1792344644,
+    "started": 1792350671,
     "log": [
-      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx bea20a7e2ef1a210993fb80a158b0cdf7842d81656756eef7526eea929116bf4",
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx be12e5c114ab8062755a7f28300eccbc556064c9408b6f0bbc1f9d41c8b5e333",
       "QUOTE REJECTED: deadline horizon t2 - open = 4294967505s above the taker's limit of 172800s; nothing was funded"
     ]
   }

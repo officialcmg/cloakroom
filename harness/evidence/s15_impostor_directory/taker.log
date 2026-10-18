@@ -8,9 +8,9 @@ Stack backtrace:
    1: anyhow::__private::format_err
              at /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anyhow-1.0.104/src/lib.rs:690:13
    2: cloakroom::taker::verify_directory
-             at ./node/src/taker.rs:237:9
+             at ./node/src/taker.rs:241:9
    3: cloakroom::taker::run
-             at ./node/src/taker.rs:117:5
+             at ./node/src/taker.rs:120:5
    4: cloakroom::main
              at ./node/src/main.rs:90:13
    5: <fn() -> core::result::Result<(), anyhow::Error> as core::ops::function::FnOnce<()>>::call_once
