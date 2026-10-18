@@ -59,3 +59,7 @@ cd paper && pdflatex cloakroom.tex && pdflatex cloakroom.tex
 This is research code for the ZECATHON hackathon, not a product. The contracts have had an internal audit
 only. The light wallet has no Tor support, and the final testnet runs had cover delays switched off.
 `FUTURE.md` lists the known open items, and the paper's Limitations section states the assumptions.
+
+## License
+
+MIT, see [`LICENSE`](LICENSE).
