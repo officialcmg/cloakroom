@@ -271,3 +271,21 @@ pub fn maybe_vanish(cx: &Ctx, stage: &str, vanish_at: &Option<String>) {
         std::process::exit(0);
     }
 }
+
+/// Fields of a swap record that must never reach a log: keys, shares, seeds and the joint viewing key.
+const SECRET_FIELDS: &[&str] = &["payout_key", "a", "b", "s_t", "s_m", "e_t", "e_m", "joint_fvk"];
+
+/// A swap record as JSON with its secrets replaced, for the RESULT line printed on exit.
+pub fn redacted_json<T: Serialize>(s: &T) -> Result<String> {
+    let mut v = serde_json::to_value(s)?;
+    if let Some(m) = v.as_object_mut() {
+        for k in SECRET_FIELDS {
+            if let Some(x) = m.get_mut(*k) {
+                if !(x.is_null() || x.as_str() == Some("")) {
+                    *x = serde_json::Value::String("<redacted>".into());
+                }
+            }
+        }
+    }
+    Ok(serde_json::to_string(&v)?)
+}

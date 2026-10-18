@@ -1,4 +1,4 @@
-# Review round 2, reviewer 1: Opus 5.5 (high), 2026-10-18 — weak reject (major revision)
+# Review round 3: Opus 5.5 (high), 2026-10-18 — weak reject (major revision)
 
 ## Critical
 - **C1. No-hostage fails if T crashes between commit and reveal.**

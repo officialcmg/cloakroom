@@ -171,7 +171,7 @@ pub fn run(cx: &mut Ctx, opts: Opts) -> Result<()> {
             if done >= n {
                 cx.log(&format!("{done} swap(s) terminal; exiting"));
                 for s in all_swaps(cx)? {
-                    println!("RESULT {}", serde_json::to_string(&s)?);
+                    println!("RESULT {}", crate::common::redacted_json(&s)?);
                 }
                 return Ok(());
             }

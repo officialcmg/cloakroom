@@ -13,8 +13,10 @@ testnet/deploy_v3.err
 **/target/
 contracts/out/
 contracts/out-halmos/
+contracts/out-halmos2/
 contracts/cache/
 contracts/cache-halmos/
+contracts/cache-halmos2/
 contracts/.venv/
 contracts/broadcast/
 formal/states/

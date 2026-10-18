@@ -145,7 +145,7 @@ pub fn run(cx: &mut Ctx, opts: Opts) -> Result<()> {
         })();
         match step {
             Ok(true) => {
-                println!("RESULT {}", serde_json::to_string(&s)?);
+                println!("RESULT {}", crate::common::redacted_json(&s)?);
                 return Ok(());
             }
             Ok(false) => {}
