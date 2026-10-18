@@ -922,7 +922,11 @@ anonymity above and raises the option value the premium must cover.
 machines, and a light wallet that builds v6 transactions through PCZT and signs joint spends
 externally. It syncs from a Zebra node or from a lightwalletd server starting at the server's
 Ironwood tree state, and drives the EVM through Foundry's \fn{cast}. Parties persist their state
-after every step and can be stopped and restarted at any stage.
+after every step and can be stopped and restarted at any stage. In one respect it is looser than
+the protocol: the taker commits as soon as Ready is visible, not once it is final (R2c). This is
+safe because a commit publishes only $c$, a commit on a Ready that is later removed reverts, and
+$a$ is revealed only once the lock is final (R2r), which implies a final Ready. The model checks
+the stricter rule.
 
 \textbf{Against the production verifier.} Against \fn{orchard}~0.16.0 with the current (post-NU6.2) circuit:
 \begin{itemize}\setlength\itemsep{0.05em}
