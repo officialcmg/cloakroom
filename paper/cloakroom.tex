@@ -80,9 +80,9 @@ binding privacy constraint. A swap transaction that is not delayed hides among a
 A natural count-gated delay lets an observer who knows the policy guess the transaction with
 probability 0.18 in the median case and above 0.85 in one case in ten; the delay our wallet
 uses keeps it near 1.4\% per delayed transaction (median, for an observer who samples its
-posterior) at an average of 2.6 hours per delayed step; by a union bound over a swap's four
-anchored transactions, a swap is linked with probability at most about 6\%, and more if the
-observer matches every wallet setting.
+posterior) at an average of 2.6 hours per delayed step. A swap is linked if any one of its
+transactions is, and its funding is anchored on both sides, so the per-swap probability is higher;
+we do not bound it.
 The implementation passes eighteen two-party scenarios, including injected reorganizations, an
 impostor maker, malicious quotes and a funding mined after the maker's refund. On Zcash testnet and Base Sepolia the final escrow has settled three swaps, the last with the
 final code, and every Zcash transaction was fully shielded; a testnet run also exposed a
@@ -492,7 +492,10 @@ past its window can no longer be claimed.
 Let $T$ be honest and satisfy (H) and R1q, so that she is online from her commit until it is resolved and every window she accepted meets its bound,
 with no assumption on $M$, and let the relayer be honest or the fallback of R2r be available. Except with probability $\mathsf{negl}+\varepsilon_Z$, the
 protocol satisfies Definitions~1 and~2. If $M$ never refunds, $T$'s claim is final by
-$t_2 + B_R + W + F \le \mathit{open} + H + B_R + W + F$. If $M$ refunds, $T$'s sweep back has $k_Z$ confirmations within
+$\tau_T + B_R + W + F$, where $\tau_T \ge t_2$ is the first time from $t_2$ on that $T$ is online; for a taker
+online at $t_2$ this is $t_2 + B_R + W + F \le \mathit{open} + H + B_R + W + F$. (H) does not oblige $T$ to be online
+before her commit, so a taker who is offline at $t_2$ is resolved only after she returns; her ZEC
+is not lost meanwhile, because refunds from \st{Open} and \st{Ready} are disabled from $t_2$. If $M$ refunds, $T$'s sweep back has $k_Z$ confirmations within
 $C + \Delta_Z + k_Z\beta$ of the refund, where $\beta$ bounds a block interval at a chosen
 percentile and $C$ is the cover delay, capped as in Section~8.2.
 \end{theorem}
@@ -500,8 +503,8 @@ percentile and $C$ is the cover delay, capped as in Section~8.2.
 By Lemma~1, only someone who knows $a+b$ can spend the joint note. $M$ learns $a$ only from $T$'s
 claim, which by Lemma~3(a) credits her (ii). If $M$ refunds, $b$ is public, and $T$ sweeps (iii);
 by R4 she keeps $a$ until the sweep is confirmed, and re-sends it if it expires. If neither
-happens by $t_2$, rule R2c lets $T$ commit: refunds from \st{Open} and \st{Ready} are disabled
-from $t_2$, so $M$ cannot block the commit, which lands by $t_2 + B_R$. She then reveals within
+happens by $t_2$, rule R2c lets $T$ commit once she is online, at $\tau_T$: refunds from \st{Open} and \st{Ready} are disabled
+from $t_2$, so $M$ cannot block the commit, which lands by $\tau_T + B_R$. She then reveals within
 $W$, which R1q guarantees exceeds $F + B_R$, and Lemma~3(a) gives (ii). R1q also bounds $t_2$. Each step uses only $T$'s own actions. If $M$ never opens, $T$
 does not fund (R1) and has lost at most $\pi$.
 \end{proof}
@@ -516,7 +519,7 @@ $T$ is credited only through \st{Locked}, which is reached in one of two ways:
 \item \st{Ready} before $t_1$. $M$ sets Ready only after a note of value at least $v+f$ has $k_Z$
 confirmations (Z1), and never after publishing $b$ (Lemma~3(c)).
 \item $ts \ge t_2$ from \st{Open} or \st{Ready}. By L$_M$, $M$ sends an R3d refund at some
-$\tau < t_2 - B_R$, and by Lemma~3(b) it is final before $t_2$, so this case cannot occur.
+$\tau < t_2 - B_R$, and by Lemma~3(b) it is included before $t_2$ and never removed, so this case cannot occur.
 \end{itemize}
 If $T$ is credited, $M$ knows $a+b$. $T$ does not know $b$: an R3d or R3l refund succeeds and ends
 the swap, and an R3e refund publishes $b$ only in a swap that never becomes Ready. By Lemma~1 no
@@ -536,9 +539,12 @@ TLC exhibits the attack (configuration c$'$ in Section~6), and harness scenario 
 (Section~9). Gugger's punish window~\cite{gugger} has the same requirement.
 
 \begin{theorem}[Liveness]
-If both parties are honest and online and the parameter conditions hold, $T$'s claim is final by
-$t_1 + W + F$, and $M$'s sweep has $k_Z$ confirmations within $C + \Delta_Z + k_Z\beta$ after
-the claim.
+If both parties are honest and online and the parameter conditions hold, the swap ends with $T$'s
+claim or $M$'s refund. It ends with the claim, final by $t_1 + W + F$, and $M$'s sweep has $k_Z$
+confirmations within $C + \Delta_Z + k_Z\beta$ after it, if \fn{setReady} is included before
+$t_0$ and not removed by a reorganization. R1b budgets only $D$ for \fn{setReady} and a percentile
+for the funding's confirmations, so this is likely but not guaranteed: a reorganization that
+removes \fn{setReady} just before $t_0$ leaves its re-sent copy too late, and the maker refunds.
 \end{theorem}
 
 \textbf{Free options.} The taker's price is fixed when she accepts, and until she funds she can
@@ -783,10 +789,12 @@ follows \fn{claim} or \fn{refund}, the Accept precedes \fn{open}, and the fundin
 \fn{setReady}. An observer can look forward from an event or backward from it. Every party
 therefore applies the cover delay of Section~8.2 on both sides of each public event: the maker
 before \fn{open} and before \fn{setReady}, the taker before funding, and both before their sweeps.
-Without the delay before \fn{setReady}, the funding would sit exactly $k_Z$ blocks before it. With
-independent delays the observer's posteriors for the anchored transactions are independent, and
-linking the swap needs only one of them. By a union bound, the probability of linking a swap is at
-most the sum over its anchored transactions, about four times the per-transaction figure. All of
+Without the delay before \fn{setReady}, the funding would sit exactly $k_Z$ blocks before it. The delays
+are independent, but the observer's posteriors are not: the funding lies after \fn{open} and the
+taker's delay and before \fn{setReady}, $k_Z$ blocks and the maker's delay, and the two windows
+together can narrow it well below either alone. Table~8 measures only one trigger at a time; we do
+not measure the joint posterior. Linking the swap needs only one of its transactions, so the
+per-swap probability is higher than the per-transaction figures. All of
 a maker's swaps are linked through his public EVM address. An intersection attack across them
 would still need a feature that persists across his shielded transactions; none is exposed beyond
 the wallet fingerprint, which a large group shares.
