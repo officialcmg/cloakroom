@@ -94,7 +94,7 @@ After these fixes the local regression suite (`harness/run.py`) still passes all
 Run from a cloud container with the code at branch `final-round`: signed directory and quotes, rule R1q,
 and the cover-delay and erasure changes of the final round. Escrow `0xCCE4aFc81A6ccC9Db05B2a7D157942435b944283`
 (runtime bytecode identical to our build), Circle test USDC, Zcash testnet via `testnet.zec.rocks:443`.
-Parameters: lot = 0.01 TAZ, price = 1 USDC, relayer fee = 0.1 USDC, premium = 20,000 zats,
+Cover delays were off (no `cover_*` settings). Parameters: lot = 0.01 TAZ, price = 1 USDC, relayer fee = 0.1 USDC, premium = 20,000 zats,
 D = 30 s, F = 1,500 s, R = 1, t1 - t0 = t2 - t1 = W = 3,300 s, k_Z = 3. Logs stay on the machine
 (they contain the payout key); every hash below was checked on chain.
 

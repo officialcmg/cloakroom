@@ -84,8 +84,9 @@ posterior) at an average of 2.6 hours per delayed step; by a union bound over a 
 anchored transactions, a swap is linked with probability at most about 6\%, and more if the
 observer matches every wallet setting.
 The implementation passes eighteen two-party scenarios, including injected reorganizations, an
-impostor maker, malicious quotes and a funding mined after the maker's refund. On Zcash testnet and Base Sepolia the final escrow has settled swaps, and every
-Zcash transaction was fully shielded.
+impostor maker, malicious quotes and a funding mined after the maker's refund. On Zcash testnet and Base Sepolia the final escrow has settled three swaps, the last with the
+final code, and every Zcash transaction was fully shielded; a testnet run also exposed a
+fund-level bug that local chains had not, now fixed.
 \end{quote}
 
 \section{Introduction}
@@ -979,12 +980,19 @@ shielded. These runs exposed four problems that local chains did not, all
 fixed: a stale nonce, a limit on log queries, crashes on transient errors, and stale balance reads.
 The final escrow is deployed on Base Sepolia at
 \texttt{0xCCE4aFc81A6ccC9Db05B2a7D157942435b944283}, with runtime bytecode identical to our build
-of the internally audited source. With an earlier version of the wallet, which predates the fixes of
-Section~6 but follows the same message flow, it completed one swap with $D=30$~s,
-$F=1{,}500$~s, $t_0=40$~min and $W=t_2-t_1=55$~min. The swap was an encrypted RFQ, Quote and
-Accept with a 20{,}000-zatoshi premium, then \fn{open}, funding, Ready, commit, reveal and a
-claim that became final at Sepolia block 48{,}120{,}719, followed by the maker's sweep. Runs with
-the final wallet are in progress.
+of the internally audited source. Earlier versions of the wallet completed two swaps on it, with claims at Sepolia blocks
+48{,}120{,}719 and 48{,}282{,}560. The final code then ran two swaps with $D=30$~s, $F=1{,}500$~s,
+$R=1$, $t_1-t_0=t_2-t_1=W=55$~min and $k_Z=3$, which meet the bounds of Section~4 for $R=1$ only;
+cover delays were off. In the first, with $t_0=\mathit{open}+40$~min, testnet mined the taker's
+funding 17 blocks after its broadcast. The maker, seeing no note at $t_0$, correctly refunded and
+published $b$, but the taker, whose wallet did not show the note either, concluded that nothing had
+been funded and erased $a$. The note was then mined, and its 0.0101~TAZ is unspendable. Rule R4 now
+keeps $a$ until a broadcast funding is swept or has expired unmined, and scenario s18 reproduces
+the case; local chains had never delayed a funding. The second swap, with $t_0=\mathit{open}+80$~min,
+settled: RFQ, signed Quote and Accept with a 20{,}000-zatoshi premium, \fn{open}, funding, Ready,
+commit, reveal and a claim at block 48{,}290{,}629, whose payout was withdrawn once it was final, at block
+48{,}291{,}111, and the maker's sweep. All nine Zcash transactions of the two runs were fully shielded v6 Ironwood
+transactions with no transparent inputs or outputs.
 
 \section{Related Work}
 
