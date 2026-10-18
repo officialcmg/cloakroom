@@ -275,6 +275,9 @@ fn on_quote(cx: &mut Ctx, opts: &Opts, s: &mut TakerSwap) -> Result<()> {
         Some("relayer fee not below price".into())
     } else if (q.t1_secs as u64) < 2 * cx.cfg.delta_claim {
         Some("claim window too short".into())
+    } else if q.t0_secs as u64 + q.t1_secs as u64 + q.t2_secs as u64 > cx.cfg.max_horizon_secs.unwrap_or(48 * 3600) {
+        Some(format!("deadline horizon t2 - open = {}s above the taker's limit of {}s",
+            q.t0_secs as u64 + q.t1_secs as u64 + q.t2_secs as u64, cx.cfg.max_horizon_secs.unwrap_or(48 * 3600)))
     } else if (q.reveal_secs as u64) < 2 * cx.cfg.finality_secs + cx.cfg.inclusion_secs + cx.cfg.margin_secs + 1 {
         Some(format!("reveal window {}s too short for finality (needs 2F + D + margin + 1)", q.reveal_secs))
     } else if (q.t0_secs as u64) < cx.cfg.finality_secs + cx.cfg.inclusion_secs + 3 * cx.cfg.delta_claim + 3 * cx.cfg.cover_max_secs.unwrap_or(0) {

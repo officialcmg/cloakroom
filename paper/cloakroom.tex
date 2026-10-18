@@ -362,7 +362,7 @@ self-relays: the taker holds the relayer key.
 
 Table~\ref{tab:rules} lists the wallet rules. They are part of the protocol: the proofs in
 Section~5 depend on them. Section~6 shows an attack when any of R2c, R2r, R3e, R3d, R3l or L$_M$
-is removed. R1 and R1b protect the taker's funding against a misconfigured or late escrow, and R4
+is removed. R1 and R1b protect the taker's funding against a misconfigured or late escrow, R1q against windows the maker chooses, and R4
 protects against a later compromise of the device; the model does not exercise these three.
 
 \begin{table}[H]
@@ -372,6 +372,7 @@ protects against a later compromise of the device; the model does not exercise t
 \textbf{Rule} & \textbf{Party} & \textbf{Statement}\\
 \midrule
 R1 & $T$ & Fund only after \fn{open} is final and every stored parameter equals the quote.\\
+R1q & $T$ & Accept a quote only if $W > F + B_R$, computed with $T$'s own $D$, $F$ and $R$, and $t_2 - \mathit{open} \le H$ for a horizon $H$ that $T$ chooses. The escrow enforces neither.\\
 R1b & $T$ & Fund only if $\tau + \Delta_{\mathit{fund}} < t_0$, where $\Delta_{\mathit{fund}}$ covers $k_Z$ confirmations at a high percentile of block intervals (block times are random), plus $D$ for \fn{setReady}.\\
 R2c & $T$ & Commit only once Ready is final and $\tau + B_R < t_1$; or from $t_2$ if the state is \st{Open} or \st{Ready}. (A late commit reverts and reveals only $c$.)\\
 R2r & $T$ & Reveal $a$ only once the lock is final and $\tau + B_R < \mathit{lockedAt} + W$, with $\tau$ the hand-off time. Re-send the claim whenever it is dropped; fall back to self-submission if the relayer has not broadcast it.\\
@@ -394,8 +395,12 @@ The bounds on $W$ and $t_2 - t_1$ carry the safety proofs (Section~5); those on 
 only make the happy path possible. TLC confirms the bounds at two parameter points and finds an
 attack when either budget is one step short (Section~6). Our implementation writes the R2r and
 R3d tests as $\tau + D + F + \mu < d$ and refuses to start unless $\mu \ge RD + (R-1)F$, which is
-the same condition; the maker also refuses windows that violate the bounds on $W$ and
-$t_2 - t_1$. Table~\ref{tab:params} gives a profile for Base mainnet.
+the same condition. The maker writes the quote, so the taker checks the bound on $W$ herself
+(R1q), with her own $D$, $F$ and $R$; the maker refuses a $t_2 - t_1$ below its bound. Without
+R1q a maker could quote $W \le F + B_R$, so that a final lock can never be revealed safely and
+only his refund, which publishes $b$, could end the swap; or he could place $t_2$ so far ahead
+that the punish path holds the taker's ZEC indefinitely. Our taker uses $H = 48$~h. The TLA$^+$
+model fixes $W$ at each point; R1q is what keeps every accepted quote within a checked bound. Table~\ref{tab:params} gives a profile for Base mainnet.
 
 \begin{table}[H]
 \centering\small
@@ -479,10 +484,10 @@ past its window can no longer be claimed.
 \end{proof}
 
 \begin{theorem}[Taker safety and no hostage]
-Let $T$ be honest and satisfy (H), so that she is online from her commit until it is resolved,
+Let $T$ be honest and satisfy (H) and R1q, so that she is online from her commit until it is resolved and every window she accepted meets its bound,
 with no assumption on $M$, and let the relayer be honest or the fallback of R2r be available. Except with probability $\mathsf{negl}+\varepsilon_Z$, the
 protocol satisfies Definitions~1 and~2. If $M$ never refunds, $T$'s claim is final by
-$t_2 + B_R + W + F$. If $M$ refunds, $T$'s sweep back has $k_Z$ confirmations within
+$t_2 + B_R + W + F \le \mathit{open} + H + B_R + W + F$. If $M$ refunds, $T$'s sweep back has $k_Z$ confirmations within
 $C + \Delta_Z + k_Z\beta$ of the refund, where $\beta$ bounds a block interval at a chosen
 percentile and $C$ is the cover delay, capped as in Section~8.2.
 \end{theorem}
@@ -492,7 +497,7 @@ claim, which by Lemma~3(a) credits her (ii). If $M$ refunds, $b$ is public, and 
 by R4 she keeps $a$ until the sweep is confirmed, and re-sends it if it expires. If neither
 happens by $t_2$, rule R2c lets $T$ commit: refunds from \st{Open} and \st{Ready} are disabled
 from $t_2$, so $M$ cannot block the commit, which lands by $t_2 + B_R$. She then reveals within
-$W$, and Lemma~3(a) gives (ii). Each step uses only $T$'s own actions. If $M$ never opens, $T$
+$W$, which R1q guarantees exceeds $F + B_R$, and Lemma~3(a) gives (ii). R1q also bounds $t_2$. Each step uses only $T$'s own actions. If $M$ never opens, $T$
 does not fund (R1) and has lost at most $\pi$.
 \end{proof}
 

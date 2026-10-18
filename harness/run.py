@@ -796,11 +796,39 @@ def s15_impostor_directory():
     c.ok("no RFQ sent and no premium paid", after["taker_zec"] == before["taker_zec"] and taker.swap() is None)
     return c.save(maker, taker)
 
+def quote_rejected(scen, evil, title, why):
+    maker, taker = parties(scen)
+    c = Checks(scen, title)
+    before = snapshot(maker, taker)
+    maker.start("--evil", evil)
+    taker.start("--lots", "1")
+    taker.wait(300)
+    maker.kill()
+    t = taker.swap()
+    after = snapshot(maker, taker)
+    c.facts.update(before=before, after=after)
+    c.ok(f"taker rejected the quote ({why})", isinstance(t["stage"], dict) and why in t["stage"].get("Aborted", ""), t["stage"])
+    c.ok("taker never funded and paid no premium", t.get("fund_txid") is None and before["taker_zec"] - after["taker_zec"] == FEE)
+    return c.save(maker, taker)
+
+
+def s16_short_reveal_window():
+    return quote_rejected("s16_short_reveal_window", "short-reveal",
+        "Malicious maker quotes a reveal window W <= F + B_R (a lock could never be revealed safely): taker rejects the quote and never funds",
+        "reveal window")
+
+
+def s17_far_horizon():
+    return quote_rejected("s17_far_horizon", "far-horizon",
+        "Malicious maker quotes a punish deadline t2 about 136 years away (hostage by delay): taker rejects the quote and never funds",
+        "deadline horizon")
+
 NU63 = {"s1": s1_happy, "s2": s2_taker_vanishes_before_funding, "s3": s3_taker_vanishes_after_funding,
         "s4": s4_maker_vanishes_after_open, "s5": s5_rogue_key, "s6": s6_underfund,
         "s8": s8_free_claim_attempt, "s9": s9_late_commit, "s10": s10_lock_without_reveal,
         "s11": s11_maker_liveness_violated, "s12": s12_cover_traffic,
-        "s13": s13_reorg_claim, "s14": s14_reorg_refund, "s15": s15_impostor_directory}
+        "s13": s13_reorg_claim, "s14": s14_reorg_refund, "s15": s15_impostor_directory,
+        "s16": s16_short_reveal_window, "s17": s17_far_horizon}
 
 
 def write_report():

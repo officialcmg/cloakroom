@@ -92,6 +92,11 @@ pub struct Config {
     /// Maker's EVM signature over keys::directory_digest(maker_ua, epoch, rfq key, maker_evm).
     #[serde(default)]
     pub maker_dir_sig: Option<String>,
+    /// Largest t2 - open the taker accepts (seconds; default 48 h). If the maker never sets Ready
+    /// or never refunds, the taker's ZEC waits for the punish path at t2, so the maker must not
+    /// choose t2 freely (final-round review C1).
+    #[serde(default)]
+    pub max_horizon_secs: Option<u64>,
     /// Largest premium the taker accepts.
     #[serde(default)]
     pub max_premium: Option<u64>,

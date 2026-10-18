@@ -1,0 +1,135 @@
+{
+  "scenario": "s16_short_reveal_window",
+  "title": "Malicious maker quotes a reveal window W <= F + B_R (a lock could never be revealed safely): taker rejects the quote and never funds",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "taker rejected the quote (reveal window)",
+      "pass": true,
+      "detail": "{'Aborted': 'reveal window 67s too short for finality (needs 2F + D + margin + 1)'}"
+    },
+    {
+      "check": "taker never funded and paid no premium",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "privacy audit: all 2 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK)",
+      "pass": true,
+      "detail": "checked=['taker:Aborted'] not_terminal=['maker:Quoted'] bad=[]"
+    }
+  ],
+  "facts": {
+    "before": {
+      "maker_zec": 625000000,
+      "taker_zec": 625000000,
+      "maker_tok": 300000000000,
+      "relayer_tok": 0
+    },
+    "after": {
+      "maker_zec": 624990000,
+      "taker_zec": 624990000,
+      "maker_tok": 300000000000,
+      "relayer_tok": 0
+    },
+    "zcash_txs": [
+      {
+        "txid": "5534a838b3cdf5e6422a372e526a1a122a21cdb910ca030bfd607e48c2484020",
+        "height": 13,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "e32d614cd2d36be97e0bc89623dc50842b06e72374a62445b4220e3ada32be49",
+        "height": 11,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      }
+    ],
+    "r4_checked": [
+      "taker:Aborted"
+    ],
+    "r4_not_terminal": [
+      "maker:Quoted"
+    ]
+  },
+  "maker_swap": {
+    "rfq_id": "847806bec87bc85b78de5135e7d9093c",
+    "stage": "Quoted",
+    "lots": 1,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "payout": "0xad98fbfc44ad66fb25ee7abbc8d47b1802bb8b6f",
+    "a_pub": "8011e1981215a48abe194b7ac01c6713bad509d4c64024e2359e5f03a0057c9f",
+    "commit_s_t": "a1d4254a41b192594cd796f82b46c9d6a8432bb959026447542513476a3254df",
+    "b": "<redacted>",
+    "s_m": "<redacted>",
+    "e_m": "<redacted>",
+    "e_t_pub": "6e00e3870b8da0946a011ee1bf764f86f777ee37421caf73d3f9704d28d86aa6",
+    "quote_hash": "b50c1959b809d9467bf6ca2feb02368f53d9858d37a7a3e6285a5f5216658e5a",
+    "t0_secs": 150,
+    "t1_secs": 60,
+    "t2_secs": 240,
+    "reveal_secs": 67,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": null,
+    "t0": null,
+    "t1": null,
+    "t2": null,
+    "last_refund_at": null,
+    "sweep_height": null,
+    "log": [
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 5534a838b3cdf5e6422a372e526a1a122a21cdb910ca030bfd607e48c2484020 [EVIL MODE: short-reveal]"
+    ]
+  },
+  "taker_swap": {
+    "rfq_id": "847806bec87bc85b78de5135e7d9093c",
+    "stage": {
+      "Aborted": "reveal window 67s too short for finality (needs 2F + D + margin + 1)"
+    },
+    "lots": 1,
+    "a": "",
+    "s_t": "",
+    "e_t": "",
+    "e_t_pub": "6e00e3870b8da0946a011ee1bf764f86f777ee37421caf73d3f9704d28d86aa6",
+    "payout_key": "<redacted>",
+    "payout": "0xad98fbfc44ad66fb25ee7abbc8d47b1802bb8b6f",
+    "reply_index": 1040611460,
+    "price": null,
+    "relayer_fee": null,
+    "premium": null,
+    "b_pub": null,
+    "e_m_pub": null,
+    "t1_secs": null,
+    "t2_secs": null,
+    "reveal_secs": null,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": null,
+    "fund_txid": null,
+    "commit_tx": null,
+    "claim_tx": null,
+    "sweep_txid": null,
+    "sweep_height": null,
+    "last_claim_at": null,
+    "escrow_salt": null,
+    "started": 1792340107,
+    "log": [
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx e32d614cd2d36be97e0bc89623dc50842b06e72374a62445b4220e3ada32be49",
+      "QUOTE REJECTED: reveal window 67s too short for finality (needs 2F + D + margin + 1); nothing was funded"
+    ]
+  }
+}

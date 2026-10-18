@@ -246,6 +246,12 @@ fn on_rfq(cx: &mut Ctx, opts: &Opts, maker_evm: &str, rfq: Rfq, e_t_pub: [u8; 32
         reveal_secs: cx.cfg.reveal_secs.unwrap_or(600),
         sig: vec![],
     };
+    // Test-only malicious quotes (harness s16, s17): windows an honest maker refuses at startup.
+    match opts.evil.as_deref() {
+        Some("short-reveal") => q.reveal_secs = (cx.cfg.finality_secs + cx.cfg.inclusion_secs) as u32,
+        Some("far-horizon") => q.t2_secs = u32::MAX,
+        _ => {}
+    }
     // Sign with the maker's EVM key: the taker checks it against the address it trusts before
     // paying the premium, and keeps it as transferable evidence of the quote.
     q.sig = Evm::personal_sign(cx.cfg.evm_key.as_deref().ok_or_else(|| anyhow!("maker needs evm_key"))?, &q.sig_digest(&rfq.rfq_id))?;

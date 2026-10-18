@@ -1,0 +1,4 @@
+
+===== start maker --evil far-horizon =====
+[maker] zec#0 base_t=1792340126 | maker up. shielded UA uregtest1zfra06ccyq9t0z238z3c8zhrttdet2sa5kxranu6y3n7f9rky4rcjv3sgwldqlrygpsd5dlgj2vnflrhyynrcfvz2fq9gu0cyc9chsd9 ; EVM 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 ; RFQ key epoch 1 468dc0d068fb17fd124d77a9fc971f3d7107f4071b90198ae098dd1e775fba98
+[maker] zec#21 base_t=1792340138 | d0753c90 RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 852bbdb83c4bb7e0fde98fae51a36c1f35272541c4f45345efc29ba1765fe52b [EVIL MODE: far-horizon]

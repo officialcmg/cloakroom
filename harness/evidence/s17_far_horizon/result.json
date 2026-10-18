@@ -1,0 +1,135 @@
+{
+  "scenario": "s17_far_horizon",
+  "title": "Malicious maker quotes a punish deadline t2 about 136 years away (hostage by delay): taker rejects the quote and never funds",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "taker rejected the quote (deadline horizon)",
+      "pass": true,
+      "detail": "{'Aborted': \"deadline horizon t2 - open = 4294967505s above the taker's limit of 172800s\"}"
+    },
+    {
+      "check": "taker never funded and paid no premium",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "privacy audit: all 2 Zcash txs by maker/taker are fully shielded Ironwood v6 (no transparent in/out)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "R4: per-swap secrets erased by every party in a terminal stage (b, s_M, e_M / a, s_T, e_T; joint FVK)",
+      "pass": true,
+      "detail": "checked=['taker:Aborted'] not_terminal=['maker:Quoted'] bad=[]"
+    }
+  ],
+  "facts": {
+    "before": {
+      "maker_zec": 625000000,
+      "taker_zec": 625000000,
+      "maker_tok": 600000000000,
+      "relayer_tok": 0
+    },
+    "after": {
+      "maker_zec": 624990000,
+      "taker_zec": 624990000,
+      "maker_tok": 600000000000,
+      "relayer_tok": 0
+    },
+    "zcash_txs": [
+      {
+        "txid": "676dbe79c4f39374d8450173125b695d8f496d079fca3aa5ca36c0451b083c64",
+        "height": 21,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      },
+      {
+        "txid": "852bbdb83c4bb7e0fde98fae51a36c1f35272541c4f45345efc29ba1765fe52b",
+        "height": 23,
+        "version": 6,
+        "ironwood_actions": 2,
+        "ironwood_value_balance": 10000,
+        "transparent_in": 0,
+        "transparent_out": 0
+      }
+    ],
+    "r4_checked": [
+      "taker:Aborted"
+    ],
+    "r4_not_terminal": [
+      "maker:Quoted"
+    ]
+  },
+  "maker_swap": {
+    "rfq_id": "d0753c90562b1786fd21afd94dd4abae",
+    "stage": "Quoted",
+    "lots": 1,
+    "price": 300000000,
+    "relayer_fee": 1000000,
+    "premium": 50000,
+    "payout": "0x4c9d7176e6a17a3d743fbad3b4be969e4b6aeade",
+    "a_pub": "1c2dc0055d7ee2c1fb2cf614ba55a96fa4fe81b3d2314fdb4292f9dfc667bb01",
+    "commit_s_t": "733df49d17b04a6ecfe70d7d5b9ef2953c53a48e4202e6d0cc02c980fe1cbfa1",
+    "b": "<redacted>",
+    "s_m": "<redacted>",
+    "e_m": "<redacted>",
+    "e_t_pub": "029678b3cac859d0e2b447a5a87b20b472a0e99e72f1ffe19d7e41002acf6437",
+    "quote_hash": "9051c084407f670ad4c90456e9ace0ee0932d13ca66abdbf70b2128b00e43bda",
+    "t0_secs": 150,
+    "t1_secs": 60,
+    "t2_secs": 4294967295,
+    "reveal_secs": 150,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": null,
+    "t0": null,
+    "t1": null,
+    "t2": null,
+    "last_refund_at": null,
+    "sweep_height": null,
+    "log": [
+      "RFQ for 1 lot(s) decrypted and verified; encrypted QUOTE (346 memo bytes, price 300000000, premium 50000 zats) sent in tx 852bbdb83c4bb7e0fde98fae51a36c1f35272541c4f45345efc29ba1765fe52b [EVIL MODE: far-horizon]"
+    ]
+  },
+  "taker_swap": {
+    "rfq_id": "d0753c90562b1786fd21afd94dd4abae",
+    "stage": {
+      "Aborted": "deadline horizon t2 - open = 4294967505s above the taker's limit of 172800s"
+    },
+    "lots": 1,
+    "a": "",
+    "s_t": "",
+    "e_t": "",
+    "e_t_pub": "029678b3cac859d0e2b447a5a87b20b472a0e99e72f1ffe19d7e41002acf6437",
+    "payout_key": "<redacted>",
+    "payout": "0x4c9d7176e6a17a3d743fbad3b4be969e4b6aeade",
+    "reply_index": 272397776,
+    "price": null,
+    "relayer_fee": null,
+    "premium": null,
+    "b_pub": null,
+    "e_m_pub": null,
+    "t1_secs": null,
+    "t2_secs": null,
+    "reveal_secs": null,
+    "negated": false,
+    "joint_fvk": null,
+    "escrow_id": null,
+    "fund_txid": null,
+    "commit_tx": null,
+    "claim_tx": null,
+    "sweep_txid": null,
+    "sweep_height": null,
+    "last_claim_at": null,
+    "escrow_salt": null,
+    "started": 1792340132,
+    "log": [
+      "encrypted RFQ, 1 lot(s) (269 memo bytes), sent to maker in shielded tx 676dbe79c4f39374d8450173125b695d8f496d079fca3aa5ca36c0451b083c64",
+      "QUOTE REJECTED: deadline horizon t2 - open = 4294967505s above the taker's limit of 172800s; nothing was funded"
+    ]
+  }
+}
