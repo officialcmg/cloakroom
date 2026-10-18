@@ -83,8 +83,8 @@ uses keeps it near 1.4\% per delayed transaction (median, for an observer who sa
 posterior) at an average of 2.6 hours per delayed step; by a union bound over a swap's four
 anchored transactions, a swap is linked with probability at most about 6\%, and more if the
 observer matches every wallet setting.
-The implementation passes fifteen two-party scenarios, including injected reorganizations and
-an impostor maker. On Zcash testnet and Base Sepolia the final escrow has settled swaps, and every
+The implementation passes seventeen two-party scenarios, including injected reorganizations, an
+impostor maker and malicious quotes. On Zcash testnet and Base Sepolia the final escrow has settled swaps, and every
 Zcash transaction was fully shielded.
 \end{quote}
 
@@ -130,8 +130,8 @@ Symbolic execution, mutation testing, static analysis and stateful fuzzing of th
 \item \textbf{A measured privacy analysis.} A simulation argument for passive observers, anonymity
 sets measured on 30 days of Zcash mainnet, and the posterior of an observer who knows the delay
 policy, which determines the policy our wallet uses (Section~8).
-\item \textbf{An implementation.} Run in fifteen two-party scenarios, two of them with injected
-reorganizations and one with an impostor maker, and on public test networks (Section~9).
+\item \textbf{An implementation.} Run in seventeen two-party scenarios, two of them with injected
+reorganizations, one with an impostor maker and two with malicious quotes, and on public test networks (Section~9).
 \end{itemize}
 
 We use ``dark pool'' in its trading sense: a venue without pre-trade transparency. Requests and
@@ -941,7 +941,7 @@ spend signature, made with $b$ alone, was rejected.
 communicate only through encrypted memos on Zebra regtest and the escrow on a local EVM chain.
 Time is advanced on the EVM chain where needed, and in two scenarios the harness reorganizes the
 EVM chain to drop a party's transaction before it is final. Balances are checked exactly to the zatoshi, and
-every Zcash transaction is read back from the node. On the final code all fifteen scenarios pass, with 105 of 105 checks (about 48 minutes in total). Every scenario in which a party transacts (all but s15) reads back every Zcash transaction either party made and checks that it is a fully shielded v6 Ironwood transaction with no transparent inputs or outputs. Each of those scenarios also checks that each party that reached a terminal state has erased its per-swap secrets. A party that disappeared mid-swap keeps them, as it must in order to resume.
+every Zcash transaction is read back from the node. On the final code all seventeen scenarios pass, with 113 of 113 checks (about 49 minutes in total). Every scenario in which a party transacts (all but s15) reads back every Zcash transaction either party made and checks that it is a fully shielded v6 Ironwood transaction with no transparent inputs or outputs. Each of those scenarios also checks that each party that reached a terminal state has erased its per-swap secrets. A party that disappeared mid-swap keeps them, as it must in order to resume.
 
 \begin{table}[H]
 \centering\small
@@ -964,6 +964,8 @@ s12 & Cover traffic with $k=4$ (redraw policy) & each delayed broadcast ends a r
 s13 & Reorganization drops the block with the taker's claim & taker re-sends; claim final; maker sweeps; one Claimed event (9/9)\\
 s14 & Reorganization drops the block with the maker's deadline refund & maker re-sends; finishes when final; taker recovers (9/9)\\
 s15 & Directory entry names the maker's EVM address but is signed by another key & taker refuses before any RFQ or premium; in s1 the genuine entry is accepted (2/2)\\
+s16 & Maker quotes a reveal window $W \le F + B_R$ & R1q rejects the quote; nothing funded, no premium (4/4)\\
+s17 & Maker quotes a punish deadline $t_2$ about 136 years ahead & R1q rejects the quote; nothing funded, no premium (4/4)\\
 \bottomrule
 \end{tabularx}
 \caption{Scenario suite on the final code; every check passed.}
