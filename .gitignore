@@ -25,3 +25,6 @@ paper/*.out
 paper/*.toc
 .DS_Store
 __pycache__/
+
+# live testnet logs (still being written on the laptop)
+testnet/logs/v3-final-*.log
