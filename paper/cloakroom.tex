@@ -79,8 +79,8 @@ earlier version derived; our checked points all have $D=F$, so the budget's form
 binding privacy constraint. A swap transaction that is not delayed hides among almost no others.
 A natural count-gated delay lets an observer who knows the policy guess the transaction with
 probability 0.18 in the median case and above 0.85 in one case in ten; the delay our wallet
-uses keeps it near 1.4\% per delayed transaction (median, for an observer who samples its
-posterior) at an average of 2.6 hours per delayed step. A swap is linked if any one of its
+uses keeps it near 1.4\% per delayed transaction (median, over structural look-alikes, for an
+observer who samples its posterior) at an average of 2.6 hours per delayed step. A swap is linked if any one of its
 transactions is, and its funding is anchored on both sides, so the per-swap probability is higher;
 we do not bound it.
 The implementation passes eighteen two-party scenarios, including injected reorganizations, an
@@ -124,7 +124,7 @@ Proofs of taker safety without hostage, of maker safety under a liveness conditi
 condition is needed whenever the taker's unilateral exit is paid on the EVM chain, which does not
 observe Zcash (Sections~3 and~5).
 \item \textbf{Mechanized verification.} A TLA$^+$ model checked by TLC at three small parameter points, $(D,F,R) \in \{(1,1,1), (2,2,1), (2,2,2)\}$,
-in which removing any of the rules R2c--R3l or L$_M$, or shortening either budget by one step,
+in which removing R2r, R3e, R3d or L$_M$, or shortening either budget by one step,
 yields a concrete attack.
 Symbolic execution, mutation testing, static analysis and stateful fuzzing of the escrow
 (Section~6).
@@ -138,7 +138,8 @@ reorganizations, one with an impostor maker, two with malicious quotes and one w
 We use ``dark pool'' in its trading sense: a venue without pre-trade transparency. Requests and
 quotes in Cloakroom travel encrypted, and only the executed price becomes public. Unlike an
 exchange-run dark pool, Cloakroom has no central matching; it is bilateral request-for-quote
-between a taker and a market maker. The taker is anonymous; the maker's EVM address is public.
+between a taker and a market maker. The taker is anonymous on the Zcash side and uses fresh EVM addresses, though a relayer key she
+funds herself can link her through the source of its gas; the maker's EVM address is public.
 
 \section{Background}
 
@@ -366,8 +367,9 @@ some privacy but not funds. Without it, the relayer is trusted for safety. Our i
 self-relays: the taker holds the relayer key.
 
 Table~\ref{tab:rules} lists the wallet rules. They are part of the protocol: the proofs in
-Section~5 depend on them. Section~6 shows an attack when any of R2c, R2r, R3e, R3d, R3l or L$_M$
-is removed. R1 and R1b protect the taker's funding against a misconfigured or late escrow, R1q against windows the maker chooses, and R4
+Section~5 depend on them. Section~6 shows an attack when any of R2r, R3e, R3d or L$_M$
+is removed. R2c and R3l were not mutated separately; removing R2c costs only a reverted commit
+(Section~9). R1 and R1b protect the taker's funding against a misconfigured or late escrow, R1q against windows the maker chooses, and R4
 protects against a later compromise of the device; the model does not exercise these three.
 
 \begin{table}[H]
@@ -559,7 +561,7 @@ $\sigma_u = 100\%$ per year and the profile of Table~\ref{tab:params} without co
 $\theta \approx 1 + 1.75 + 1.75 = 4.5$~h and the option is worth about $0.9\%$ of $u$; with the
 private cover profile of Section~8.2, the maker's delay before \fn{open} adds about 2.6~h and
 $t_0 - \mathit{open}$ must absorb three draws of the taker's funding delay (about 8.75~h), so
-$\theta \approx 15$~h and the option is worth about $1.7\%$. The premium should cover
+$\theta \approx 15.9$~h and the option is worth about $1.7\%$. The premium should cover
 this plus the maker's \fn{open} and \fn{refund} gas. Because the premium is paid before
 \fn{open}, a maker could take premiums and never open; the taker then loses $\pi$, the bound in
 Definition~1(i), and holds the maker's signed quote as evidence. The maker's own option before
@@ -732,7 +734,8 @@ multiplication dominates \fn{claim} and \fn{refund}.}
 
 \section{Messages}
 A maker publishes a unified address, an EVM address and an RFQ public key for the current epoch,
-with an EIP-191 signature by the EVM key over the other three. A taker refuses an entry whose
+with an EIP-191 signature by the EVM key over the unified address, the epoch, the RFQ key and the
+EVM address. A taker refuses an entry whose
 signature does not verify, so no one can advertise a known maker's EVM address with his own
 Zcash address and collect premiums.
 Each message is a 512-byte memo on a zero-value shielded output (ZIP~302 type
@@ -1002,7 +1005,7 @@ been funded and erased $a$. The note was then mined, and its 0.0101~TAZ is unspe
 keeps $a$ until a broadcast funding is swept or has expired unmined, and scenario s18 reproduces
 the case; local chains had never delayed a funding. The second swap, with $t_0=\mathit{open}+80$~min,
 settled: RFQ, signed Quote and Accept with a 20{,}000-zatoshi premium, \fn{open}, funding, Ready,
-commit, reveal and a claim at block 48{,}290{,}629, whose payout was withdrawn once it was final, at block
+commit, reveal and a claim at block 48{,}290{,}629, whose payout was withdrawn once Base Sepolia reported its block final, at block
 48{,}291{,}111, and the maker's sweep. All nine Zcash transactions of the two runs were fully shielded v6 Ironwood
 transactions with no transparent inputs or outputs.
 
@@ -1063,7 +1066,7 @@ Reorganizations were injected on the local EVM chain only.
 
 Cloakroom settles trades between shielded ZEC and EVM tokens without custodians and without
 leaving the shielded pool. Its safety rests on proofs under explicit timing assumptions, and a
-model checker shows that each rule and each budget is needed. Review and model checking at a
+model checker shows that each budget and each of the rules it mutates is needed. Review and model checking at a
 second parameter point found gaps in our first version, all fixed: the reorganization budget
 lacked one inclusion delay per reorganization; a dropped refund was not re-sent after its first
 deadline; the rule against setting Ready after publishing $b$ was not stated; secrets were erased

@@ -38,3 +38,20 @@ Still open:
 - 0.0101 TAZ is stranded in the joint note of final swap A (`a` was erased by the bug since fixed). It is
   testnet money and cannot be recovered.
 - Cover delays were off in the testnet runs; a run with the real cover profile would show the privacy behaviour end to end.
+
+## 4. From the rest of the final review round (Astra, Sol, Fable)
+
+Fixed in the frozen paper: the no-hostage bound from the taker's return, Theorem 3 as claim-or-refund, no per-swap
+privacy bound, the narrowed "each rule is needed" claim. Still open:
+- **Budget both cover delays in t0 - open (Fable M3):** the maker's delay before `setReady`, k_Z confirmations and the
+  Zcash expiry plus re-send are not in the t0 - open budget, so the maker's wait can be cut at the deadline. Budget it
+  (for example 1 h + 6X) or measure the posterior of the truncated wait.
+- **Ready's retry budget (Astra M3, Sol M1, Opus M4):** give `setReady` B_R, not D, before t0, so the happy path
+  survives a reorganization near t0.
+- **Joint posterior (Astra M2, Sol M2, Opus M6):** measure the funding's posterior given both `open` and `setReady`,
+  with the best-guess observer and the full-settings class (Fable M2), and report a per-swap figure with its mean and tail.
+- **Taker availability before the commit (Astra C1, Sol C1):** the bound now runs from the taker's return; consider a
+  stronger, explicit availability assumption from funding to resolution.
+- Minor: Lemma 3(b) wording ("every ancestor of that final block"); an L_M maker who finds the swap Locked needs a
+  later return for R3l; say once that the model's discrete budget is the continuous one minus R; state what the
+  wallet does at the redraw cap.
