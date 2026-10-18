@@ -1,0 +1,20 @@
+{
+  "scenario": "s15_impostor_directory",
+  "title": "Impostor: a directory entry naming the real maker's EVM address but signed by another key; the taker refuses before sending an RFQ or paying any premium",
+  "chain_branch": "37a5165b",
+  "checks": [
+    {
+      "check": "taker refused to start",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "check": "no RFQ sent and no premium paid",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "facts": {},
+  "maker_swap": null,
+  "taker_swap": null
+}
