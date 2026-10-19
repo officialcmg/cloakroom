@@ -3,6 +3,25 @@
 Things we decided, for the Oct 28 ZECATHON deadline, to leave out of the frozen paper and code.
 None of them can lose funds today. Each one says what to do later and why it was left.
 
+## 0. Relayer privacy: let the maker relay, over shielded memos (top priority)
+
+- **Now:** the taker's payout address holds no ETH, so a relayer submits `commitClaim` and `claim` for the fee `f_r`.
+  The implementation self-relays: the taker holds the relayer key, which needs ETH, and where that ETH came from
+  can link her to the swap. A third-party relayer avoids that but learns her IP address when she hands over the
+  commit and `a`, unless she uses Tor. Neither option is private by default. The paper states this (§4.3, Limitations).
+- **Proposal:** the taker sends the signed commit, and later `a`, to the maker inside encrypted memos in shielded
+  Zcash transactions, the channel RFQ/Quote/Accept already use. The maker submits both EVM transactions and takes `f_r`.
+  - No new party learns anything: the maker already knows the payout address and the funding.
+  - No IP leak: the hand-off stays inside the shielded pool.
+  - Neither the taker nor the payout address ever needs ETH.
+- **Safety:** unchanged in kind. The commit binds the relayer and `c = H(id, a)`, and `claim` pays only `u - f_r` to the
+  payout address, so the maker-as-relayer cannot redirect funds. He can only withhold the claim, and the taker then
+  submits it herself under R2r's fallback (privacy lost only in that attack case).
+- **Trade-off to analyse:** the maker now controls when the claim lands, and he knows `a + b` once he has `a`, so the
+  fallback timing in R2r becomes the main defence. Redo the timing analysis for this case (memo delivery adds Zcash
+  inclusion delay to the hand-off time `D_h`), model it in TLA+, and add a harness scenario where the maker withholds
+  the claim.
+
 ## 1. Bring the paper's protocol and the implementation back into line on R2c
 
 - **Now:** the protocol (paper, Table 2, rule R2c) says the taker commits only once Ready is *final*.
