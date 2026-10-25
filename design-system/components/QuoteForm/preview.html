@@ -1,0 +1,12 @@
+<!-- @dsCard group="Swap" height=440 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>QuoteForm</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(function QuoteDemo() { var a = React.useState('1.00'), b = React.useState('private'); return h(C.QuoteForm, { sell: a[0], onSellChange: function (e) { a[1](e.target.value); }, balance: '6.29 ZEC', receive: '299.00', maker: 'maker.example · signed directory', privacy: b[0], onPrivacyChange: b[1], privacyNote: 'Private adds random delays so no one can match your Zcash transactions to this swap.', action: 'Get quote' }); }));
+</script>
+</body>
+</html>

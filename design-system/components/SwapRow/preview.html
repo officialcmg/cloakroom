@@ -1,0 +1,12 @@
+<!-- @dsCard group="Maker" height=210 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>SwapRow</title></head>
+<body>
+<div id="root" class="cr-demo-wide"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { role: 'table', 'aria-label': 'Live swaps', className: 'cr-card', style: { padding: 0, gap: 0 } }, h(C.SwapRow, { id: 'e9f6faf43c30b214', sell: '0.01 ZEC', receive: '1.00 USDC', step: 'Taker revealed a; claim waiting to be final', deadline: 'claim final ~19:15', tone: 'locked' }), h(C.SwapRow, { id: 'ed492258aa29c2a3', sell: '0.01 ZEC', receive: '1.00 USDC', step: 'No funding by t0; refund sent', deadline: 'refund final ~18:07', tone: 'refund' }), h(C.SwapRow, { id: 'a9f1dc6c733c5fbe', sell: '0.01 ZEC', receive: '1.00 USDC', step: 'Swept the joint note', deadline: 'done 15:41', tone: 'final' })));
+</script>
+</body>
+</html>

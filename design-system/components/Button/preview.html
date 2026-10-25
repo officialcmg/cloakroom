@@ -1,0 +1,12 @@
+<!-- @dsCard group="Actions" height=96 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Button</title></head>
+<body>
+<div id="root" class="cr-demo"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, h(C.Button, null, 'Start private swap'), h(C.Button, { variant: 'secondary' }, 'Get a new quote'), h(C.Button, { variant: 'quiet' }, 'What is public?'), h(C.Button, { disabled: true }, 'Claim your USDC')));
+</script>
+</body>
+</html>

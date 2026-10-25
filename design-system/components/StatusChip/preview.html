@@ -1,0 +1,12 @@
+<!-- @dsCard group="Status" height=72 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>StatusChip</title></head>
+<body>
+<div id="root" class="cr-demo"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, h(C.StatusChip, { tone: 'final' }), h(C.StatusChip, { tone: 'locked' }), h(C.StatusChip, { tone: 'waiting' }), h(C.StatusChip, { tone: 'refund' }), h(C.StatusChip, { tone: 'danger' })));
+</script>
+</body>
+</html>

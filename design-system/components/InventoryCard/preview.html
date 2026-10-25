@@ -1,0 +1,12 @@
+<!-- @dsCard group="Maker" height=280 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>InventoryCard</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(C.InventoryCard, { title: 'Inventory', status: h(C.StatusChip, { tone: 'final' }, 'Quoting'), items: [ { label: 'USDC on Base', value: '16.00', unit: 'USDC', note: '1.00 locked in 1 open swap' }, { label: 'Shielded ZEC', value: '6.00', unit: 'ZEC' }, { label: 'Gas', value: '0.0080', unit: 'ETH', note: 'About 60 swaps at today\'s fees' } ] }));
+</script>
+</body>
+</html>

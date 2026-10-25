@@ -1,0 +1,12 @@
+<!-- @dsCard group="Progress" height=230 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Timeline</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(C.Timeline, { steps: [ { label: 'Request sent, encrypted', time: '18:02', state: 'done' }, { label: 'Maker locked 300 USDC', time: '18:05', state: 'done' }, { label: 'Waiting for the lock to be final', detail: 'About 25 minutes on Base. You can close the app.', time: '~25 min', state: 'now' }, { label: 'Fund your ZEC', state: 'todo' }, { label: 'Claim your USDC', state: 'todo' } ] }));
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!-- @dsCard group="Swap" height=230 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>AmountInput</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, h(C.AmountInput, { id: 'a1', label: 'Sell', value: '1.00', unit: 'ZEC', hint: 'Shielded balance 6.29 ZEC' }), h(C.AmountInput, { id: 'a2', label: 'Sell', value: '7.50', unit: 'ZEC', error: 'More than your shielded balance of 6.29 ZEC.' })));
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+The claim-ticket mark: a `zec` pill (#f4b728) with a 2px outline and one punched hole. `cloakroom-mark.svg` has an `ink` light outline (#111111) for light grounds; `cloakroom-mark-dark.svg` has an `ink` dark outline (#f5f5f0) for dark grounds. The hole stays #111111 in both. The wordmark is set live in Archivo 800, so there is no wordmark file.

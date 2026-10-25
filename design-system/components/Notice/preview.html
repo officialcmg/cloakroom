@@ -1,0 +1,12 @@
+<!-- @dsCard group="Feedback" height=250 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Notice</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, h(C.Notice, { tone: 'info', title: 'Visible on Base' }, 'The amount and your fresh payout address. Not your Zcash wallet.'), h(C.Notice, { tone: 'warning', title: 'Funding your payout address with gas can link it to you' }, 'Move the USDC through a relayer or an address you do not mind linking.'), h(C.Notice, { tone: 'danger', title: 'Be online between 19:44 and 20:39' }, 'Swap e9f6faf4 needs your refund in this window, or the taker can claim the USDC.')));
+</script>
+</body>
+</html>

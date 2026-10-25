@@ -1,0 +1,12 @@
+<!-- @dsCard group="Maker" height=330 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>LivenessAlarm</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, h(C.LivenessAlarm, { state: 'upcoming', window: '19:44 to 20:39', countdown: 'Opens in 1 h 12 min', swapId: 'e9f6faf43c30b214' }, 'Keep Cloakroom running then, so it can refund if the taker never claims. If you are offline for the whole window, the taker can claim the USDC.'), h(C.LivenessAlarm, { state: 'open', window: 'until 20:39', countdown: '38 min left', swapId: 'e9f6faf43c30b214' }, 'Do not close the app or let the computer sleep.'), h(C.LivenessAlarm, { state: 'done', swapId: 'e9f6faf43c30b214' }, 'The refund is final. Nothing more is needed for this swap.')));
+</script>
+</body>
+</html>

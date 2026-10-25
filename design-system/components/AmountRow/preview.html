@@ -1,0 +1,12 @@
+<!-- @dsCard group="Swap" height=120 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>AmountRow</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, h(C.AmountRow, { label: 'Sell', value: '1.00', unit: 'ZEC' }), h(C.AmountRow, { label: 'Relayer fee', value: '1.00', unit: 'USDC', size: 'small' })));
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Nine 24px outline icons at a 2px stroke, drawn in `ink` (#111111) for design tools. In the app use the `Icon` component, which draws the same paths in the text colour. On a dark ground recolour the stroke to `ink` dark (#f5f5f0).

@@ -1,0 +1,12 @@
+<!-- @dsCard group="Brand" height=90 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Icon</title></head>
+<body>
+<div id="root" class="cr-demo"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, ['shield','lock','clock','check','return','alert','copy','external','arrow'].map(function (n) { return h('span', { key: n, style: { display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 4, fontSize: 11, color: 'var(--ink-muted)' } }, h(C.Icon, { name: n, size: 24, title: n }), n); })));
+</script>
+</body>
+</html>

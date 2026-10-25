@@ -1,0 +1,12 @@
+<!-- @dsCard group="Swap" height=300 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>SwapCard</title></head>
+<body>
+<div id="root" class="cr-demo-col"></div>
+<script>
+  var C = window.Cloakroom, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(C.SwapCard, { title: 'Swap', status: h(C.StatusChip, { tone: 'waiting' }, 'Quote'), sell: { label: 'Sell', value: '1.00', unit: 'ZEC' }, receive: { label: 'Get', value: '299.00', unit: 'USDC' }, meta: 'Quote 300.00 · premium 0.0005 ZEC · relayer 1.00', action: 'Start private swap' }));
+</script>
+</body>
+</html>
