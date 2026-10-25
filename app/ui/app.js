@@ -228,7 +228,7 @@
     var maker = status.role === "maker";
     return h("main", { className: maker ? "app app-wide" : "app" },
       h(Header, { status: status }),
-      status.last_exit && !status.running ? h(C.Notice, { tone: "info", title: "Process ended" }, status.last_exit) : null,
+      status.last_exit && !status.running ? h(C.Notice, { tone: "info", title: "Stopped" }, status.last_exit) : null,
       maker ? h(MakerHome, { status: status, swaps: swaps }) : h(TakerHome, { status: status, swaps: swaps }),
       h(LogDetails),
       h("p", { className: "app-foot" }, "Running locally on this computer. " + (status.network === "test" ? "Zcash testnet and Base Sepolia." : "Local test chains (Zebra regtest and anvil).")));

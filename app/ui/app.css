@@ -17,3 +17,4 @@
 .app-details summary { cursor: pointer; font-size: 12px; font-weight: 600; color: var(--ink-muted); }
 .app-details pre { margin: var(--space-2) 0 0; padding: var(--space-3); border-radius: var(--radius-sm); border: var(--stroke) solid var(--line-soft); background: var(--paper-raised); color: var(--ink); font-family: var(--font-mono); font-size: 11px; line-height: 16px; white-space: pre-wrap; word-break: break-all; max-height: 240px; overflow: auto; }
 .app-foot { margin: 0; font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+.app-table .cr-swaprow-step { overflow-wrap: anywhere; min-width: 0; }

@@ -161,7 +161,8 @@ fn status(dir: &Path, cfg: &Config, role: &str, ua: &str, st: &Arc<Mutex<State>>
             Ok(Some(code)) => {
                 let r = r.clone();
                 s.child = None;
-                s.last_exit = Some(format!("{r} exited ({code})"));
+                // A clean exit is reported by the swap records themselves; only a failure needs a notice.
+                s.last_exit = (!code.success()).then(|| format!("The {r} process stopped with an error ({code}). See the technical log."));
                 None
             }
             Err(_) => None,
