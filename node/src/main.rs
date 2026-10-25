@@ -7,6 +7,7 @@
 //!   cloakroom pay     --dir D --to UA --zats N   fully shielded send
 //!   cloakroom maker   --dir D [--vanish-at STAGE] [--evil MODE] [--exit-after N]
 //!   cloakroom taker   --dir D --lots N [--vanish-at STAGE] [--evil MODE]
+//!   cloakroom serve   --dir D [--port 7800] [--ui app/ui] [--ds design-system]   local app on 127.0.0.1
 //!
 //! Maker and taker communicate only through encrypted memos on Zcash and the escrow
 //! contract on the EVM chain. `--vanish-at` makes the process exit at a stage so a test
@@ -17,6 +18,7 @@ mod evm;
 mod keys;
 mod maker;
 mod msg;
+mod serve;
 mod taker;
 mod wallet;
 
@@ -93,6 +95,16 @@ fn main() -> Result<()> {
                     lots: arg(&args, "--lots").unwrap_or("1".into()).parse()?,
                     vanish_at: arg(&args, "--vanish-at"),
                     evil: arg(&args, "--evil"),
+                },
+            )?;
+        }
+        "serve" => {
+            serve::run(
+                &dir,
+                serve::Opts {
+                    port: arg(&args, "--port").unwrap_or("7800".into()).parse()?,
+                    ui: PathBuf::from(arg(&args, "--ui").unwrap_or("app/ui".into())),
+                    ds: PathBuf::from(arg(&args, "--ds").unwrap_or("design-system".into())),
                 },
             )?;
         }

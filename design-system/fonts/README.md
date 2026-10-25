@@ -1,0 +1,1 @@
+Archivo (Omnibus-Type, https://github.com/Omnibus-Type/Archivo) and IBM Plex Mono (IBM, https://github.com/IBM/plex), both under the SIL Open Font License 1.1 (https://openfontlicense.org). Latin subset as served by Google Fonts. Archivo is one variable file covering weights 400 to 800.

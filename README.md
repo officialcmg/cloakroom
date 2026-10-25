@@ -26,6 +26,8 @@ acceptance travel as encrypted memos inside shielded Zcash transactions.
 | `formal/` | The TLA+ model, TLC configurations (honest, malicious maker or taker, liveness, mutations) and TLC logs. |
 | `measurements/` | 30 days of Zcash mainnet anonymity-set measurements and the cover-delay analysis behind the privacy section. |
 | `testnet/` | `EVIDENCE.md`: swaps on Zcash testnet and Base Sepolia, with every transaction hash. Keys and configs are not in git. |
+| `app/` | The local app: `cloakroom serve` serves a web UI on 127.0.0.1 for a maker or a taker; `app/dev.py` runs both against local test chains. |
+| `design-system/` | Tokens, brand book, React components, fonts, logo and icons the app is built from. |
 | `paper/` | LaTeX source, compiled PDF, and every review with its triage (`reviews/`). |
 | `archive/` | Earlier prototypes, paper drafts and old run logs, kept for the record. |
 
@@ -46,6 +48,9 @@ cd contracts && ./audit/gen_harnesses.sh && forge test --skip halmos --skip inva
 
 # node
 cd node && cargo build
+
+# the local app: a maker and a taker on local chains (http://127.0.0.1:7801 and :7802)
+python3 -I app/dev.py
 
 # two-party scenarios (starts Zebra regtest in Docker and anvil; about 50 minutes for all)
 python3 -I harness/run.py            # or a subset: python3 -I harness/run.py s1 s15
