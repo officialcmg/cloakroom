@@ -21,7 +21,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-BIN = os.path.join(ROOT, "node", "target", "debug", "cloakroom")
+BIN = os.environ.get("CLOAKROOM_BIN") or os.path.join(ROOT, "node", "target", "debug", "cloakroom")
 CONTRACTS = os.path.join(ROOT, "contracts")
 EVID = os.path.join(HERE, "evidence")
 WORK = os.path.join(HERE, "work")
@@ -43,6 +43,7 @@ D_SMALL, D_CLAIM = 3, 10
 
 state = {"escrow": None, "token": None, "nu7": None}
 anvil_proc = None
+zebra_proc = None  # set when ZEBRAD names a zebrad binary to run directly instead of the Docker image
 stop_miner = threading.Event()
 mine_lock = threading.Lock()
 
@@ -140,11 +141,15 @@ def miner():
 
 
 def start_chains(nu7):
-    global anvil_proc
+    global anvil_proc, zebra_proc
     conf = "zebrad-nu7.toml" if nu7 else "zebrad-nu63.toml"
-    env = dict(os.environ, ZEBRA_CONF=conf)
-    subprocess.run(["docker", "compose", "down"], cwd=os.path.join(HERE, "zebra"), env=env, capture_output=True)
-    subprocess.run(["docker", "compose", "up", "-d"], cwd=os.path.join(HERE, "zebra"), env=env, check=True, capture_output=True)
+    if os.environ.get("ZEBRAD"):
+        zebra_proc = subprocess.Popen([os.environ["ZEBRAD"], "-c", os.environ.get("CLOAKROOM_ZEBRA_CONF") or os.path.join(HERE, "zebra", conf), "start"],
+                                      stdout=open(os.path.join(WORK, "zebrad.log"), "w"), stderr=subprocess.STDOUT)
+    else:
+        env = dict(os.environ, ZEBRA_CONF=conf)
+        subprocess.run(["docker", "compose", "down"], cwd=os.path.join(HERE, "zebra"), env=env, capture_output=True)
+        subprocess.run(["docker", "compose", "up", "-d"], cwd=os.path.join(HERE, "zebra"), env=env, check=True, capture_output=True)
     for _ in range(90):
         try:
             zrpc("getblockchaininfo")
@@ -182,7 +187,10 @@ def stop_chains():
     time.sleep(0.5)
     if anvil_proc:
         anvil_proc.terminate()
-    subprocess.run(["docker", "compose", "down"], cwd=os.path.join(HERE, "zebra"), capture_output=True)
+    if zebra_proc:
+        zebra_proc.terminate()
+    else:
+        subprocess.run(["docker", "compose", "down"], cwd=os.path.join(HERE, "zebra"), capture_output=True)
 
 
 # ---------------------------------------------------------------- parties

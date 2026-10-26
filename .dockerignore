@@ -1,0 +1,13 @@
+# The demo image needs only these; everything else (keys under testnet/, build output, the paper)
+# stays out of the build context.
+*
+!node/Cargo.toml
+!node/Cargo.lock
+!node/src
+!contracts/foundry.toml
+!contracts/src
+!contracts/lib
+!harness/run.py
+!app/ui
+!design-system
+!demo
