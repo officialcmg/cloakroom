@@ -3,21 +3,20 @@
 (function () {
   var D = window.DEMO, C = window.Cloakroom, R = window.React, h = R.createElement, useState = R.useState, useEffect = R.useEffect;
   var ORDER = ["RfqSent", "Accepted", "Funded", "Committed", "Revealed", "Claimed"];
-  var LABEL = { RfqSent: "Request sent", Accepted: "Quote accepted", Funded: "Both sides locked", Committed: "Claim committed", Revealed: "Share revealed", Claimed: "USDC claimed" };
+  var LABEL = { RfqSent: "Request sent", Accepted: "Quote accepted", Funded: "Both sides locked", Committed: "Claim committed", Revealed: "Secret revealed", Claimed: "USDC claimed" };
   var EVENTS = {
     RfqSent: { title: "Request sent", text: "The taker's request goes to the maker encrypted, inside a shielded Zcash transaction.", zec: "One shielded transaction. Nothing readable.", base: "Nothing." },
     Accepted: { title: "Quote accepted", text: "The maker's signed quote comes back the same way. The taker pays a small ZEC premium, which pays the maker for holding the price.", zec: "Shielded transactions only.", base: "Nothing." },
-    Funded: { title: "Both sides locked", text: "The maker locks 300 USDC in the escrow. The taker sends 1 ZEC to an address that only both secret shares together can spend.", zec: "One shielded transaction, not linked to the escrow.", base: "The amount, the escrow and a fresh payout address." },
-    Committed: { title: "Claim committed", text: "The maker confirms the ZEC and marks the escrow ready. The taker commits to a hash of its share, which locks the escrow so the maker cannot refund once the share is public.", zec: "Nothing new.", base: "A hash." },
-    Revealed: { title: "Share revealed", text: "The taker reveals its share to claim the USDC. That share is exactly what the maker needs to spend the ZEC, so both legs settle or neither does.", zec: "Nothing new.", base: "The taker's share. Useless without the maker's own share." },
+    Funded: { title: "Both sides locked", text: "The maker locks 300 USDC in the escrow. The taker sends 1 ZEC to an address that only both secrets together can spend.", zec: "One shielded transaction, not linked to the escrow.", base: "The amount, the escrow and a fresh payout address." },
+    Committed: { title: "Claim committed", text: "The maker confirms the ZEC and marks the escrow ready. The taker commits to a hash of its secret, which locks the escrow so the maker cannot refund once the secret is public.", zec: "Nothing new.", base: "A hash." },
+    Revealed: { title: "Secret revealed", text: "The taker reveals its secret a to claim the USDC. That is exactly what the maker needs to spend the ZEC, so both legs settle or neither does.", zec: "Nothing new.", base: "The taker's secret a. Useless without the maker's secret b." },
     Claimed: { title: "USDC claimed", text: "The claim is final: 299 USDC is at the taker's payout address, after the 1 USDC relayer fee. The maker now moves the ZEC to its wallet.", zec: "The maker's sweep: one more shielded transaction.", base: "The payout." },
-    Recovering: { title: "Maker refunded", text: "The swap did not complete in time, so the maker took the refund. That revealed the maker's share, and the taker is moving its ZEC back.", zec: "The taker's sweep: one shielded transaction.", base: "The refund and the maker's share." },
+    Recovering: { title: "Maker refunded", text: "The swap did not complete in time, so the maker took the refund. That revealed the maker's secret b, and the taker is moving its ZEC back.", zec: "The taker's sweep: one shielded transaction.", base: "The refund and the maker's secret b." },
     Recovered: { title: "ZEC back with the taker", text: "Neither side lost anything but the premium and fees.", zec: "Nothing new.", base: "Nothing new." },
   };
 
-  // ---------- theme follows the system ----------
-  var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+  // The theme (theme.js) covers this page and both app frames; re-render so the toggle's label follows.
+  window.CRTheme.on(function () { D.emit(); });
 
   // ---------- live sandbox state ----------
   var L = D.live = { sandbox: null, swaps: null, offset: 0, mine: 0 };
@@ -132,6 +131,7 @@
         h("div", { className: "bar-title" }, h("b", null, "Shared sandbox"), h("span", null, "Real Zebra and anvil chains on the demo server · test coins only")),
         h("div", { className: "bar-right" },
           h("span", { className: "mono bar-note" }, "finality: about 1 min here, about 25 min on Base"),
+          h("button", { type: "button", className: "theme-toggle", onClick: window.CRTheme.toggle, "aria-label": "Switch to " + (window.CRTheme.get() === "dark" ? "light" : "dark") + " mode" }, window.CRTheme.get() === "dark" ? "Light" : "Dark"),
           h("a", { href: "/", className: "bar-link" }, "About Cloakroom"))),
       h(Control),
       h("main", { className: "stage" },

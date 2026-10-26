@@ -3,7 +3,6 @@
   var track = document.getElementById("track"), slides = track.children, n = slides.length;
   var dots = document.getElementById("dots"), prev = document.getElementById("prev"), next = document.getElementById("next");
   var at = 0;
-  document.documentElement.setAttribute("data-theme", window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.getElementById("of").textContent = n;
   for (var i = 0; i < n; i++) {
     var b = document.createElement("button");

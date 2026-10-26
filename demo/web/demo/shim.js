@@ -4,7 +4,7 @@
   var side = new URLSearchParams(location.search).get("side");
   var D = window.parent.DEMO;
   window.CLOAKROOM_WHERE = "Running on the Cloakroom demo server. ";
-  try { localStorage.setItem("cr-theme", window.parent.document.documentElement.getAttribute("data-theme") || "light"); } catch (e) {}
+  document.documentElement.setAttribute("data-theme", window.parent.CRTheme.get());
   var realFetch = window.fetch.bind(window);
   window.fetch = function (url, opts) {
     if (typeof url !== "string" || url.indexOf("/api/") !== 0) return realFetch(url, opts);

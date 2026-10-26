@@ -1,0 +1,2 @@
+/* Inside /demo the page's own toggle sets the theme for both app frames, so each app's toggle is hidden. */
+.app-theme { display: none; }

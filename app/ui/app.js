@@ -34,9 +34,9 @@
     RfqSent: "Waiting for the maker's quote.",
     Accepted: "Waiting for the maker to lock the USDC on Base, then your ZEC goes to the joint address.",
     Funded: "Your ZEC is in the joint address. Waiting for the maker to confirm it and mark the escrow ready.",
-    Committed: "Your claim is locked in. Waiting for it to be final before you reveal your share.",
+    Committed: "Your claim is locked in. Waiting for it to be final before you reveal your secret.",
     Revealed: "Claim sent. Waiting for it to confirm.",
-    Recovering: "The maker took a refund, which gave you their share. Moving the ZEC back to your wallet.",
+    Recovering: "The maker took a refund, which gave you their secret. Moving the ZEC back to your wallet.",
   };
   var MAKER_NOW = {
     Quoted: "Quote sent. Waiting for the taker's premium.",
@@ -99,7 +99,7 @@
       "Quote checked and accepted, premium paid",
       "Maker locks " + price + ", you fund " + zec(lot) + " ZEC",
       "Maker confirms your ZEC, you lock the claim",
-      "You reveal your share to claim",
+      "You reveal your secret to claim",
       "USDC claimed",
     ];
     var detail = TAKER_NOW[n];

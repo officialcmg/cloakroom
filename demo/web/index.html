@@ -10,11 +10,13 @@
 <link rel="stylesheet" href="/ds/tokens.css">
 <link rel="stylesheet" href="/ds/components/bundle.css">
 <link rel="stylesheet" href="/slides.css">
+<script src="/theme.js"></script>
 </head>
 <body>
 <header class="top">
   <a class="brand" href="/" aria-label="Cloakroom"><img src="/ds/assets/Logos/cloakroom-mark.svg" alt="" width="36" height="20"><span>cloakroom</span></a>
   <span class="count mono" aria-live="polite"><span id="at">1</span> / <span id="of">6</span></span>
+  <button type="button" class="theme-toggle" data-theme-toggle>Dark</button>
   <a class="cta small" href="/demo/">Live demo <span aria-hidden="true">→</span></a>
 </header>
 
@@ -27,16 +29,16 @@
           <span class="kicker">ZECATHON 2026</span>
           <h1>Cloakroom</h1>
           <p class="lede">A dark pool for shielded Zcash.</p>
-          <p>Swap shielded ZEC for USDC on Base with a market maker. No custodian, no bridge, no transparent address. The ZEC never leaves the shielded pool.</p>
+          <p>Swap shielded ZEC for USDC on Base. No custodian, no bridge, no transparent address. The ZEC never leaves the shielded pool.</p>
           <div class="actions">
             <a class="cta" href="/demo/">Try the live demo <span aria-hidden="true">→</span></a>
             <button class="ghost" type="button" data-go="1">How it works</button>
           </div>
         </div>
         <div class="keys" aria-hidden="true">
-          <div class="key key-a"><b>a</b><span>taker's share</span></div>
+          <div class="key key-a"><b>a</b><span>taker's secret</span></div>
           <div class="plus">+</div>
-          <div class="key key-b"><b>b</b><span>maker's share</span></div>
+          <div class="key key-b"><b>b</b><span>maker's secret</span></div>
           <div class="eq">=</div>
           <div class="addr"><b>a + b</b><span>spends one fresh shielded address</span></div>
         </div>
@@ -50,9 +52,8 @@
         <div class="stats">
           <div class="stat"><b>51%</b><p>of Ironwood transactions in the last 30 days touched a transparent address. Each crossing publishes an amount and a time.</p></div>
           <div class="stat"><b>Transparent only</b><p>NEAR Intents takes ZEC on transparent addresses only; Maya and THORChain hold it in transparent vaults. Each route adds a custodian.</p></div>
-          <div class="stat"><b>$3.8M</b><p>exploited at NEAR Intents on October 1, 2026, reportedly recovered. A user's $589,000 swap payout sat in a compliance review for more than fifty days.</p></div>
         </div>
-        <p class="note">Measurements and sources are in the paper, sections 1 and 8.</p>
+        <p class="note">Measurements and sources are in <a href="https://github.com/officialcmg/cloakroom/blob/main/Cloakroom_Yellow_Paper.pdf">the paper</a>, sections 1 and 8.</p>
       </div>
     </section>
 
@@ -78,7 +79,7 @@
           <div class="tr th" role="row"><span role="columnheader">Step</span><span role="columnheader">On Zcash</span><span role="columnheader">On Base</span></div>
           <div class="tr" role="row"><span role="cell">Request and quote</span><span role="cell">Shielded transactions with encrypted memos</span><span role="cell">Nothing</span></div>
           <div class="tr" role="row"><span role="cell">Lock</span><span role="cell">One shielded transaction to a fresh address</span><span role="cell">The amount, the escrow and a fresh payout address</span></div>
-          <div class="tr" role="row"><span role="cell">Claim</span><span role="cell">Nothing</span><span role="cell">A hash, then the taker's share <i>a</i></span></div>
+          <div class="tr" role="row"><span role="cell">Claim</span><span role="cell">Nothing</span><span role="cell">A hash, then the taker's secret <i>a</i></span></div>
           <div class="tr" role="row"><span role="cell">Settle</span><span role="cell">The maker's shielded sweep</span><span role="cell">The payout</span></div>
         </div>
         <p class="callout">A passive observer learns nothing that links the two chains beyond timing and the wallet fingerprint the transactions share. Against timing, the wallet can wait a random delay before broadcasting each step, 2.6 hours on average. The demo turns the delays off so you are not waiting hours.</p>
@@ -95,7 +96,7 @@
         </div>
         <p class="note">A commit-then-reveal claim, a Ready gate and a punish window make every exit safe, under stated bounds on inclusion delay, finality and reorganizations. The proofs are in the paper.</p>
         <ul class="proof">
-          <li><b>TLA+ model checking</b> found a real attack in an earlier design: a refund that is included but not yet final could be reorganized into a theft.</li>
+          <li><b>TLA+ model checking</b> of safety and liveness, which also shows each rule is needed: weakening any one of them gives an attack.</li>
           <li><b>18 of 18</b> two-party scenarios pass, 121 of 121 checks, with injected reorgs, an impostor maker and malicious quotes.</li>
           <li><b>52 of 52</b> contract tests, plus Halmos proofs, fuzzing and mutation testing.</li>
           <li><b>3 swaps</b> settled on Zcash testnet and Base Sepolia, every Zcash transaction fully shielded.</li>
