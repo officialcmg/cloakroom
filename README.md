@@ -27,6 +27,7 @@ acceptance travel as encrypted memos inside shielded Zcash transactions.
 | `measurements/` | 30 days of Zcash mainnet anonymity-set measurements and the cover-delay analysis behind the privacy section. |
 | `testnet/` | `EVIDENCE.md`: swaps on Zcash testnet and Base Sepolia, with every transaction hash. Keys and configs are not in git. |
 | `app/` | The local app: `cloakroom serve` serves a web UI on 127.0.0.1 for a maker or a taker; `app/dev.py` runs both against local test chains. |
+| `demo/` | The hosted demo: slides at `/` and a shared live sandbox at `/demo/` (`host.py`, `Dockerfile`; see `demo/README.md`). |
 | `design-system/` | Tokens, brand book, React components, fonts, logo and icons the app is built from. |
 | `paper/` | LaTeX source, compiled PDF, and every review with its triage (`reviews/`). |
 | `archive/` | Earlier prototypes, paper drafts and old run logs, kept for the record. |
