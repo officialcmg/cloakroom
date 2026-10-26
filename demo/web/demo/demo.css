@@ -76,7 +76,7 @@ a { color: inherit; }
   .control-actions, .control-hint { margin-left: 0; }
   .stage { flex-direction: column; padding: 16px; }
   .pane-taker { width: auto; height: 760px; --z: .9; }
-  .pane-maker { height: 640px; --z: .6; }
+  .pane-maker { flex: none; height: 640px; --z: .6; }
   .feed { width: auto; overflow: visible; }
 }
 
