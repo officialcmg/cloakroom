@@ -101,6 +101,7 @@ def restart(why):
     """End the whole process group (chains, services, swaps); the platform starts a fresh container."""
     log(f"restarting: {why}")
     os.killpg(0, signal.SIGKILL)
+    os._exit(1)  # as a container's PID 1 the signal above does not reach this process
 
 
 def stage_name(st):
