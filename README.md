@@ -1,6 +1,6 @@
 # Cloakroom
 
-A dark pool for shielded Zcash. A taker swaps ZEC for an EVM token (USDC on Base) with a market maker,
+Non-custodial cross-chain swaps for shielded Zcash. A taker swaps ZEC for an EVM token (USDC on Base) with a market maker,
 with no custodian, no bridge and no script on the Zcash side. The ZEC never leaves the shielded pool.
 
 **Paper:** [`Cloakroom_Yellow_Paper.pdf`](Cloakroom_Yellow_Paper.pdf) (source in `paper/`). It gives the
